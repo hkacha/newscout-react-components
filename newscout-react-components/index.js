@@ -43,7 +43,7 @@ function (_Component) {
   _createClass(HelloWorld, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("h1", null, this.props.title, " repo");
+      return _react.default.createElement("h1", null, this.props.title, " repos");
     }
   }]);
 
