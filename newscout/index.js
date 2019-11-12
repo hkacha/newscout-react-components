@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-require("../CardItem/index.css");
+require("../../CardItem/index.css");
 
 var _reactstrap = require("reactstrap");
 
