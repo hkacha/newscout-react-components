@@ -54,9 +54,15 @@ function (_React$Component) {
         width: "100%",
         src: image,
         alt: title
-      }), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("small", {
-        className: "text-muted"
-      }, uploaded_on)), _react.default.createElement(_reactstrap.CardTitle, null, title), _react.default.createElement(_reactstrap.CardText, null, description)));
+      }), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, {
+        className: "card-title"
+      }, title), _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("small", {
+        className: "text-muted card-muted"
+      }, uploaded_on, " via ", _react.default.createElement("a", {
+        href: uploaded_by
+      }, uploaded_by))), _react.default.createElement(_reactstrap.CardText, {
+        className: "card-desc"
+      }, description)));
     }
   }]);
 

@@ -8,11 +8,11 @@ export default class CardItem extends React.Component {
 			<Card>
 				<CardImg top width="100%" src={image} alt={title} />
 				<CardBody>
+					<CardTitle className="card-title">{title}</CardTitle>
 					<CardText>
-						<small className="text-muted">{uploaded_on}</small>
+						<small className="text-muted card-muted">{uploaded_on} via <a href={uploaded_by}>{uploaded_by}</a></small>
 					</CardText>
-					<CardTitle>{title}</CardTitle>
-					<CardText>{description}</CardText>
+					<CardText className="card-desc">{description}</CardText>
 				</CardBody>
 			</Card>
 		)
