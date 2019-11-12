@@ -58,4 +58,5 @@ function (_React$Component) {
   return CardItem;
 }(_react.default.Component);
 
-exports.default = CardItem;
+var _default = CardItem;
+exports.default = _default;

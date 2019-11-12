@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 
-export default class CardItem extends React.Component {
+class CardItem extends React.Component {
 	// const {image_path, card_title, card_text} = this.props;
 	render(){
 		return(
@@ -18,3 +18,5 @@ export default class CardItem extends React.Component {
 		)
 	}
 }
+
+export default CardItem
