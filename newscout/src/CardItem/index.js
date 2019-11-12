@@ -13,9 +13,6 @@ export default class CardItem extends React.Component {
 						<small className="text-muted card-muted">{uploaded_on}</small>
 					</CardText>
 					<CardText className="card-desc">{description}</CardText>
-					<CardText>
-						<small className="text-muted card-muted"><a href={uploaded_by}>{uploaded_by}</a></small>
-					</CardText>
 				</CardBody>
 			</Card>
 		)

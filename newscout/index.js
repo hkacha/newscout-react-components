@@ -60,11 +60,7 @@ function (_React$Component) {
         className: "text-muted card-muted"
       }, uploaded_on)), _react.default.createElement(_reactstrap.CardText, {
         className: "card-desc"
-      }, description), _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("small", {
-        className: "text-muted card-muted"
-      }, _react.default.createElement("a", {
-        href: uploaded_by
-      }, uploaded_by)))));
+      }, description)));
     }
   }]);
 
