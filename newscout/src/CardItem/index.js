@@ -2,17 +2,17 @@ import React from 'react';
 import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 
 export default class CardItem extends React.Component {
-	// const {image_path, card_title, card_text} = this.props;
 	render(){
+		const {image, title, description, uploaded_on, uploaded_by} = this.props;
 		return(
 			<Card>
-				<CardImg top width="100%" src="/assets/318x180.svg" alt="card_title" />
+				<CardImg top width="100%" src={image} alt={title} />
 				<CardBody>
 					<CardText>
-						<small className="text-muted">Last updated 3 mins ago</small>
+						<small className="text-muted">{uploaded_on}</small>
 					</CardText>
-					<CardTitle>card_title</CardTitle>
-					<CardText>card_text</CardText>
+					<CardTitle>{title}</CardTitle>
+					<CardText>{description}</CardText>
 				</CardBody>
 			</Card>
 		)

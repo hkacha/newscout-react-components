@@ -42,16 +42,21 @@ function (_React$Component) {
 
   _createClass(CardItem, [{
     key: "render",
-    // const {image_path, card_title, card_text} = this.props;
     value: function render() {
+      var _this$props = this.props,
+          image = _this$props.image,
+          title = _this$props.title,
+          description = _this$props.description,
+          uploaded_on = _this$props.uploaded_on,
+          uploaded_by = _this$props.uploaded_by;
       return _react.default.createElement(_reactstrap.Card, null, _react.default.createElement(_reactstrap.CardImg, {
         top: true,
         width: "100%",
-        src: "/assets/318x180.svg",
-        alt: "card_title"
+        src: image,
+        alt: title
       }), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("small", {
         className: "text-muted"
-      }, "Last updated 3 mins ago")), _react.default.createElement(_reactstrap.CardTitle, null, "card_title"), _react.default.createElement(_reactstrap.CardText, null, "card_text")));
+      }, uploaded_on)), _react.default.createElement(_reactstrap.CardTitle, null, title), _react.default.createElement(_reactstrap.CardText, null, description)));
     }
   }]);
 
