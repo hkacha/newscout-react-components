@@ -31,8 +31,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 var CardItem =
 /*#__PURE__*/
-function (_React$Components) {
-  _inherits(CardItem, _React$Components);
+function (_React$Component) {
+  _inherits(CardItem, _React$Component);
 
   function CardItem() {
     _classCallCheck(this, CardItem);
@@ -56,6 +56,6 @@ function (_React$Components) {
   }]);
 
   return CardItem;
-}(_react.default.Components);
+}(_react.default.Component);
 
 exports.default = CardItem;
