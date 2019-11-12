@@ -19,4 +19,5 @@ class CardItem extends React.Component {
 	}
 }
 
+
 export default CardItem
