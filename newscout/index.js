@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-require("./index.css");
+require("index.css");
 
 var _reactstrap = require("reactstrap");
 
