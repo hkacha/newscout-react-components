@@ -115,7 +115,9 @@ function (_React$Component) {
     value: function render() {
       return _react.default.createElement(_reactstrap.Navbar, null, _react.default.createElement(_reactstrap.NavbarBrand, {
         href: "/"
-      }, "reactstrap"), _react.default.createElement(_reactstrap.Nav, {
+      }, _react.default.createElement("img", {
+        src: "../logo.jpg"
+      })), _react.default.createElement(_reactstrap.Nav, {
         className: "ml-auto",
         navbar: true
       }, _react.default.createElement(_reactstrap.NavItem, null, "Components")));
