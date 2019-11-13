@@ -6,10 +6,10 @@ export class NavBar extends React.Component {
 		return(
 			<Navbar>
         		<NavbarBrand href="/">
-        			<img src={process.env.PUBLIC_URL + "/logo.jpg"} />
+        			<img src={this.props.image} />
         		</NavbarBrand>
           		<Nav className="ml-auto" navbar>
-            		<NavItem>Components {process.env.PUBLIC_URL}</NavItem>
+            		<NavItem>Components</NavItem>
             	</Nav>
             </Navbar>
 		)
