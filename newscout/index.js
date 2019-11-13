@@ -116,11 +116,11 @@ function (_React$Component) {
       return _react.default.createElement(_reactstrap.Navbar, null, _react.default.createElement(_reactstrap.NavbarBrand, {
         href: "/"
       }, _react.default.createElement("img", {
-        src: "../logo.jpg"
+        src: process.env.PUBLIC_URL + "/logo.jpg"
       })), _react.default.createElement(_reactstrap.Nav, {
         className: "ml-auto",
         navbar: true
-      }, _react.default.createElement(_reactstrap.NavItem, null, "Components")));
+      }, _react.default.createElement(_reactstrap.NavItem, null, "Components ", process.env.PUBLIC_URL)));
     }
   }]);
 
