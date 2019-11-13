@@ -6,7 +6,7 @@ export class NavBar extends React.Component {
 		return(
 			<Navbar>
         		<NavbarBrand href="/">
-        			<img src="../logo.jpg" />
+        			<img src="/static/images/logo/logo.jpg" />
         		</NavbarBrand>
           		<Nav className="ml-auto" navbar>
             		<NavItem>Components</NavItem>
