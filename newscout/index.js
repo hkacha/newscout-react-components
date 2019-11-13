@@ -77,6 +77,8 @@ exports.NavBar = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+require("./index.css");
+
 var _reactstrap = require("reactstrap");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -113,14 +115,12 @@ function (_React$Component) {
   _createClass(NavBar, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement(_reactstrap.Navbar, null, _react.default.createElement(_reactstrap.NavbarBrand, {
-        href: "/"
-      }, _react.default.createElement("img", {
-        src: "%PUBLIC_URL%/logo.jpg"
-      })), _react.default.createElement(_reactstrap.Nav, {
+      return _react.default.createElement(_reactstrap.Nav, {
         className: "ml-auto",
         navbar: true
-      }, _react.default.createElement(_reactstrap.NavItem, null, "Components")));
+      }, _react.default.createElement(_reactstrap.NavItem, {
+        className: "menu"
+      }, "+"));
     }
   }]);
 

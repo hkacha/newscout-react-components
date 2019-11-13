@@ -1,0 +1,16 @@
+.menu {
+    background: #F60A0A;
+    background-image: linear-gradient(to top left, #F60A0A, #D08719);
+    border-radius: 100px;
+    height: 40px;
+    line-height: 40px;
+    color: #f5f7fb;
+    font-family: Arial;
+    width: 40px;
+    font-size: 30px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 2px 2px 15px #d86817;
+}
