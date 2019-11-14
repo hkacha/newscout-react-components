@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 
-export class CardItem extends React.Component {
+export default class CardItem extends React.Component {
 	render(){
 		const {image, title, description, uploaded_on, uploaded_by} = this.props;
 		return(

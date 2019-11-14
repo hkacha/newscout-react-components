@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CardItem = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -67,7 +67,7 @@ function (_React$Component) {
   return CardItem;
 }(_react.default.Component);
 
-exports.CardItem = CardItem;
+exports.default = CardItem;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
