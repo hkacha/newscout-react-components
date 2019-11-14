@@ -77,7 +77,7 @@ exports.NavBar = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-require("./index.css");
+require("../src/NavBar/index.css");
 
 var _reactstrap = require("reactstrap");
 
