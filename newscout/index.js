@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.CardItem = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -67,13 +67,13 @@ function (_React$Component) {
   return CardItem;
 }(_react.default.Component);
 
-exports.default = CardItem;
+exports.CardItem = CardItem;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.NavBar = void 0;
+exports.Menu = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -99,18 +99,18 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var NavBar =
+var Menu =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(NavBar, _React$Component);
+  _inherits(Menu, _React$Component);
 
-  function NavBar() {
-    _classCallCheck(this, NavBar);
+  function Menu() {
+    _classCallCheck(this, Menu);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(NavBar).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(Menu).apply(this, arguments));
   }
 
-  _createClass(NavBar, [{
+  _createClass(Menu, [{
     key: "render",
     value: function render() {
       return _react.default.createElement(_reactstrap.Nav, {
@@ -122,7 +122,7 @@ function (_React$Component) {
     }
   }]);
 
-  return NavBar;
+  return Menu;
 }(_react.default.Component);
 
-exports.NavBar = NavBar;
+exports.Menu = Menu;
