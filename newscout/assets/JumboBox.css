@@ -1,0 +1,12 @@
+.item-caption h3 {
+    color: #2f2f2f;
+    font-size: 20px;
+    line-height: 28px;
+    margin-top: .5rem;
+    word-break: break-word;
+    text-overflow: ellipsis;
+}
+
+.item-caption p {
+    font-size: 15px;
+}

@@ -1,18 +1,24 @@
-.boxtitle {
-	position: relative;
+.sidebox .media {
+	margin-bottom: 30px;
 }
 
-.boxtitle h4 {
-	background: #2f2f2f;
-    color: #fff;
+.sidebox .media a {
+	width: 150px;
+	height: 80px;
+	margin: 0 auto;
+}
+
+.sidebox .media a img {
+	width: 100%;
+	height: 100%;
+}
+
+.sidebox .media .media-heading {
+	font-size: 16px;
     font-weight: 700;
-    height: 30px;
-    letter-spacing: 2px;
-    line-height: 30px;
-    padding: 0 15px;
-    display: inline-block;
-    width: auto;
-    font-size: 14px;
+    color: #2f2f2f;
+    line-height: 28px;
+    margin-top: -5px;
 }
 
 .sidebox ul li {
@@ -24,17 +30,6 @@
 	font-weight: 700;
 	color: #2f2f2f;
 	line-height: 28px;
-}
-
-.boxtitle:after{
-	background: #e6e6e6 none repeat scroll 0 0;
-	bottom: 0;
-	content: "";
-	height: 1px;
-	left: 0;
-	position: absolute;
-	width: 100%;
-	z-index: -1;
 }
 
 .post-header a.post-url {

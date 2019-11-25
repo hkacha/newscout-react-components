@@ -7,7 +7,7 @@ export class TabItem extends React.Component {
 		super(props);
 		this.state = {
 			activeTab: '0'
-		};		
+		};
 	}
 
 	toggle = (tab) => {
@@ -43,7 +43,9 @@ export class TabItem extends React.Component {
 									<Media object src={subitem.src} alt={subitem.alttext} />
 								</Media>
 								<Media body>
-									<Media heading>{subitem.header}</Media>
+									<Media heading>
+										<a href={subitem.url}>{subitem.header}</a>
+									</Media>
 									{subitem.caption}
 								</Media>
 							</Media>

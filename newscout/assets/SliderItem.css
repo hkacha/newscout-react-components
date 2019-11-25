@@ -19,3 +19,13 @@
 .carousel-caption p {
 	font-size: 15px;
 }
+
+.carousel-item img {
+    min-height: 550px;
+}
+
+@media (max-width: 767px) {
+    .carousel-item img {
+        min-height: auto;
+    }
+}

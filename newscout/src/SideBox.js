@@ -1,5 +1,5 @@
 import React from 'react';
-import { UncontrolledCarousel } from 'reactstrap';
+import { Media } from 'reactstrap';
 
 export class SideBox extends React.Component {
 	constructor(props) {
@@ -8,25 +8,22 @@ export class SideBox extends React.Component {
 
 	post = this.props.posts.map((item, index) => {
 		return (
-			<li key={index}>
-				<h5 className="post-header">
-					<a href={item.url} className="post-url">{item.header}</a>
-				</h5>
-				<p className="post-caption">{item.caption}</p>
-			</li>
+			<Media key={index}>
+				<Media left href={item.url} className="mr-3">
+					<Media object src={item.src} alt={item.alttext} />
+				</Media>
+				<Media body>
+					<Media heading>
+						<a href={item.url}>{item.header}</a>
+					</Media>
+				</Media>
+			</Media>
 		);
 	});
 
 	render(){
 		return(
-			<div className="sidebox">
-				<div className="boxtitle mb-4">
-					<h4 className="m-0">{this.props.boxtitle}</h4>
-				</div>
-				<ul className="list-unstyled">
-					{this.post}
-				</ul>
-			</div>
+			<div className="sidebox">{this.post}</div>
 		)
 	}
 }
