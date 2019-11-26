@@ -27,7 +27,7 @@ export class Menu extends React.Component {
 	render(){
 		return(
 			<Navbar className="fixed-top" expand="md">
-				<NavbarBrand href="/">
+				<NavbarBrand href="/news/">
 					<img src={this.props.logo} alt="newscout" />
 				</NavbarBrand>
 				<NavbarToggler onClick={this.toggle} className="custom-toggler" />

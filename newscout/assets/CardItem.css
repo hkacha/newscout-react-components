@@ -34,8 +34,18 @@
 	color: #8a8c90;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 380px) {
     .card-container {
-    	margin: 0px 0px 40px 10px;
+    	margin: 0px 0px 40px 4px;
+    	width: 100%;
+	}
+}
+
+@media only screen and (min-width: 381px) and (max-width: 767px){
+
+	.card-container {
+		margin: 0px 2px 40px 2px;
+		width: 100%;
+		max-width: 290px;
 	}
 }

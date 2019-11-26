@@ -6,9 +6,13 @@ export class CardItem extends React.Component {
 		const {image, title, description, uploaded_on, uploaded_by} = this.props;
 		return(
 			<Card>
-				<CardImg top width="100%" src={image} alt={title} />
+				<a href={uploaded_by}>
+					<CardImg top width="100%" src={image} alt={title} />
+				</a>
 				<CardBody>
-					<CardTitle className="card-title">{title}</CardTitle>
+					<CardTitle className="card-title">
+						<a href={uploaded_by}>{title}</a>
+					</CardTitle>
 					<CardText>
 						<small className="text-muted card-muted">{uploaded_on} via {uploaded_by}</small>
 					</CardText>
