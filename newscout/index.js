@@ -49,14 +49,18 @@ function (_React$Component) {
           description = _this$props.description,
           uploaded_on = _this$props.uploaded_on,
           uploaded_by = _this$props.uploaded_by;
-      return _react.default.createElement(_reactstrap.Card, null, _react.default.createElement(_reactstrap.CardImg, {
+      return _react.default.createElement(_reactstrap.Card, null, _react.default.createElement("a", {
+        href: uploaded_by
+      }, _react.default.createElement(_reactstrap.CardImg, {
         top: true,
         width: "100%",
         src: image,
         alt: title
-      }), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, {
+      })), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, {
         className: "card-title"
-      }, title), _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("small", {
+      }, _react.default.createElement("a", {
+        href: uploaded_by
+      }, title)), _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("small", {
         className: "text-muted card-muted"
       }, uploaded_on, " via ", uploaded_by)), _react.default.createElement(_reactstrap.CardText, {
         className: "card-desc"
@@ -213,7 +217,7 @@ function (_React$Component) {
         className: "fixed-top",
         expand: "md"
       }, _react.default.createElement(_reactstrap.NavbarBrand, {
-        href: "/"
+        href: "/news/"
       }, _react.default.createElement("img", {
         src: this.props.logo,
         alt: "newscout"
