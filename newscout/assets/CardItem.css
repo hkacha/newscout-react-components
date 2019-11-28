@@ -20,8 +20,11 @@
 }
 
 .card-container .card .card-title {
-	font-size: 15px;
-	margin-bottom: 0px;
+	font-size: 17px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-container .card .card-text .card-muted {
@@ -30,22 +33,27 @@
 }
 
 .card-container .card .card-desc {
-	font-size: 13px;
+	font-size: 14px;
 	color: #8a8c90;
 }
 
 @media (max-width: 380px) {
+	.slick-slide .card-container {
+		margin: 0px auto 40px auto;
+    	width: 250px;
+	}
+
     .card-container {
     	margin: 0px 0px 40px 4px;
-    	width: 100%;
+    	width: 321px;
 	}
 }
 
 @media only screen and (min-width: 381px) and (max-width: 767px){
-
+	
 	.card-container {
-		margin: 0px 2px 40px 2px;
 		width: 100%;
 		max-width: 290px;
+		margin: 0 auto 20px auto;
 	}
 }

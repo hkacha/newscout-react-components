@@ -1,8 +1,6 @@
 .navbar-expand-md .navbar-nav .nav-link {
     background-color: transparent;
     color: #8a8c90;
-    font-weight: 700;
-    font-size: 14px;
 }
 
 .navbar-expand-md .navbar-nav .nav-link:hover,
