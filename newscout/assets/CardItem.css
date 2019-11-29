@@ -1,11 +1,16 @@
+.card-container-detail,
+.card-container {
+	box-shadow: 0px 0px 20px #e8e8e8;
+}
+
 .card-container {
 	border-radius: 20px;
-    box-shadow: 0px 0px 20px #e8e8e8;
     margin: 0px 20px 40px 20px;
     width: 336px;
 	height: 350px;
 }
 
+.card-container-detail .card,
 .card-container .card {
 	border-radius: 20px;
 	border: none;
@@ -19,6 +24,7 @@
     border-top-right-radius: 20px;
 }
 
+.card-container-detail .card .card-title,
 .card-container .card .card-title {
 	font-size: 17px;
     margin-bottom: 0px;
@@ -27,11 +33,13 @@
     text-overflow: ellipsis;
 }
 
+.card-container-detail .card-text .card-muted,
 .card-container .card .card-text .card-muted {
 	font-size: 70%;
     color: #8a8c90;
 }
 
+.card-container-detail .card .card-desc,
 .card-container .card .card-desc {
 	font-size: 14px;
 	color: #8a8c90;
@@ -49,8 +57,7 @@
 	}
 }
 
-@media only screen and (min-width: 381px) and (max-width: 767px){
-	
+@media only screen and (min-width: 381px) and (max-width: 767px) {
 	.card-container {
 		width: 100%;
 		max-width: 290px;
