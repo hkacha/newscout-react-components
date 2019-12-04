@@ -78,6 +78,118 @@ exports.CardItem = CardItem;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.Filter = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _Fade = _interopRequireDefault(require("react-reveal/Fade"));
+
+var _reactstrap = require("reactstrap");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Filter =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Filter, _React$Component);
+
+  function Filter(props) {
+    var _this;
+
+    _classCallCheck(this, Filter);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Filter).call(this, props));
+
+    _this.togglecol = function () {
+      _this.setState({
+        isOpen: !_this.state.isOpen
+      });
+    };
+
+    _this.toggleFilter = function (data) {
+      _this.props.toggleFilter(data);
+    };
+
+    _this.collapse = _this.props.filters.map(function (item, index) {
+      return _react.default.createElement(_react.default.Fragment, {
+        key: index
+      }, _react.default.createElement("div", {
+        className: "fltr-section"
+      }, _react.default.createElement("div", {
+        onClick: _this.togglecol
+      }, item.catitems), _react.default.createElement("ul", {
+        className: "list-unstyled"
+      }, item.subitem.map(function (subitem, subindex) {
+        return _react.default.createElement("li", {
+          key: subindex
+        }, _react.default.createElement(_reactstrap.Label, {
+          check: true
+        }, _react.default.createElement("input", {
+          type: "checkbox"
+        }), " ", subitem.label));
+      }))));
+    });
+    _this.state = {
+      isOpen: false
+    };
+    return _this;
+  }
+
+  _createClass(Filter, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement(_Fade.default, {
+        right: true,
+        when: this.props.isFilterOpen,
+        duration: 500
+      }, _react.default.createElement("div", {
+        className: "filter-container ".concat(this.props.isFilterOpen === false ? 'd-none' : '')
+      }, _react.default.createElement("div", {
+        className: "filter-box"
+      }, _react.default.createElement("div", {
+        className: "clearfix"
+      }, _react.default.createElement("div", {
+        className: "float-left"
+      }, _react.default.createElement("h6", null, "Filters")), _react.default.createElement("div", {
+        className: "float-right"
+      }, _react.default.createElement("div", {
+        className: "closefilter",
+        onClick: this.toggleFilter
+      }, "X"))), _react.default.createElement("hr", null), _react.default.createElement("div", {
+        className: "row"
+      }, _react.default.createElement("div", {
+        className: "col-lg-12"
+      }, this.collapse)))));
+    }
+  }]);
+
+  return Filter;
+}(_react.default.Component);
+
+exports.Filter = Filter;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.JumboBox = void 0;
 
 var _react = _interopRequireDefault(require("react"));
@@ -162,6 +274,12 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactstrap = require("reactstrap");
 
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
+
+var _newscout = require("newscout");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -200,13 +318,20 @@ function (_React$Component) {
       });
     };
 
+    _this.toggleSearch = function () {
+      _this.setState({
+        isSearchOpen: !_this.state.isSearchOpen
+      });
+    };
+
     _this.navitem = _this.props.navitems.map(function (item, index) {
       return _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         href: item.itemurl
       }, item.itemtext));
     });
     _this.state = {
-      isOpen: false
+      isOpen: false,
+      isSearchOpen: false
     };
     return _this;
   }
@@ -214,7 +339,13 @@ function (_React$Component) {
   _createClass(Menu, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement(_reactstrap.Navbar, {
+      if (this.state.isSearchOpen === true) {
+        document.getElementsByTagName("body")[0].style = "overflow:hidden";
+      } else {
+        document.getElementsByTagName("body")[0].style = "overflow:auto";
+      }
+
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.Navbar, {
         className: "fixed-top",
         expand: "md"
       }, _react.default.createElement(_reactstrap.NavbarBrand, {
@@ -222,7 +353,14 @@ function (_React$Component) {
       }, _react.default.createElement("img", {
         src: this.props.logo,
         alt: "newscout"
-      })), _react.default.createElement(_reactstrap.NavbarToggler, {
+      })), _react.default.createElement(_reactstrap.Nav, {
+        className: "ml-auto d-block d-sm-none",
+        navbar: true
+      }, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        onClick: this.toggleSearch
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faSearch
+      })))), _react.default.createElement(_reactstrap.NavbarToggler, {
         onClick: this.toggle,
         className: "custom-toggler"
       }), _react.default.createElement(_reactstrap.Collapse, {
@@ -231,7 +369,14 @@ function (_React$Component) {
       }, _react.default.createElement(_reactstrap.Nav, {
         className: "ml-auto",
         navbar: true
-      }, this.navitem)));
+      }, this.navitem, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        onClick: this.toggleSearch
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faSearch
+      })))))), _react.default.createElement(_newscout.Search, {
+        toggleSearch: this.toggleSearch,
+        isSearchOpen: this.state.isSearchOpen
+      }));
     }
   }]);
 
@@ -239,6 +384,87 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.Menu = Menu;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Search = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _Fade = _interopRequireDefault(require("react-reveal/Fade"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Search =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Search, _React$Component);
+
+  function Search(props) {
+    var _this;
+
+    _classCallCheck(this, Search);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Search).call(this, props));
+
+    _this.toggleSearch = function (data) {
+      _this.props.toggleSearch(data);
+    };
+
+    return _this;
+  }
+
+  _createClass(Search, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement(_Fade.default, {
+        right: true,
+        when: this.props.isSearchOpen,
+        duration: 500
+      }, _react.default.createElement("div", {
+        className: "search-container ".concat(this.props.isSearchOpen === false ? 'd-none' : '')
+      }, _react.default.createElement("div", {
+        className: "closebox",
+        onClick: this.toggleSearch
+      }, "X"), _react.default.createElement("div", {
+        className: "row"
+      }, _react.default.createElement("div", {
+        className: "col-lg-4 offset-lg-4"
+      }, _react.default.createElement("div", {
+        className: "search-box"
+      }, _react.default.createElement("h1", {
+        className: "text-center"
+      }, "Search News"), _react.default.createElement("input", {
+        type: "text",
+        className: "form-control"
+      }))))));
+    }
+  }]);
+
+  return Search;
+}(_react.default.Component);
+
+exports.Search = Search;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
