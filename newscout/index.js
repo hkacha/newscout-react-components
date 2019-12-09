@@ -237,10 +237,10 @@ function (_React$Component) {
       var first_posts = this.props.posts[0];
       var other_posts = this.props.posts.map(function (item, index) {
         return _react.default.createElement("div", {
-          className: "col-lg-6 col-12 mb-4"
-        }, _react.default.createElement("div", {
-          className: "item",
+          className: "col-lg-6 col-12 mb-4",
           key: index
+        }, _react.default.createElement("div", {
+          className: "item"
         }, _react.default.createElement("a", {
           href: item.url
         }, _react.default.createElement("img", {

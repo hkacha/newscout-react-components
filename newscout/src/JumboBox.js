@@ -14,8 +14,8 @@ export class JumboBox extends React.Component {
 		var first_posts = this.props.posts[0];
 		var other_posts = this.props.posts.map((item, index) => {
 			return (
-				<div className="col-lg-6 col-12 mb-4">
-					<div className="item" key={index}>
+				<div className="col-lg-6 col-12 mb-4" key={index}>
+					<div className="item">
 						<a href={item.url}>
 							<img src={item.src} alt={item.alttext} className="img-fluid" />
 						</a>

@@ -59,7 +59,7 @@
     width: 100%;
     height: 100vh;
     z-index: 1500;
-    position: absolute;
+    position: fixed;
     background: #F60A0A;
     background-image: linear-gradient(to top left, #F60A0A, #D08719);
 }
