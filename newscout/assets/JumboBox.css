@@ -1,3 +1,14 @@
+.item-image {
+	width: 645px;
+	height: 337px;
+}
+
+.item-image a img {
+	max-height: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
 .item-caption h3 {
     color: #2f2f2f;
     font-size: 20px;
@@ -9,4 +20,6 @@
 
 .item-caption p {
     font-size: 15px;
+    height: 90px;
+    overflow: hidden;
 }

@@ -241,13 +241,15 @@ function (_React$Component) {
           key: index
         }, _react.default.createElement("div", {
           className: "item"
+        }, _react.default.createElement("div", {
+          className: "item-image"
         }, _react.default.createElement("a", {
           href: item.url
         }, _react.default.createElement("img", {
           src: item.src,
           alt: item.alttext,
           className: "img-fluid"
-        })), _react.default.createElement("div", {
+        }))), _react.default.createElement("div", {
           className: "item-caption"
         }, _react.default.createElement("h3", null, _react.default.createElement("a", {
           href: item.url
@@ -324,11 +326,6 @@ function (_React$Component) {
       });
     };
 
-    _this.navitem = _this.props.navitems.map(function (item, index) {
-      return _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-        href: item.itemurl
-      }, item.itemtext));
-    });
     _this.state = {
       isOpen: false,
       isSearchOpen: false
@@ -339,6 +336,12 @@ function (_React$Component) {
   _createClass(Menu, [{
     key: "render",
     value: function render() {
+      var navitem = this.props.navitems.map(function (item, index) {
+        return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+          href: item.itemurl + "/"
+        }, item.itemtext)));
+      });
+
       if (this.state.isSearchOpen === true) {
         document.getElementsByTagName("body")[0].style = "overflow:hidden";
       } else {
@@ -369,7 +372,11 @@ function (_React$Component) {
       }, _react.default.createElement(_reactstrap.Nav, {
         className: "ml-auto",
         navbar: true
-      }, this.navitem, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+      }, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        href: "/news/trending/"
+      }, "Trending")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        href: "/news/latest-news/"
+      }, "Latest News")), navitem, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         onClick: this.toggleSearch
       }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
         icon: _freeSolidSvgIcons.faSearch
@@ -624,39 +631,36 @@ function (_React$Component) {
   _inherits(SideBox, _React$Component);
 
   function SideBox(props) {
-    var _this;
-
     _classCallCheck(this, SideBox);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SideBox).call(this, props));
-    _this.post = _this.props.posts.map(function (item, index) {
-      return _react.default.createElement(_reactstrap.Media, {
-        key: index
-      }, _react.default.createElement(_reactstrap.Media, {
-        left: true,
-        href: item.url,
-        className: "mr-3"
-      }, _react.default.createElement(_reactstrap.Media, {
-        object: true,
-        src: item.src,
-        alt: item.alttext
-      })), _react.default.createElement(_reactstrap.Media, {
-        body: true
-      }, _react.default.createElement(_reactstrap.Media, {
-        heading: true
-      }, _react.default.createElement("a", {
-        href: item.url
-      }, item.header))));
-    });
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(SideBox).call(this, props));
   }
 
   _createClass(SideBox, [{
     key: "render",
     value: function render() {
+      var post = this.props.posts.map(function (item, index) {
+        return _react.default.createElement(_reactstrap.Media, {
+          key: index
+        }, _react.default.createElement(_reactstrap.Media, {
+          left: true,
+          href: item.url,
+          className: "mr-3"
+        }, _react.default.createElement(_reactstrap.Media, {
+          object: true,
+          src: item.src,
+          alt: item.alttext
+        })), _react.default.createElement(_reactstrap.Media, {
+          body: true
+        }, _react.default.createElement(_reactstrap.Media, {
+          heading: true
+        }, _react.default.createElement("a", {
+          href: item.url
+        }, item.header))));
+      });
       return _react.default.createElement("div", {
         className: "sidebox"
-      }, this.post);
+      }, post);
     }
   }]);
 

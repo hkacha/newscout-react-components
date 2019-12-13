@@ -16,9 +16,11 @@ export class JumboBox extends React.Component {
 			return (
 				<div className="col-lg-6 col-12 mb-4" key={index}>
 					<div className="item">
-						<a href={item.url}>
-							<img src={item.src} alt={item.alttext} className="img-fluid" />
-						</a>
+						<div className="item-image">
+							<a href={item.url}>
+								<img src={item.src} alt={item.alttext} className="img-fluid" />
+							</a>
+						</div>
 						<div className="item-caption">
 							<h3><a href={item.url}>{item.header}</a></h3>
 							<p>{item.caption}</p>

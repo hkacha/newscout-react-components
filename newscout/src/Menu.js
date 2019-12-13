@@ -27,15 +27,17 @@ export class Menu extends React.Component {
 		})
 	}
 
-	navitem = this.props.navitems.map((item, index) => {
-		return (
-			<NavItem>
-				<NavLink href={item.itemurl}>{item.itemtext}</NavLink>
-			</NavItem>
-		)
-	})
-
 	render(){
+		var navitem = this.props.navitems.map((item, index) => {
+			return (
+				<React.Fragment>
+					<NavItem>
+						<NavLink href={item.itemurl+"/"}>{item.itemtext}</NavLink>
+					</NavItem>
+				</React.Fragment>
+			)
+		})
+
 		if(this.state.isSearchOpen === true){
 			document.getElementsByTagName("body")[0].style = "overflow:hidden";
 		} else {
@@ -55,7 +57,13 @@ export class Menu extends React.Component {
 					<NavbarToggler onClick={this.toggle} className="custom-toggler" />
 					<Collapse isOpen={this.state.isOpen} navbar>
 						<Nav className="ml-auto" navbar>
-							{this.navitem}
+							<NavItem>
+								<NavLink href="/news/trending/">Trending</NavLink>
+							</NavItem>
+							<NavItem>
+								<NavLink href="/news/latest-news/">Latest News</NavLink>
+							</NavItem>
+							{navitem}
 							<NavItem>
 								<NavLink onClick={this.toggleSearch}><FontAwesomeIcon icon={faSearch} /></NavLink>
 							</NavItem>
