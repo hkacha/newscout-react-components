@@ -51,7 +51,8 @@ function (_React$Component) {
           uploaded_by = _this$props.uploaded_by,
           posturl = _this$props.posturl;
       return _react.default.createElement(_reactstrap.Card, null, _react.default.createElement("a", {
-        href: posturl
+        href: "".concat(posturl),
+        target: "_blank"
       }, _react.default.createElement(_reactstrap.CardImg, {
         top: true,
         width: "100%",
@@ -60,10 +61,14 @@ function (_React$Component) {
       })), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, {
         className: "card-title"
       }, _react.default.createElement("a", {
-        href: posturl
+        href: "".concat(posturl),
+        target: "_blank"
       }, title)), _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("small", {
         className: "text-muted card-muted"
-      }, uploaded_on, " via ", uploaded_by)), _react.default.createElement(_reactstrap.CardText, {
+      }, uploaded_on, " via ", _react.default.createElement("a", {
+        href: "".concat(posturl),
+        target: "_blank"
+      }, uploaded_by))), _react.default.createElement(_reactstrap.CardText, {
         className: "card-desc"
       }, description)));
     }
