@@ -6,17 +6,20 @@ export class SideBar extends React.Component {
 		super(props);
 	}
 
-	listitem = this.props.menuitems.map((item, index) => {
-		return (
-			<ListGroupItem tag="a" href={item.itemurl} key={index}>{item.itemtext}</ListGroupItem>
-		)
-	})
 
 	render(){
+		var listitem = this.props.menuitems.map((item, index) => {
+			return (
+				<ListGroupItem tag="a" href={item.itemurl} key={index}>{item.itemtext}</ListGroupItem>
+			)
+		})
+		
 		return(
 			<div className="sidebar col-lg-2 d-none d-sm-block">
 				<ListGroup>
-					{this.listitem}
+					<ListGroupItem tag="a" href="/news/trending/">Trending</ListGroupItem>
+					<ListGroupItem tag="a" href="/news/latest-news/">Latest News</ListGroupItem>
+					{listitem}
 				</ListGroup>
 			</div>
 		)

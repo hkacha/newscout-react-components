@@ -571,27 +571,30 @@ function (_React$Component) {
   _inherits(SideBar, _React$Component);
 
   function SideBar(props) {
-    var _this;
-
     _classCallCheck(this, SideBar);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SideBar).call(this, props));
-    _this.listitem = _this.props.menuitems.map(function (item, index) {
-      return _react.default.createElement(_reactstrap.ListGroupItem, {
-        tag: "a",
-        href: item.itemurl,
-        key: index
-      }, item.itemtext);
-    });
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(SideBar).call(this, props));
   }
 
   _createClass(SideBar, [{
     key: "render",
     value: function render() {
+      var listitem = this.props.menuitems.map(function (item, index) {
+        return _react.default.createElement(_reactstrap.ListGroupItem, {
+          tag: "a",
+          href: item.itemurl,
+          key: index
+        }, item.itemtext);
+      });
       return _react.default.createElement("div", {
         className: "sidebar col-lg-2 d-none d-sm-block"
-      }, _react.default.createElement(_reactstrap.ListGroup, null, this.listitem));
+      }, _react.default.createElement(_reactstrap.ListGroup, null, _react.default.createElement(_reactstrap.ListGroupItem, {
+        tag: "a",
+        href: "/news/trending/"
+      }, "Trending"), _react.default.createElement(_reactstrap.ListGroupItem, {
+        tag: "a",
+        href: "/news/latest-news/"
+      }, "Latest News"), listitem));
     }
   }]);
 
