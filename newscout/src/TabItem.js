@@ -11,7 +11,6 @@ export class TabItem extends React.Component {
 	}
 
 	toggle = (tab) => {
-		console.log(tab)
 		if(this.state.activeTab !== tab){
 			this.setState({
 				activeTab: tab
@@ -39,12 +38,12 @@ export class TabItem extends React.Component {
 					{item.tab_posts.map((subitem, index) => {
 						return(
 							<Media key={index}>
-								<Media left href={subitem.url} className="mr-4">
+								<Media left href={`/news/article/${subitem.id}/`} className="mr-4">
 									<Media object src={subitem.src} alt={subitem.alttext} />
 								</Media>
 								<Media body>
 									<Media heading>
-										<a href={subitem.url}>{subitem.header}</a>
+										<a href={`/news/article/${subitem.id}/`}>{subitem.header}</a>
 									</Media>
 									{subitem.caption}
 								</Media>

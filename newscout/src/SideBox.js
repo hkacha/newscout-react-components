@@ -10,12 +10,12 @@ export class SideBox extends React.Component {
 		var post = this.props.posts.map((item, index) => {
 			return (
 				<Media key={index}>
-					<Media left href={item.url} className="mr-3">
+					<Media left href={`/news/article/${item.id}/`} className="mr-3">
 						<Media object src={item.src} alt={item.alttext} />
 					</Media>
 					<Media body>
 						<Media heading>
-							<a href={item.url}>{item.header}</a>
+							<a href={`/news/article/${item.id}/`}>{item.header}</a>
 						</Media>
 					</Media>
 				</Media>

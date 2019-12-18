@@ -49,7 +49,8 @@ function (_React$Component) {
           description = _this$props.description,
           uploaded_on = _this$props.uploaded_on,
           uploaded_by = _this$props.uploaded_by,
-          posturl = _this$props.posturl;
+          posturl = _this$props.posturl,
+          source_url = _this$props.source_url;
       return _react.default.createElement(_reactstrap.Card, null, _react.default.createElement("a", {
         href: "".concat(posturl),
         target: "_blank"
@@ -66,7 +67,7 @@ function (_React$Component) {
       }, title)), _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("small", {
         className: "text-muted card-muted"
       }, uploaded_on, " via ", _react.default.createElement("a", {
-        href: "".concat(posturl),
+        href: "".concat(source_url),
         target: "_blank"
       }, uploaded_by))), _react.default.createElement(_reactstrap.CardText, {
         className: "card-desc"
@@ -239,7 +240,6 @@ function (_React$Component) {
   _createClass(JumboBox, [{
     key: "render",
     value: function render() {
-      var first_posts = this.props.posts[0];
       var other_posts = this.props.posts.map(function (item, index) {
         return _react.default.createElement("div", {
           className: "col-lg-6 col-12 mb-4",
@@ -249,7 +249,7 @@ function (_React$Component) {
         }, _react.default.createElement("div", {
           className: "item-image"
         }, _react.default.createElement("a", {
-          href: item.url
+          href: "/news/article/".concat(item.id, "/")
         }, _react.default.createElement("img", {
           src: item.src,
           alt: item.alttext,
@@ -257,7 +257,7 @@ function (_React$Component) {
         }))), _react.default.createElement("div", {
           className: "item-caption"
         }, _react.default.createElement("h3", null, _react.default.createElement("a", {
-          href: item.url
+          href: "/news/article/".concat(item.id, "/")
         }, item.header)), _react.default.createElement("p", null, item.caption))));
       });
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
@@ -343,7 +343,7 @@ function (_React$Component) {
     value: function render() {
       var navitem = this.props.navitems.map(function (item, index) {
         return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-          href: item.itemurl + "/"
+          href: "/news/" + item.itemurl + "/"
         }, item.itemtext)));
       });
 
@@ -652,7 +652,7 @@ function (_React$Component) {
           key: index
         }, _react.default.createElement(_reactstrap.Media, {
           left: true,
-          href: item.url,
+          href: "/news/article/".concat(item.id, "/"),
           className: "mr-3"
         }, _react.default.createElement(_reactstrap.Media, {
           object: true,
@@ -663,7 +663,7 @@ function (_React$Component) {
         }, _react.default.createElement(_reactstrap.Media, {
           heading: true
         }, _react.default.createElement("a", {
-          href: item.url
+          href: "/news/article/".concat(item.id, "/")
         }, item.header))));
       });
       return _react.default.createElement("div", {
@@ -775,8 +775,6 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TabItem).call(this, props));
 
     _this.toggle = function (tab) {
-      console.log(tab);
-
       if (_this.state.activeTab !== tab) {
         _this.setState({
           activeTab: tab
@@ -815,7 +813,7 @@ function (_React$Component) {
             key: index
           }, _react.default.createElement(_reactstrap.Media, {
             left: true,
-            href: subitem.url,
+            href: "/news/article/".concat(subitem.id, "/"),
             className: "mr-4"
           }, _react.default.createElement(_reactstrap.Media, {
             object: true,
@@ -826,7 +824,7 @@ function (_React$Component) {
           }, _react.default.createElement(_reactstrap.Media, {
             heading: true
           }, _react.default.createElement("a", {
-            href: subitem.url
+            href: "/news/article/".concat(subitem.id, "/")
           }, subitem.header)), subitem.caption));
         }));
       });

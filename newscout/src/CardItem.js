@@ -3,7 +3,7 @@ import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 
 export class CardItem extends React.Component {
 	render(){
-		const {image, title, description, uploaded_on, uploaded_by, posturl} = this.props;
+		const {image, title, description, uploaded_on, uploaded_by, posturl, source_url} = this.props;
 		return(
 			<Card>
 				<a href={`${posturl}`} target="_blank">
@@ -14,7 +14,7 @@ export class CardItem extends React.Component {
 						<a href={`${posturl}`} target="_blank">{title}</a>
 					</CardTitle>
 					<CardText>
-						<small className="text-muted card-muted">{uploaded_on} via <a href={`${posturl}`} target="_blank">{uploaded_by}</a></small>
+						<small className="text-muted card-muted">{uploaded_on} via <a href={`${source_url}`} target="_blank">{uploaded_by}</a></small>
 					</CardText>
 					<CardText className="card-desc">{description}</CardText>
 				</CardBody>

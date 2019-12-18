@@ -32,7 +32,7 @@ export class Menu extends React.Component {
 			return (
 				<React.Fragment>
 					<NavItem>
-						<NavLink href={item.itemurl+"/"}>{item.itemtext}</NavLink>
+						<NavLink href={"/news/"+item.itemurl+"/"}>{item.itemtext}</NavLink>
 					</NavItem>
 				</React.Fragment>
 			)
