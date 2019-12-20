@@ -10,7 +10,7 @@ export class SideBar extends React.Component {
 	render(){
 		var listitem = this.props.menuitems.map((item, index) => {
 			return (
-				<ListGroupItem tag="a" href={item.itemurl} key={index}>{item.itemtext}</ListGroupItem>
+				<ListGroupItem tag="a" href={"/news/"+item.itemurl+"/"} key={index}>{item.itemtext}</ListGroupItem>
 			)
 		})
 		

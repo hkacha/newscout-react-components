@@ -28,6 +28,8 @@ export class Menu extends React.Component {
 	}
 
 	render(){
+		const { multiple, placeholder, options, url } = this.props;
+
 		var navitem = this.props.navitems.map((item, index) => {
 			return (
 				<React.Fragment>
@@ -70,7 +72,12 @@ export class Menu extends React.Component {
 						</Nav>
 					</Collapse>
 				</Navbar>
-				<Search toggleSearch={this.toggleSearch} isSearchOpen={this.state.isSearchOpen} />
+				<Search toggleSearch={this.toggleSearch}
+						isSearchOpen={this.state.isSearchOpen}
+						multiple={multiple}
+						placeholder={placeholder}
+						options={options}
+						url={url} />
 			</React.Fragment>
 		)
 	}

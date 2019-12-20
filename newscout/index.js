@@ -341,6 +341,11 @@ function (_React$Component) {
   _createClass(Menu, [{
     key: "render",
     value: function render() {
+      var _this$props = this.props,
+          multiple = _this$props.multiple,
+          placeholder = _this$props.placeholder,
+          options = _this$props.options,
+          url = _this$props.url;
       var navitem = this.props.navitems.map(function (item, index) {
         return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
           href: "/news/" + item.itemurl + "/"
@@ -387,7 +392,11 @@ function (_React$Component) {
         icon: _freeSolidSvgIcons.faSearch
       })))))), _react.default.createElement(_newscout.Search, {
         toggleSearch: this.toggleSearch,
-        isSearchOpen: this.state.isSearchOpen
+        isSearchOpen: this.state.isSearchOpen,
+        multiple: multiple,
+        placeholder: placeholder,
+        options: options,
+        url: url
       }));
     }
   }]);
@@ -404,6 +413,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.Search = void 0;
 
 var _react = _interopRequireDefault(require("react"));
+
+var _reactstrap = require("reactstrap");
 
 var _Fade = _interopRequireDefault(require("react-reveal/Fade"));
 
@@ -443,12 +454,32 @@ function (_React$Component) {
       _this.props.toggleSearch(data);
     };
 
+    _this.keyPress = function (e) {
+      var url = _this.props.url + "?q=" + _this.state.value;
+      console.log(url);
+
+      if (e.keyCode == 13) {
+        window.location.href = url;
+      }
+    };
+
+    _this.handleChange = function (e) {
+      _this.setState({
+        value: e.target.value
+      });
+    };
+
+    _this.state = {
+      results: [],
+      value: ''
+    };
     return _this;
   }
 
   _createClass(Search, [{
     key: "render",
     value: function render() {
+      console.log(this.props);
       return _react.default.createElement(_Fade.default, {
         right: true,
         when: this.props.isSearchOpen,
@@ -468,7 +499,9 @@ function (_React$Component) {
         className: "text-center"
       }, "Search News"), _react.default.createElement("input", {
         type: "text",
-        className: "form-control"
+        className: "form-control",
+        onChange: this.handleChange,
+        onKeyDown: this.keyPress
       }))))));
     }
   }]);
@@ -582,7 +615,7 @@ function (_React$Component) {
       var listitem = this.props.menuitems.map(function (item, index) {
         return _react.default.createElement(_reactstrap.ListGroupItem, {
           tag: "a",
-          href: item.itemurl,
+          href: "/news/" + item.itemurl + "/",
           key: index
         }, item.itemtext);
       });
