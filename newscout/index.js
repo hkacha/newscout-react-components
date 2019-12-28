@@ -112,6 +112,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+var query_array = [];
+
 var Filter =
 /*#__PURE__*/
 function (_React$Component) {
@@ -134,25 +136,29 @@ function (_React$Component) {
       _this.props.toggleFilter(data);
     };
 
-    _this.collapse = _this.props.filters.map(function (item, index) {
-      return _react.default.createElement(_react.default.Fragment, {
-        key: index
-      }, _react.default.createElement("div", {
-        className: "fltr-section"
-      }, _react.default.createElement("div", {
-        onClick: _this.togglecol
-      }, item.catitems), _react.default.createElement("ul", {
-        className: "list-unstyled"
-      }, item.subitem.map(function (subitem, subindex) {
-        return _react.default.createElement("li", {
-          key: subindex
-        }, _react.default.createElement(_reactstrap.Label, {
-          check: true
-        }, _react.default.createElement("input", {
-          type: "checkbox"
-        }), " ", subitem.label));
-      }))));
-    });
+    _this.handleChange = function (e) {
+      var cat_type = e.target.dataset.cat.toLowerCase();
+      var cat_val = e.target.value;
+      var cat_checked = e.target.checked;
+
+      if (cat_type === "hash tags") {
+        cat_type = "tag";
+      }
+
+      var query = cat_type + "=" + cat_val;
+      console.log(cat_checked);
+
+      if (cat_checked === true) {
+        query_array.push(query);
+      } else {
+        query_array.splice(query_array.indexOf(query), 1);
+      }
+
+      var final_query = query_array.join("&");
+
+      _this.props.query(final_query);
+    };
+
     _this.state = {
       isOpen: false
     };
@@ -162,6 +168,30 @@ function (_React$Component) {
   _createClass(Filter, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      var collapse = this.props.filters.map(function (item, index) {
+        return _react.default.createElement(_react.default.Fragment, {
+          key: index
+        }, _react.default.createElement("div", {
+          className: "fltr-section"
+        }, _react.default.createElement("div", {
+          onClick: _this2.togglecol
+        }, item.catitems), _react.default.createElement("ul", {
+          className: "list-unstyled"
+        }, item.subitem.map(function (subitem, subindex) {
+          return _react.default.createElement("li", {
+            key: subindex
+          }, _react.default.createElement(_reactstrap.Label, {
+            check: true
+          }, _react.default.createElement("input", {
+            type: "checkbox",
+            value: subitem.label,
+            onClick: _this2.handleChange,
+            "data-cat": item.catitems
+          }), " ", subitem.label));
+        }))));
+      });
       return _react.default.createElement(_Fade.default, {
         right: true,
         when: this.props.isFilterOpen,
@@ -183,7 +213,7 @@ function (_React$Component) {
         className: "row"
       }, _react.default.createElement("div", {
         className: "col-lg-12"
-      }, this.collapse)))));
+      }, collapse)))));
     }
   }]);
 
@@ -456,7 +486,6 @@ function (_React$Component) {
 
     _this.keyPress = function (e) {
       var url = _this.props.url + "?q=" + _this.state.value;
-      console.log(url);
 
       if (e.keyCode == 13) {
         window.location.href = url;
@@ -479,7 +508,6 @@ function (_React$Component) {
   _createClass(Search, [{
     key: "render",
     value: function render() {
-      console.log(this.props);
       return _react.default.createElement(_Fade.default, {
         right: true,
         when: this.props.isSearchOpen,

@@ -18,7 +18,6 @@ export class Search extends React.Component {
 
 	keyPress = (e) => {
 		var url = this.props.url+"?q="+this.state.value;
-		console.log(url);
 		if(e.keyCode == 13){
 			window.location.href = url;
 		}
@@ -31,7 +30,6 @@ export class Search extends React.Component {
 	}
 
 	render(){
-		console.log(this.props)
 		return(
 			<Fade right when={this.props.isSearchOpen} duration={500}>
 				<div className={`search-container ${this.props.isSearchOpen === false ? 'd-none' : ''}`}>

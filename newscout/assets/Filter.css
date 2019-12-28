@@ -23,8 +23,9 @@
     width: 300px;
     z-index: 1500;
     padding: 25px;
-    background: #FFF;
+    overflow: auto;
     position: fixed;
+    background: #FFF;
     height: calc(100vh - 77px);
     border-left: 1px solid #eee;
 }
