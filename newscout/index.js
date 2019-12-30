@@ -146,21 +146,23 @@ function (_React$Component) {
       }
 
       var query = cat_type + "=" + cat_val;
-      console.log(cat_checked);
 
       if (cat_checked === true) {
-        query_array.push(query);
+        query_array.push(cat_val);
       } else {
-        query_array.splice(query_array.indexOf(query), 1);
+        query_array.splice(query_array.indexOf(cat_val), 1);
       }
 
-      var final_query = query_array.join("&");
+      _this.setState({
+        selectedtem: query_array
+      });
 
-      _this.props.query(final_query);
+      _this.props.query(query, cat_checked);
     };
 
     _this.state = {
-      isOpen: false
+      isOpen: false,
+      selectedtem: []
     };
     return _this;
   }
@@ -170,6 +172,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      var selectedtem = this.state.selectedtem;
       var collapse = this.props.filters.map(function (item, index) {
         return _react.default.createElement(_react.default.Fragment, {
           key: index
@@ -184,12 +187,13 @@ function (_React$Component) {
             key: subindex
           }, _react.default.createElement(_reactstrap.Label, {
             check: true
-          }, _react.default.createElement("input", {
+          }, _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("input", {
             type: "checkbox",
             value: subitem.label,
             onClick: _this2.handleChange,
-            "data-cat": item.catitems
-          }), " ", subitem.label));
+            "data-cat": item.catitems,
+            checked: selectedtem.indexOf(subitem.label) > -1 ? true : false
+          }), " ", subitem.label)));
         }))));
       });
       return _react.default.createElement(_Fade.default, {

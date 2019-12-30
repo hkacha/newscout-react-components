@@ -10,7 +10,7 @@ export class Filter extends React.Component {
 		super(props);
 		this.state = {
 			isOpen: false,
-
+			selectedtem: [],
 		};
 	}
 
@@ -32,17 +32,19 @@ export class Filter extends React.Component {
 			cat_type = "tag";
 		}
 		var query = cat_type+"="+cat_val;
-		console.log(cat_checked)
 		if(cat_checked === true){
-			query_array.push(query);
+			query_array.push(cat_val);
 		} else {
-			query_array.splice(query_array.indexOf(query), 1);
+			query_array.splice(query_array.indexOf(cat_val), 1);
 		}
-		var final_query = query_array.join("&");
-		this.props.query(final_query)
+		this.setState({
+			selectedtem: query_array
+		})
+		this.props.query(query, cat_checked)
 	}
 
 	render(){
+		var { selectedtem } = this.state;
 		var collapse = this.props.filters.map((item, index) => {
 			return (
 				<React.Fragment key={index}>
@@ -53,7 +55,9 @@ export class Filter extends React.Component {
 								return (
 									<li key={subindex}>
 										<Label check>
-											<input type="checkbox" value={subitem.label} onClick={this.handleChange} data-cat={item.catitems} /> {subitem.label}
+											<React.Fragment>
+												<input type="checkbox" value={subitem.label} onClick={this.handleChange} data-cat={item.catitems} checked={selectedtem.indexOf(subitem.label) > -1 ? true : false} /> {subitem.label}
+											</React.Fragment>
 										</Label>
 									</li>
 								)
