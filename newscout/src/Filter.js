@@ -56,7 +56,7 @@ export class Filter extends React.Component {
 									<li key={subindex}>
 										<Label check>
 											<React.Fragment>
-												<input type="checkbox" value={subitem.label} onClick={this.handleChange} data-cat={item.catitems} checked={selectedtem.indexOf(subitem.label) > -1 ? true : false} /> {subitem.label}
+												<input type="checkbox" value={subitem.label} onChange={this.handleChange} data-cat={item.catitems} checked={selectedtem.indexOf(subitem.label) > -1 ? true : false} /> {subitem.label}
 											</React.Fragment>
 										</Label>
 									</li>

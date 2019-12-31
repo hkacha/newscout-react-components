@@ -32,7 +32,7 @@ export class Menu extends React.Component {
 
 		var navitem = this.props.navitems.map((item, index) => {
 			return (
-				<React.Fragment>
+				<React.Fragment key={index}>
 					<NavItem>
 						<NavLink href={"/news/"+item.itemurl+"/"}>{item.itemtext}</NavLink>
 					</NavItem>

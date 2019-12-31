@@ -190,7 +190,7 @@ function (_React$Component) {
           }, _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("input", {
             type: "checkbox",
             value: subitem.label,
-            onClick: _this2.handleChange,
+            onChange: _this2.handleChange,
             "data-cat": item.catitems,
             checked: selectedtem.indexOf(subitem.label) > -1 ? true : false
           }), " ", subitem.label)));
@@ -381,7 +381,9 @@ function (_React$Component) {
           options = _this$props.options,
           url = _this$props.url;
       var navitem = this.props.navitems.map(function (item, index) {
-        return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        return _react.default.createElement(_react.default.Fragment, {
+          key: index
+        }, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
           href: "/news/" + item.itemurl + "/"
         }, item.itemtext)));
       });
