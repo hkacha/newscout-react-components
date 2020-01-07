@@ -15,7 +15,7 @@ export class SideBar extends React.Component {
 		})
 		
 		return(
-			<div className="sidebar col-lg-2 d-none d-sm-block">
+			<div className={`sidebar col-lg-2 d-none d-sm-block ${this.props.class ? '' : 'sidebar-none'}`}>
 				<ListGroup>
 					<ListGroupItem tag="a" href="/news/trending/">Trending</ListGroupItem>
 					<ListGroupItem tag="a" href="/news/latest-news/">Latest News</ListGroupItem>

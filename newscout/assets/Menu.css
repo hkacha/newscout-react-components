@@ -95,14 +95,29 @@
     box-shadow: none !important;
 }
 
+nav .navbar-brand {
+    margin-left: -15px;
+}
+
+.sidebar-btn {
+    color: #e02c26;
+    cursor: pointer;
+}
+
 @media (max-width: 380px) {
     .search-container {
         padding: 15px;
+    }
+    nav .navbar-brand {
+        margin-left: 0px;
     }
 }
 
 @media only screen and (min-width: 381px) and (max-width: 767px) {
     .search-container {
         padding: 15px;
+    }
+    nav .navbar-brand {
+        margin-left: 0px;
     }
 }

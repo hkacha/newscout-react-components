@@ -359,6 +359,14 @@ function (_React$Component) {
       });
     };
 
+    _this.sidebartoggle = function () {
+      _this.setState({
+        isSideOpen: !_this.state.isSideOpen
+      }, function () {
+        this.props.isSideOpen(this.state.isSideOpen);
+      });
+    };
+
     _this.toggleSearch = function () {
       _this.setState({
         isSearchOpen: !_this.state.isSearchOpen
@@ -367,7 +375,9 @@ function (_React$Component) {
 
     _this.state = {
       isOpen: false,
-      isSearchOpen: false
+      isSearchOpen: false,
+      isSlider: _this.props.isSlider,
+      isSideOpen: true
     };
     return _this;
   }
@@ -379,7 +389,8 @@ function (_React$Component) {
           multiple = _this$props.multiple,
           placeholder = _this$props.placeholder,
           options = _this$props.options,
-          url = _this$props.url;
+          url = _this$props.url,
+          isSlider = _this$props.isSlider;
       var navitem = this.props.navitems.map(function (item, index) {
         return _react.default.createElement(_react.default.Fragment, {
           key: index
@@ -397,12 +408,14 @@ function (_React$Component) {
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.Navbar, {
         className: "fixed-top",
         expand: "md"
+      }, _react.default.createElement("div", {
+        className: "col-lg-2"
       }, _react.default.createElement(_reactstrap.NavbarBrand, {
         href: "/news/"
       }, _react.default.createElement("img", {
         src: this.props.logo,
         alt: "newscout"
-      })), _react.default.createElement(_reactstrap.Nav, {
+      }))), _react.default.createElement(_reactstrap.Nav, {
         className: "ml-auto d-block d-sm-none",
         navbar: true
       }, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
@@ -415,7 +428,13 @@ function (_React$Component) {
       }), _react.default.createElement(_reactstrap.Collapse, {
         isOpen: this.state.isOpen,
         navbar: true
-      }, _react.default.createElement(_reactstrap.Nav, {
+      }, isSlider ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+        className: "sidebar-btn",
+        onClick: this.sidebartoggle
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faBars,
+        size: "lg"
+      }))) : "", _react.default.createElement(_reactstrap.Nav, {
         className: "ml-auto",
         navbar: true
       }, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
@@ -654,7 +673,7 @@ function (_React$Component) {
         }, item.itemtext);
       });
       return _react.default.createElement("div", {
-        className: "sidebar col-lg-2 d-none d-sm-block"
+        className: "sidebar col-lg-2 d-none d-sm-block ".concat(this.props.class ? '' : 'sidebar-none')
       }, _react.default.createElement(_reactstrap.ListGroup, null, _react.default.createElement(_reactstrap.ListGroupItem, {
         tag: "a",
         href: "/news/trending/"
