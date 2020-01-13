@@ -76,7 +76,7 @@ export class Menu extends React.Component {
 							</React.Fragment>
 						: ""
 						}
-						<Nav className="ml-auto" navbar>
+						<Nav className="ml-auto" navbar id="menu">
 							<NavItem>
 								<NavLink href="/news/trending/">Trending</NavLink>
 							</NavItem>

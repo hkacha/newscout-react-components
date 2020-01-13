@@ -436,7 +436,8 @@ function (_React$Component) {
         size: "lg"
       }))) : "", _react.default.createElement(_reactstrap.Nav, {
         className: "ml-auto",
-        navbar: true
+        navbar: true,
+        id: "menu"
       }, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         href: "/news/trending/"
       }, "Trending")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
