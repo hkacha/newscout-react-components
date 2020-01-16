@@ -404,7 +404,7 @@ function (_React$Component) {
       }, _react.default.createElement("div", {
         className: "col-lg-2"
       }, _react.default.createElement(_reactstrap.NavbarBrand, {
-        href: "/news/"
+        href: "/"
       }, _react.default.createElement("img", {
         src: this.props.logo,
         alt: "newscout"
