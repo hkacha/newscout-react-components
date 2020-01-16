@@ -391,13 +391,6 @@ function (_React$Component) {
           options = _this$props.options,
           url = _this$props.url,
           isSlider = _this$props.isSlider;
-      var navitem = this.props.navitems.map(function (item, index) {
-        return _react.default.createElement(_react.default.Fragment, {
-          key: index
-        }, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-          href: "/news/" + item.itemurl + "/"
-        }, item.itemtext)));
-      });
 
       if (this.state.isSearchOpen === true) {
         document.getElementsByTagName("body")[0].style = "overflow:hidden";
@@ -442,7 +435,17 @@ function (_React$Component) {
         href: "/news/trending/"
       }, "Trending")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         href: "/news/latest-news/"
-      }, "Latest News")), navitem, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+      }, "Latest News")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        href: "/news/sector-updates/"
+      }, "Sector Updates")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        href: "/news/regional-updates/"
+      }, "Regional Updates")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        href: "/news/finance/"
+      }, "Finance")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        href: "/news/economics/"
+      }, "Economics")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        href: "/news/misc/"
+      }, "Misc")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         onClick: this.toggleSearch
       }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
         icon: _freeSolidSvgIcons.faSearch
@@ -666,13 +669,11 @@ function (_React$Component) {
   _createClass(SideBar, [{
     key: "render",
     value: function render() {
-      var listitem = this.props.menuitems.map(function (item, index) {
-        return _react.default.createElement(_reactstrap.ListGroupItem, {
-          tag: "a",
-          href: "/news/" + item.itemurl + "/",
-          key: index
-        }, item.itemtext);
-      });
+      // var listitem = this.props.menuitems.map((item, index) => {
+      // 	return (
+      // 		<ListGroupItem tag="a" href={"/news/"+item.itemurl+"/"} key={index}>{item.itemtext}</ListGroupItem>
+      // 	)
+      // })
       return _react.default.createElement("div", {
         className: "sidebar col-lg-2 d-none d-sm-block ".concat(this.props.class ? '' : 'sidebar-none')
       }, _react.default.createElement(_reactstrap.ListGroup, null, _react.default.createElement(_reactstrap.ListGroupItem, {
@@ -681,7 +682,22 @@ function (_React$Component) {
       }, "Trending"), _react.default.createElement(_reactstrap.ListGroupItem, {
         tag: "a",
         href: "/news/latest-news/"
-      }, "Latest News"), listitem));
+      }, "Latest News"), _react.default.createElement(_reactstrap.ListGroupItem, {
+        tag: "a",
+        href: "/news/sector-updates/"
+      }, "Sector Updates"), _react.default.createElement(_reactstrap.ListGroupItem, {
+        tag: "a",
+        href: "/news/regional-updates/"
+      }, "Regional Updates"), _react.default.createElement(_reactstrap.ListGroupItem, {
+        tag: "a",
+        href: "/news/finance/"
+      }, "Finance"), _react.default.createElement(_reactstrap.ListGroupItem, {
+        tag: "a",
+        href: "/news/economics/"
+      }, "Economics"), _react.default.createElement(_reactstrap.ListGroupItem, {
+        tag: "a",
+        href: "/news/misc/"
+      }, "Misc")));
     }
   }]);
 

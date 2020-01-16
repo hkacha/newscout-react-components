@@ -40,16 +40,6 @@ export class Menu extends React.Component {
 	render(){
 		const { multiple, placeholder, options, url, isSlider } = this.props;
 
-		var navitem = this.props.navitems.map((item, index) => {
-			return (
-				<React.Fragment key={index}>
-					<NavItem>
-						<NavLink href={"/news/"+item.itemurl+"/"}>{item.itemtext}</NavLink>
-					</NavItem>
-				</React.Fragment>
-			)
-		})
-
 		if(this.state.isSearchOpen === true){
 			document.getElementsByTagName("body")[0].style = "overflow:hidden";
 		} else {
@@ -59,7 +49,7 @@ export class Menu extends React.Component {
 			<React.Fragment>
 				<Navbar className="fixed-top" expand="md">
 					<div className="col-lg-2">
-						<NavbarBrand href="/news/">
+						<NavbarBrand href="/">
 							<img src={this.props.logo} alt="newscout" />
 						</NavbarBrand>
 					</div>
@@ -83,7 +73,21 @@ export class Menu extends React.Component {
 							<NavItem>
 								<NavLink href="/news/latest-news/">Latest News</NavLink>
 							</NavItem>
-							{navitem}
+							<NavItem>
+								<NavLink href="/news/sector-updates/">Sector Updates</NavLink>
+							</NavItem>
+							<NavItem>
+								<NavLink href="/news/regional-updates/">Regional Updates</NavLink>
+							</NavItem>
+							<NavItem>
+								<NavLink href="/news/finance/">Finance</NavLink>
+							</NavItem>
+							<NavItem>
+								<NavLink href="/news/economics/">Economics</NavLink>
+							</NavItem>
+							<NavItem>
+								<NavLink href="/news/misc/">Misc</NavLink>
+							</NavItem>
 							<NavItem>
 								<NavLink onClick={this.toggleSearch}><FontAwesomeIcon icon={faSearch} /></NavLink>
 							</NavItem>
