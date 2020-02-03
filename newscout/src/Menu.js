@@ -48,7 +48,7 @@ export class Menu extends React.Component {
 		return(
 			<React.Fragment>
 				<Navbar className="fixed-top" expand="md">
-					<div className="col-lg-2">
+					<div className="col-lg-2 col-6">
 						<NavbarBrand href="/">
 							<img src={this.props.logo} alt="newscout" />
 						</NavbarBrand>
@@ -69,9 +69,6 @@ export class Menu extends React.Component {
 						<Nav className="ml-auto" navbar id="menu">
 							<NavItem>
 								<NavLink href="/news/trending/">Trending</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink href="/news/latest-news/">Latest News</NavLink>
 							</NavItem>
 							<NavItem>
 								<NavLink href="/news/sector-updates/">Sector Updates</NavLink>

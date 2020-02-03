@@ -3,11 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CardItem = void 0;
+exports.ContentOverlay = void 0;
 
 var _react = _interopRequireDefault(require("react"));
-
-var _reactstrap = require("reactstrap");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29,56 +27,53 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var CardItem =
+var ContentOverlay =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(CardItem, _React$Component);
+  _inherits(ContentOverlay, _React$Component);
 
-  function CardItem() {
-    _classCallCheck(this, CardItem);
+  function ContentOverlay() {
+    _classCallCheck(this, ContentOverlay);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(CardItem).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ContentOverlay).apply(this, arguments));
   }
 
-  _createClass(CardItem, [{
+  _createClass(ContentOverlay, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          image = _this$props.image,
           title = _this$props.title,
           description = _this$props.description,
-          uploaded_on = _this$props.uploaded_on,
           uploaded_by = _this$props.uploaded_by,
-          posturl = _this$props.posturl,
-          source_url = _this$props.source_url;
-      return _react.default.createElement(_reactstrap.Card, null, _react.default.createElement("a", {
-        href: "".concat(posturl),
-        target: "_blank"
-      }, _react.default.createElement(_reactstrap.CardImg, {
-        top: true,
-        width: "100%",
-        src: image,
-        alt: title
-      })), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, {
-        className: "card-title"
+          source_url = _this$props.source_url,
+          category = _this$props.category,
+          slug_url = _this$props.slug_url;
+      return _react.default.createElement("article", {
+        className: "featurepost"
+      }, _react.default.createElement("div", {
+        className: "featurepost-content"
+      }, _react.default.createElement("ul", {
+        className: "list-inline featurepost-category"
+      }, _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, category)), _react.default.createElement("h3", null, _react.default.createElement("a", {
+        href: "".concat(slug_url)
+      }, title)), _react.default.createElement("ul", {
+        className: "list-unstyled featurepost-source"
+      }, _react.default.createElement("li", {
+        className: "list-item"
       }, _react.default.createElement("a", {
-        href: "".concat(posturl),
-        target: "_blank"
-      }, title)), _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("small", {
-        className: "text-muted card-muted"
-      }, uploaded_on, " via ", _react.default.createElement("a", {
-        href: "".concat(source_url),
-        target: "_blank"
-      }, uploaded_by))), _react.default.createElement(_reactstrap.CardText, {
-        className: "card-desc"
-      }, description)));
+        href: "".concat(source_url)
+      }, uploaded_by))), _react.default.createElement("p", null, description), _react.default.createElement("h6", null, _react.default.createElement("a", {
+        href: "".concat(slug_url)
+      }, "Read More..."))));
     }
   }]);
 
-  return CardItem;
+  return ContentOverlay;
 }(_react.default.Component);
 
-exports.CardItem = CardItem;
+exports.ContentOverlay = ContentOverlay;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -225,6 +220,186 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.Filter = Filter;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.HorizontalCardItem = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactstrap = require("reactstrap");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var HorizontalCardItem =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(HorizontalCardItem, _React$Component);
+
+  function HorizontalCardItem() {
+    _classCallCheck(this, HorizontalCardItem);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(HorizontalCardItem).apply(this, arguments));
+  }
+
+  _createClass(HorizontalCardItem, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          image = _this$props.image,
+          title = _this$props.title,
+          description = _this$props.description,
+          uploaded_on = _this$props.uploaded_on,
+          uploaded_by = _this$props.uploaded_by,
+          slug_url = _this$props.slug_url,
+          source_url = _this$props.source_url,
+          category = _this$props.category,
+          hash_tags = _this$props.hash_tags;
+      return _react.default.createElement("article", {
+        className: "article-post"
+      }, _react.default.createElement("div", {
+        className: "row"
+      }, _react.default.createElement("div", {
+        className: "col-lg-6 p-0"
+      }, _react.default.createElement("a", {
+        href: "".concat(slug_url)
+      }, _react.default.createElement("img", {
+        src: image,
+        alt: title,
+        className: "img-fluid"
+      })), _react.default.createElement("div", {
+        className: "section-category"
+      }, uploaded_on)), _react.default.createElement("div", {
+        className: "col-lg-6 p-0"
+      }, _react.default.createElement(_reactstrap.Card, {
+        className: "card-post"
+      }, _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, {
+        className: "mb-2"
+      }, _react.default.createElement("a", {
+        href: "".concat(slug_url)
+      }, title)), _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("a", {
+        href: "".concat(source_url)
+      }, uploaded_by)), _react.default.createElement(_reactstrap.CardText, {
+        className: "card-desc"
+      }, _react.default.createElement("a", {
+        href: "".concat(slug_url),
+        target: "_blank"
+      }, description)))))));
+    }
+  }]);
+
+  return HorizontalCardItem;
+}(_react.default.Component);
+
+exports.HorizontalCardItem = HorizontalCardItem;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ImageOverlay = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var ImageOverlay =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ImageOverlay, _React$Component);
+
+  function ImageOverlay() {
+    _classCallCheck(this, ImageOverlay);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ImageOverlay).apply(this, arguments));
+  }
+
+  _createClass(ImageOverlay, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          image = _this$props.image,
+          title = _this$props.title,
+          description = _this$props.description,
+          uploaded_by = _this$props.uploaded_by,
+          source_url = _this$props.source_url,
+          category = _this$props.category,
+          slug_url = _this$props.slug_url;
+      var size = this.props.size !== undefined ? this.props.size : "lg";
+      return _react.default.createElement("article", {
+        className: "article ".concat(size !== "lg" ? "sm" : "")
+      }, _react.default.createElement("section", null, _react.default.createElement("div", {
+        className: "section-img ".concat(size !== "lg" ? "sm" : "")
+      }, _react.default.createElement("a", {
+        href: "".concat(slug_url)
+      }, _react.default.createElement("img", {
+        src: image,
+        alt: title,
+        className: "img-fluid"
+      }))), size === "lg" ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+        className: "section-category"
+      }, category)) : ""), _react.default.createElement("div", {
+        className: "section-content ".concat(size !== "lg" ? "sm" : "")
+      }, size === "lg" ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h3", {
+        className: "section-title"
+      }, _react.default.createElement("a", {
+        href: "".concat(slug_url)
+      }, title)), _react.default.createElement("ul", {
+        className: "list-unstyled m-0"
+      }, _react.default.createElement("li", {
+        className: "list-item"
+      }, _react.default.createElement("a", {
+        href: "".concat(source_url)
+      }, uploaded_by)))) : _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h5", {
+        className: "section-title"
+      }, _react.default.createElement("a", {
+        href: "".concat(slug_url)
+      }, title)))));
+    }
+  }]);
+
+  return ImageOverlay;
+}(_react.default.Component);
+
+exports.ImageOverlay = ImageOverlay;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -402,7 +577,7 @@ function (_React$Component) {
         className: "fixed-top",
         expand: "md"
       }, _react.default.createElement("div", {
-        className: "col-lg-2"
+        className: "col-lg-2 col-6"
       }, _react.default.createElement(_reactstrap.NavbarBrand, {
         href: "/"
       }, _react.default.createElement("img", {
@@ -434,8 +609,6 @@ function (_React$Component) {
       }, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         href: "/news/trending/"
       }, "Trending")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-        href: "/news/latest-news/"
-      }, "Latest News")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         href: "/news/sector-updates/"
       }, "Sector Updates")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         href: "/news/regional-updates/"
@@ -680,9 +853,6 @@ function (_React$Component) {
         tag: "a",
         href: "/news/trending/"
       }, "Trending"), _react.default.createElement(_reactstrap.ListGroupItem, {
-        tag: "a",
-        href: "/news/latest-news/"
-      }, "Latest News"), _react.default.createElement(_reactstrap.ListGroupItem, {
         tag: "a",
         href: "/news/sector-updates/"
       }, "Sector Updates"), _react.default.createElement(_reactstrap.ListGroupItem, {
@@ -941,3 +1111,87 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.TabItem = TabItem;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.VerticleCardItem = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactstrap = require("reactstrap");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var VerticleCardItem =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(VerticleCardItem, _React$Component);
+
+  function VerticleCardItem() {
+    _classCallCheck(this, VerticleCardItem);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(VerticleCardItem).apply(this, arguments));
+  }
+
+  _createClass(VerticleCardItem, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          image = _this$props.image,
+          title = _this$props.title,
+          description = _this$props.description,
+          uploaded_on = _this$props.uploaded_on,
+          uploaded_by = _this$props.uploaded_by,
+          slug_url = _this$props.slug_url,
+          source_url = _this$props.source_url,
+          category = _this$props.category,
+          hash_tags = _this$props.hash_tags;
+      return _react.default.createElement(_reactstrap.Card, {
+        className: "card-post"
+      }, _react.default.createElement("a", {
+        href: "".concat(slug_url)
+      }, _react.default.createElement("img", {
+        src: image,
+        alt: title,
+        className: "img-fluid"
+      })), _react.default.createElement("div", {
+        className: "section-category"
+      }, uploaded_on), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, {
+        className: "mb-2"
+      }, _react.default.createElement("a", {
+        href: "".concat(slug_url)
+      }, title)), _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("a", {
+        href: "".concat(source_url)
+      }, uploaded_by)), _react.default.createElement(_reactstrap.CardText, {
+        className: "card-desc"
+      }, _react.default.createElement("a", {
+        href: "".concat(slug_url),
+        target: "_blank"
+      }, description))));
+    }
+  }]);
+
+  return VerticleCardItem;
+}(_react.default.Component);
+
+exports.VerticleCardItem = VerticleCardItem;
