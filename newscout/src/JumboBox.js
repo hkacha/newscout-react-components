@@ -1,37 +1,34 @@
 import React from 'react';
-import { Media } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 
 export class JumboBox extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-		};
-	}
-
 	render(){
-		var other_posts = this.props.posts.map((item, index) => {
-			return (
-				<div className="col-lg-6 col-12 mb-4" key={index}>
-					<div className="item">
-						<div className="item-image">
-							<a href={`/news/article/${item.id}/`}>
-								<img src={item.src} alt={item.alttext} className="img-fluid" />
-							</a>
-						</div>
-						<div className="item-caption">
-							<h3><a href={`/news/article/${item.id}/`}>{item.header}</a></h3>
-							<p>{item.caption}</p>
-						</div>
-					</div>
-				</div>
-			)
-		})
+		const {source_url, image, title, uploaded_on, uploaded_by, description, hash_tags} = this.props;
+		let all_hash_tags = "";
+		
+		if(hash_tags !== undefined){
+			all_hash_tags = hash_tags.map((item, index) => {
+				return(
+					<li className="list-inline-item">{`#${item}`}</li>
+				)
+			})
+		}
 		
 		return(
-			<React.Fragment>
-				<div className="row">{other_posts}</div>
-			</React.Fragment>
+			<Card className="card-post">
+				<a href={`${source_url}`} target="_blank"><img src={image} alt={title} className="img-fluid" /></a>
+				<div className="section-category">{uploaded_on}</div>
+				<CardBody>
+					<CardTitle className="mb-3">
+						<ul className="list-inline hash-tags">{all_hash_tags}</ul>
+						<h3><a href={`${source_url}`} target="_blank">{title}</a></h3>
+					</CardTitle>
+					<CardText className="mb-4">
+						<a href={`${source_url}`} target="_blank">{uploaded_by}</a>
+					</CardText>
+					<CardText className="card-desc">{description}</CardText>
+				</CardBody>
+			</Card>
 		)
 	}
 }

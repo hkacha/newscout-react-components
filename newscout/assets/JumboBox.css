@@ -1,27 +1,41 @@
-.item-image {
-	width: 645px;
-	height: 337px;
+.article-detail {
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,.05);
 }
 
-.item-image a img {
-	max-height: 100%;
-	max-width: 100%;
-	margin: 0 auto;
+.article-detail .card-body {
+    padding: 40px;
 }
 
-.item-caption h3 {
-    color: #2f2f2f;
-    font-size: 20px;
-    overflow: hidden;
-    line-height: 28px;
-    margin-top: .5rem;
-    white-space: nowrap;
-    word-break: break-word;
-    text-overflow: ellipsis;
+.article-detail .card-body ul.hash-tags {
+    font-size: 12px;
+    font-weight: 600;
+    color: #db5e5e;
 }
 
-.item-caption p {
+.article-detail .card-body ul.hash-tags li {
+    background-color: #eee;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.article-detail .card-body .card-title h3 {
+    font-weight: 600;
+    color: #262626;
+}
+
+.article-detail .card-body p.card-text,
+.article-detail .card-body p.card-text a {
+    font-size: 17px;
+    font-weight: 600;
+    color: #7f7f7f;
+}
+
+.article-detail .card-body .card-text.card-desc {
+    color: #747474;
+    font-weight: normal;
+    line-height: 1.8;
     font-size: 15px;
-    height: 90px;
-    overflow: hidden;
 }

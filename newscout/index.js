@@ -436,42 +436,59 @@ var JumboBox =
 function (_React$Component) {
   _inherits(JumboBox, _React$Component);
 
-  function JumboBox(props) {
-    var _this;
-
+  function JumboBox() {
     _classCallCheck(this, JumboBox);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(JumboBox).call(this, props));
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(JumboBox).apply(this, arguments));
   }
 
   _createClass(JumboBox, [{
     key: "render",
     value: function render() {
-      var other_posts = this.props.posts.map(function (item, index) {
-        return _react.default.createElement("div", {
-          className: "col-lg-6 col-12 mb-4",
-          key: index
-        }, _react.default.createElement("div", {
-          className: "item"
-        }, _react.default.createElement("div", {
-          className: "item-image"
-        }, _react.default.createElement("a", {
-          href: "/news/article/".concat(item.id, "/")
-        }, _react.default.createElement("img", {
-          src: item.src,
-          alt: item.alttext,
-          className: "img-fluid"
-        }))), _react.default.createElement("div", {
-          className: "item-caption"
-        }, _react.default.createElement("h3", null, _react.default.createElement("a", {
-          href: "/news/article/".concat(item.id, "/")
-        }, item.header)), _react.default.createElement("p", null, item.caption))));
-      });
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
-        className: "row"
-      }, other_posts));
+      var _this$props = this.props,
+          source_url = _this$props.source_url,
+          image = _this$props.image,
+          title = _this$props.title,
+          uploaded_on = _this$props.uploaded_on,
+          uploaded_by = _this$props.uploaded_by,
+          description = _this$props.description,
+          hash_tags = _this$props.hash_tags;
+      var all_hash_tags = "";
+
+      if (hash_tags !== undefined) {
+        all_hash_tags = hash_tags.map(function (item, index) {
+          return _react.default.createElement("li", {
+            className: "list-inline-item"
+          }, "#".concat(item));
+        });
+      }
+
+      return _react.default.createElement(_reactstrap.Card, {
+        className: "card-post"
+      }, _react.default.createElement("a", {
+        href: "".concat(source_url),
+        target: "_blank"
+      }, _react.default.createElement("img", {
+        src: image,
+        alt: title,
+        className: "img-fluid"
+      })), _react.default.createElement("div", {
+        className: "section-category"
+      }, uploaded_on), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, {
+        className: "mb-3"
+      }, _react.default.createElement("ul", {
+        className: "list-inline hash-tags"
+      }, all_hash_tags), _react.default.createElement("h3", null, _react.default.createElement("a", {
+        href: "".concat(source_url),
+        target: "_blank"
+      }, title))), _react.default.createElement(_reactstrap.CardText, {
+        className: "mb-4"
+      }, _react.default.createElement("a", {
+        href: "".concat(source_url),
+        target: "_blank"
+      }, uploaded_by)), _react.default.createElement(_reactstrap.CardText, {
+        className: "card-desc"
+      }, description)));
     }
   }]);
 
@@ -565,7 +582,8 @@ function (_React$Component) {
           placeholder = _this$props.placeholder,
           options = _this$props.options,
           url = _this$props.url,
-          isSlider = _this$props.isSlider;
+          isSlider = _this$props.isSlider,
+          domain = _this$props.domain;
 
       if (this.state.isSearchOpen === true) {
         document.getElementsByTagName("body")[0].style = "overflow:hidden";
@@ -573,6 +591,14 @@ function (_React$Component) {
         document.getElementsByTagName("body")[0].style = "overflow:auto";
       }
 
+      var menu = this.props.navitems.map(function (item, index) {
+        var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase();
+        return _react.default.createElement(_reactstrap.NavItem, {
+          key: index
+        }, _react.default.createElement(_reactstrap.NavLink, {
+          href: "/news/".concat(menuitem)
+        }, item.itemtext));
+      });
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.Navbar, {
         className: "fixed-top",
         expand: "md"
@@ -606,23 +632,9 @@ function (_React$Component) {
         className: "ml-auto",
         navbar: true,
         id: "menu"
-      }, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+      }, this.props.domain === "domain=newscout" || this.props.domain === undefined ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         href: "/news/trending/"
-      }, "Trending")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-        href: "/news/sector-updates/"
-      }, "Sector Updates")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-        href: "/news/regional-updates/"
-      }, "Regional Updates")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-        href: "/news/finance/"
-      }, "Finance")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-        href: "/news/economics/"
-      }, "Economics")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-        href: "/news/misc/"
-      }, "Misc")), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-        onClick: this.toggleSearch
-      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-        icon: _freeSolidSvgIcons.faSearch
-      })))))), _react.default.createElement(_newscout.Search, {
+      }, "Trending"))) : "", menu))), _react.default.createElement(_newscout.Search, {
         toggleSearch: this.toggleSearch,
         isSearchOpen: this.state.isSearchOpen,
         multiple: multiple,
@@ -925,8 +937,8 @@ function (_React$Component) {
           key: index
         }, _react.default.createElement(_reactstrap.Media, {
           left: true,
-          href: "/news/article/".concat(item.id, "/"),
-          className: "mr-3"
+          href: "".concat(item.slug, "/"),
+          className: "mr-3 img"
         }, _react.default.createElement(_reactstrap.Media, {
           object: true,
           src: item.src,
@@ -936,12 +948,10 @@ function (_React$Component) {
         }, _react.default.createElement(_reactstrap.Media, {
           heading: true
         }, _react.default.createElement("a", {
-          href: "/news/article/".concat(item.id, "/")
-        }, item.header))));
+          href: "".concat(item.slug, "/")
+        }, item.header), _react.default.createElement("p", null, _react.default.createElement("small", null, item.published_on)))));
       });
-      return _react.default.createElement("div", {
-        className: "sidebox"
-      }, post);
+      return _react.default.createElement(_react.default.Fragment, null, post !== undefined ? post : "");
     }
   }]);
 

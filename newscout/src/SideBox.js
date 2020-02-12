@@ -10,12 +10,13 @@ export class SideBox extends React.Component {
 		var post = this.props.posts.map((item, index) => {
 			return (
 				<Media key={index}>
-					<Media left href={`/news/article/${item.id}/`} className="mr-3">
+					<Media left href={`${item.slug}/`} className="mr-3 img">
 						<Media object src={item.src} alt={item.alttext} />
 					</Media>
 					<Media body>
 						<Media heading>
-							<a href={`/news/article/${item.id}/`}>{item.header}</a>
+							<a href={`${item.slug}/`}>{item.header}</a>
+							<p><small>{item.published_on}</small></p>
 						</Media>
 					</Media>
 				</Media>
@@ -23,7 +24,7 @@ export class SideBox extends React.Component {
 		});
 
 		return(
-			<div className="sidebox">{post}</div>
+			<React.Fragment>{post !== undefined ? post : ""}</React.Fragment>
 		)
 	}
 }

@@ -69,9 +69,9 @@
 
 .card-container {
 	border-radius: 20px;
-    margin: 0px 15px 40px 15px;
-    width: 336px !important;
-	height: 350px;
+    margin: 15px;
+    width: 330px !important;
+	height: 200px;
 }
 
 .card-container-detail .card,

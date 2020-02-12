@@ -38,13 +38,24 @@ export class Menu extends React.Component {
 	}
 
 	render(){
-		const { multiple, placeholder, options, url, isSlider } = this.props;
+		
+		const { multiple, placeholder, options, url, isSlider, domain } = this.props;
 
 		if(this.state.isSearchOpen === true){
 			document.getElementsByTagName("body")[0].style = "overflow:hidden";
 		} else {
 			document.getElementsByTagName("body")[0].style = "overflow:auto";
 		}
+
+		const menu = this.props.navitems.map((item, index) => {
+			var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase()
+			return (
+				<NavItem key={index}>
+					<NavLink href={`/news/${menuitem}`}>{item.itemtext}</NavLink>
+				</NavItem>
+			)
+		})
+
 		return(
 			<React.Fragment>
 				<Navbar className="fixed-top" expand="md">
@@ -67,27 +78,15 @@ export class Menu extends React.Component {
 						: ""
 						}
 						<Nav className="ml-auto" navbar id="menu">
-							<NavItem>
-								<NavLink href="/news/trending/">Trending</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink href="/news/sector-updates/">Sector Updates</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink href="/news/regional-updates/">Regional Updates</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink href="/news/finance/">Finance</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink href="/news/economics/">Economics</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink href="/news/misc/">Misc</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink onClick={this.toggleSearch}><FontAwesomeIcon icon={faSearch} /></NavLink>
-							</NavItem>
+							{this.props.domain === "domain=newscout" || this.props.domain === undefined ?
+								<React.Fragment>
+									<NavItem>
+										<NavLink href="/news/trending/">Trending</NavLink>
+									</NavItem>
+								</React.Fragment>
+							: ""
+							}
+							{menu}
 						</Nav>
 					</Collapse>
 				</Navbar>
