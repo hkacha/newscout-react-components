@@ -20,7 +20,7 @@ export class JumboBox extends React.Component {
 				<div className="section-category">{uploaded_on}</div>
 				<CardBody>
 					<CardTitle className="mb-3">
-						<ul className="list-inline hash-tags">{all_hash_tags}</ul>
+						<ul className="list-inline hash-tags mb-2">{all_hash_tags}</ul>
 						<h3><a href={`${source_url}`} target="_blank">{title}</a></h3>
 					</CardTitle>
 					<CardText className="mb-4">

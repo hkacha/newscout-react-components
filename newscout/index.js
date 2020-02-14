@@ -477,7 +477,7 @@ function (_React$Component) {
       }, uploaded_on), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, {
         className: "mb-3"
       }, _react.default.createElement("ul", {
-        className: "list-inline hash-tags"
+        className: "list-inline hash-tags mb-2"
       }, all_hash_tags), _react.default.createElement("h3", null, _react.default.createElement("a", {
         href: "".concat(source_url),
         target: "_blank"
