@@ -87,6 +87,9 @@ export class Menu extends React.Component {
 							: ""
 							}
 							{menu}
+							<NavItem>	
+								<NavLink onClick={this.toggleSearch}><FontAwesomeIcon icon={faSearch} /></NavLink>	
+							</NavItem>
 						</Nav>
 					</Collapse>
 				</Navbar>

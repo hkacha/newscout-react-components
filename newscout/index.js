@@ -634,7 +634,11 @@ function (_React$Component) {
         id: "menu"
       }, this.props.domain === "domain=newscout" || this.props.domain === undefined ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         href: "/news/trending/"
-      }, "Trending"))) : "", menu))), _react.default.createElement(_newscout.Search, {
+      }, "Trending"))) : "", menu, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        onClick: this.toggleSearch
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faSearch
+      })))))), _react.default.createElement(_newscout.Search, {
         toggleSearch: this.toggleSearch,
         isSearchOpen: this.state.isSearchOpen,
         multiple: multiple,

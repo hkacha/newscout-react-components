@@ -23,6 +23,11 @@ ul.featurepost-category li {
     font-weight: 700;
     line-height: 1.4;
     letter-spacing: .25px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .featurepost-source li a {
@@ -33,10 +38,13 @@ ul.featurepost-category li {
 
 .featurepost-content p {
 	line-height: 1.7;
-    height: 205px;
     overflow: hidden;
     text-align: justify;
     font-size: 15px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
 }
 
 .featurepost-content h6 {
