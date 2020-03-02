@@ -121,3 +121,9 @@ nav .navbar-brand {
         margin-left: 0px;
     }
 }
+
+.menu-icons {
+    width: 18px;
+    height: 18px;
+    margin-top: -3px;
+}

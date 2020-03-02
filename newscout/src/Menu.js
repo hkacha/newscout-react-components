@@ -39,7 +39,7 @@ export class Menu extends React.Component {
 
 	render(){
 		
-		const { multiple, placeholder, options, url, isSlider, domain } = this.props;
+		const { multiple, placeholder, options, url, isSlider, domain, navitems, logo } = this.props;
 
 		if(this.state.isSearchOpen === true){
 			document.getElementsByTagName("body")[0].style = "overflow:hidden";
@@ -47,11 +47,14 @@ export class Menu extends React.Component {
 			document.getElementsByTagName("body")[0].style = "overflow:auto";
 		}
 
-		const menu = this.props.navitems.map((item, index) => {
+		const menu = navitems.map((item, index) => {
 			var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase()
 			return (
 				<NavItem key={index}>
-					<NavLink href={`/news/${menuitem}`}>{item.itemtext}</NavLink>
+					<NavLink href={`/news/${menuitem}`}>
+						<img src={`/${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
+						{item.itemtext}
+					</NavLink>
 				</NavItem>
 			)
 		})
@@ -61,7 +64,7 @@ export class Menu extends React.Component {
 				<Navbar className="fixed-top" expand="md">
 					<div className="col-lg-2 col-6">
 						<NavbarBrand href="/">
-							<img src={this.props.logo} alt="newscout" />
+							<img src={logo} alt="newscout" />
 						</NavbarBrand>
 					</div>
 					<Nav className="ml-auto d-block d-sm-none" navbar>
@@ -78,10 +81,13 @@ export class Menu extends React.Component {
 						: ""
 						}
 						<Nav className="ml-auto" navbar id="menu">
-							{this.props.domain === "domain=newscout" || this.props.domain === undefined ?
+							{domain === "domain=newscout" || domain === undefined ?
 								<React.Fragment>
 									<NavItem>
-										<NavLink href="/news/trending/">Trending</NavLink>
+										<NavLink href="/news/trending/">
+										<img src="/static/icons/trending_news.png" alt="Trending" className="menu-icons"/>&nbsp;
+										Trending
+										</NavLink>
 									</NavItem>
 								</React.Fragment>
 							: ""

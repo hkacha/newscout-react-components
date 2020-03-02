@@ -681,7 +681,9 @@ function (_React$Component) {
           options = _this$props.options,
           url = _this$props.url,
           isSlider = _this$props.isSlider,
-          domain = _this$props.domain;
+          domain = _this$props.domain,
+          navitems = _this$props.navitems,
+          logo = _this$props.logo;
 
       if (this.state.isSearchOpen === true) {
         document.getElementsByTagName("body")[0].style = "overflow:hidden";
@@ -689,13 +691,17 @@ function (_React$Component) {
         document.getElementsByTagName("body")[0].style = "overflow:auto";
       }
 
-      var menu = this.props.navitems.map(function (item, index) {
+      var menu = navitems.map(function (item, index) {
         var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase();
         return _react.default.createElement(_reactstrap.NavItem, {
           key: index
         }, _react.default.createElement(_reactstrap.NavLink, {
           href: "/news/".concat(menuitem)
-        }, item.itemtext));
+        }, _react.default.createElement("img", {
+          src: "/".concat(item.item_icon),
+          alt: item.itemtext,
+          className: "menu-icons"
+        }), "\xA0", item.itemtext));
       });
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.Navbar, {
         className: "fixed-top",
@@ -705,7 +711,7 @@ function (_React$Component) {
       }, _react.default.createElement(_reactstrap.NavbarBrand, {
         href: "/"
       }, _react.default.createElement("img", {
-        src: this.props.logo,
+        src: logo,
         alt: "newscout"
       }))), _react.default.createElement(_reactstrap.Nav, {
         className: "ml-auto d-block d-sm-none",
@@ -730,9 +736,13 @@ function (_React$Component) {
         className: "ml-auto",
         navbar: true,
         id: "menu"
-      }, this.props.domain === "domain=newscout" || this.props.domain === undefined ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+      }, domain === "domain=newscout" || domain === undefined ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         href: "/news/trending/"
-      }, "Trending"))) : "", menu, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+      }, _react.default.createElement("img", {
+        src: "/static/icons/trending_news.png",
+        alt: "Trending",
+        className: "menu-icons"
+      }), "\xA0 Trending"))) : "", menu, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
         onClick: this.toggleSearch
       }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
         icon: _freeSolidSvgIcons.faSearch
