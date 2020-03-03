@@ -15,7 +15,7 @@ export class SideBox extends React.Component {
 					</Media>
 					<Media body>
 						<Media heading>
-							<a href={`${item.slug}/`}>{item.header}</a>
+							<a href={`${item.slug}/`}>{item.title}</a>
 							<p><small>{item.published_on}</small></p>
 						</Media>
 					</Media>

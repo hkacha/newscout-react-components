@@ -1052,7 +1052,7 @@ function (_React$Component) {
           heading: true
         }, _react.default.createElement("a", {
           href: "".concat(item.slug, "/")
-        }, item.header), _react.default.createElement("p", null, _react.default.createElement("small", null, item.published_on)))));
+        }, item.title), _react.default.createElement("p", null, _react.default.createElement("small", null, item.published_on)))));
       });
       return _react.default.createElement(_react.default.Fragment, null, post !== undefined ? post : "");
     }
