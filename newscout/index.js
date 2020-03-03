@@ -694,7 +694,8 @@ function (_React$Component) {
       var menu = navitems.map(function (item, index) {
         var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase();
         return _react.default.createElement(_reactstrap.NavItem, {
-          key: index
+          key: index,
+          className: "d-none"
         }, _react.default.createElement(_reactstrap.NavLink, {
           href: "/news/".concat(menuitem)
         }, _react.default.createElement("img", {
@@ -736,7 +737,9 @@ function (_React$Component) {
         className: "ml-auto",
         navbar: true,
         id: "menu"
-      }, domain === "domain=newscout" || domain === undefined ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+      }, domain === "domain=newscout" || domain === undefined ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, {
+        className: "d-none"
+      }, _react.default.createElement(_reactstrap.NavLink, {
         href: "/news/trending/"
       }, _react.default.createElement("img", {
         src: "/static/icons/trending_news.png",
@@ -966,32 +969,20 @@ function (_React$Component) {
   _createClass(SideBar, [{
     key: "render",
     value: function render() {
-      // var listitem = this.props.menuitems.map((item, index) => {
-      // 	return (
-      // 		<ListGroupItem tag="a" href={"/news/"+item.itemurl+"/"} key={index}>{item.itemtext}</ListGroupItem>
-      // 	)
-      // })
+      var listitem = this.props.menuitems.map(function (item, index) {
+        return _react.default.createElement(_reactstrap.ListGroupItem, {
+          tag: "a",
+          href: "/news/" + item.itemurl + "/",
+          key: index
+        }, _react.default.createElement("img", {
+          src: "/".concat(item.item_icon),
+          alt: item.itemtext,
+          className: "menu-icons"
+        }), "\xA0", item.itemtext);
+      });
       return _react.default.createElement("div", {
         className: "sidebar col-lg-2 d-none d-sm-block ".concat(this.props.class ? '' : 'sidebar-none')
-      }, _react.default.createElement(_reactstrap.ListGroup, null, _react.default.createElement(_reactstrap.ListGroupItem, {
-        tag: "a",
-        href: "/news/trending/"
-      }, "Trending"), _react.default.createElement(_reactstrap.ListGroupItem, {
-        tag: "a",
-        href: "/news/sector-updates/"
-      }, "Sector Updates"), _react.default.createElement(_reactstrap.ListGroupItem, {
-        tag: "a",
-        href: "/news/regional-updates/"
-      }, "Regional Updates"), _react.default.createElement(_reactstrap.ListGroupItem, {
-        tag: "a",
-        href: "/news/finance/"
-      }, "Finance"), _react.default.createElement(_reactstrap.ListGroupItem, {
-        tag: "a",
-        href: "/news/economics/"
-      }, "Economics"), _react.default.createElement(_reactstrap.ListGroupItem, {
-        tag: "a",
-        href: "/news/misc/"
-      }, "Misc")));
+      }, _react.default.createElement(_reactstrap.ListGroup, null, listitem));
     }
   }]);
 

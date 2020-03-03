@@ -50,7 +50,7 @@ export class Menu extends React.Component {
 		const menu = navitems.map((item, index) => {
 			var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase()
 			return (
-				<NavItem key={index}>
+				<NavItem key={index}  className="d-none">
 					<NavLink href={`/news/${menuitem}`}>
 						<img src={`/${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
 						{item.itemtext}
@@ -83,7 +83,7 @@ export class Menu extends React.Component {
 						<Nav className="ml-auto" navbar id="menu">
 							{domain === "domain=newscout" || domain === undefined ?
 								<React.Fragment>
-									<NavItem>
+									<NavItem className="d-none">
 										<NavLink href="/news/trending/">
 										<img src="/static/icons/trending_news.png" alt="Trending" className="menu-icons"/>&nbsp;
 										Trending

@@ -8,21 +8,19 @@ export class SideBar extends React.Component {
 
 
 	render(){
-		// var listitem = this.props.menuitems.map((item, index) => {
-		// 	return (
-		// 		<ListGroupItem tag="a" href={"/news/"+item.itemurl+"/"} key={index}>{item.itemtext}</ListGroupItem>
-		// 	)
-		// })
+		var listitem = this.props.menuitems.map((item, index) => {
+			return (
+				<ListGroupItem tag="a" href={"/news/"+item.itemurl+"/"} key={index}>
+					<img src={`/${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
+					{item.itemtext}
+				</ListGroupItem>
+			)
+		})
 		
 		return(
 			<div className={`sidebar col-lg-2 d-none d-sm-block ${this.props.class ? '' : 'sidebar-none'}`}>
 				<ListGroup>
-					<ListGroupItem tag="a" href="/news/trending/">Trending</ListGroupItem>
-					<ListGroupItem tag="a" href="/news/sector-updates/">Sector Updates</ListGroupItem>
-					<ListGroupItem tag="a" href="/news/regional-updates/">Regional Updates</ListGroupItem>
-					<ListGroupItem tag="a" href="/news/finance/">Finance</ListGroupItem>
-					<ListGroupItem tag="a" href="/news/economics/">Economics</ListGroupItem>
-					<ListGroupItem tag="a" href="/news/misc/">Misc</ListGroupItem>
+					{listitem}
 				</ListGroup>
 			</div>
 		)
