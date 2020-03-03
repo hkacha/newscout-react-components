@@ -23,7 +23,7 @@ export class Footer extends React.Component {
 							<p>&copy; Copyright {current_year}, All Rights Reserved by <a href="/">Newscout</a></p>
 						</div>
 						<div className="float-right">
-							<ul className="list-inline m-0">
+							<ul className="list-inline">
 								<li className="list-inline-item">
 									<a href={this.props.privacyurl}>Privacy Policy</a>
 								</li>

@@ -20,9 +20,24 @@
     color: #262626;
 }
 
+.main-content.col-lg-10 {
+	flex: 0 0 88.333333%;
+    max-width: 88.333333%;
+}
+
 @media (max-width: 380px) {
 	.sidebar {
 		display: none !important;
+	}
+
+	.main-content.col-lg-10 {
+		flex: 0 0 100% !important;
+	    max-width: 100% !important;
+	}
+
+	.main-content .container {
+		padding-right: 0px !important;
+	    padding-left: 0px !important;
 	}
 }
 
@@ -42,9 +57,4 @@
 .sidebar.col-lg-2 {
 	flex: 0 0 11.666667%;
     max-width: 11.666667%;
-}
-
-.main-content.col-lg-10 {
-	flex: 0 0 88.333333%;
-    max-width: 88.333333%;
 }

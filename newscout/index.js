@@ -289,7 +289,7 @@ function (_React$Component) {
       }, "Newscout"))), _react.default.createElement("div", {
         className: "float-right"
       }, _react.default.createElement("ul", {
-        className: "list-inline m-0"
+        className: "list-inline"
       }, _react.default.createElement("li", {
         className: "list-inline-item"
       }, _react.default.createElement("a", {
