@@ -982,7 +982,14 @@ function (_React$Component) {
       });
       return _react.default.createElement("div", {
         className: "sidebar col-lg-2 d-none d-sm-block ".concat(this.props.class ? '' : 'sidebar-none')
-      }, _react.default.createElement(_reactstrap.ListGroup, null, listitem));
+      }, _react.default.createElement(_reactstrap.ListGroup, null, this.props.domain === "domain=newscout" || this.props.domain === undefined ? _react.default.createElement(_reactstrap.ListGroupItem, {
+        tag: "a",
+        href: "/news/trending/"
+      }, _react.default.createElement("img", {
+        src: "/static/icons/trending_news.png",
+        alt: "Trending",
+        className: "menu-icons"
+      }), "\xA0 Trending") : "", listitem));
     }
   }]);
 

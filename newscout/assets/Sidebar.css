@@ -4,7 +4,7 @@
     position: sticky;
 	background: white;
 	visibility: visible;
-    height: calc(100vh - 76px);
+    height: calc(100vh - 128px);
     border-right: 1px solid #eee;
 	-webkit-transition: opacity 600ms, visibility 600ms;
 }
