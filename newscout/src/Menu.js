@@ -50,8 +50,8 @@ export class Menu extends React.Component {
 		const menu = navitems.map((item, index) => {
 			var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase()
 			return (
-				<NavItem key={index}>
-					<NavLink href={`/news/${menuitem}`} className="d-block d-md-none">
+				<NavItem key={index} className="d-block d-md-none">
+					<NavLink href={`/news/${menuitem}`}>
 						<img src={`/${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
 						{item.itemtext}
 					</NavLink>
@@ -76,7 +76,7 @@ export class Menu extends React.Component {
 					<Collapse isOpen={this.state.isOpen} navbar>
 						{isSlider ?
 							<React.Fragment>
-								<div className="sidebar-btn d-none d-xs-block" onClick={this.sidebartoggle}><FontAwesomeIcon icon={faBars} size="lg" /></div>
+								<div className="sidebar-btn d-none d-sm-block" onClick={this.sidebartoggle}><FontAwesomeIcon icon={faBars} size="lg" /></div>
 							</React.Fragment>
 						: ""
 						}
@@ -93,7 +93,7 @@ export class Menu extends React.Component {
 							: ""
 							}
 							{menu}
-							<NavItem className="d-none d-md-block">
+							<NavItem className="d-none d-sm-block">
 								<NavLink onClick={this.toggleSearch}><FontAwesomeIcon icon={faSearch} /></NavLink>
 							</NavItem>
 						</Nav>
