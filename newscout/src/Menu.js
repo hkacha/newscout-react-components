@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,7 +13,8 @@ export class Menu extends React.Component {
 			isOpen: false,
 			isSearchOpen: false,
 			isSlider: this.props.isSlider,
-			isSideOpen: true
+			isSideOpen: true,
+			value: '',
 		};
 	}
 
@@ -35,6 +36,19 @@ export class Menu extends React.Component {
 		this.setState({
 			isSearchOpen: !this.state.isSearchOpen
 		})
+	}
+
+	keyPress = (e) => {
+		var url = this.props.url+"?q="+this.state.value;
+		if(e.keyCode == 13){
+			window.location.href = url;
+		}
+	}
+
+	handleChange = (e) => {
+		this.setState({
+			value: e.target.value
+		});
 	}
 
 	render(){
@@ -62,41 +76,40 @@ export class Menu extends React.Component {
 		return(
 			<React.Fragment>
 				<Navbar className="fixed-top" expand="md">
-					<div className="col-lg-2 col-6">
-						<NavbarBrand href="/">
-							<img src={logo} alt="newscout" />
-						</NavbarBrand>
-					</div>
-					<Nav className="ml-auto d-block d-md-none" navbar>
-						<NavItem>
-							<NavLink onClick={this.toggleSearch}><FontAwesomeIcon icon={faSearch} /></NavLink>
-						</NavItem>
-					</Nav>
+					{isSlider ?
+						<React.Fragment>
+							<div className="sidebar-btn d-none d-sm-block pl-1" onClick={this.sidebartoggle}><FontAwesomeIcon icon={faBars} size="lg" /></div>
+						</React.Fragment>
+					: ""
+					}
+					<NavbarBrand href="/" className="ml-4">
+						<img src={logo} alt="newscout" />
+					</NavbarBrand>
 					<NavbarToggler onClick={this.toggle} className="custom-toggler" />
 					<Collapse isOpen={this.state.isOpen} navbar>
-						{isSlider ?
-							<React.Fragment>
-								<div className="sidebar-btn d-none d-sm-block" onClick={this.sidebartoggle}><FontAwesomeIcon icon={faBars} size="lg" /></div>
-							</React.Fragment>
-						: ""
-						}
-						<Nav className="ml-auto" navbar id="menu">
-							{domain === "domain=newscout" || domain === undefined ?
-								<React.Fragment>
-									<NavItem className="d-block d-md-none">
-										<NavLink href="/news/trending/">
-										<img src="/static/icons/trending_news.png" alt="Trending" className="menu-icons"/>&nbsp;
-										Trending
-										</NavLink>
-									</NavItem>
-								</React.Fragment>
-							: ""
-							}
-							{menu}
-							<NavItem className="d-none d-sm-block">
-								<NavLink onClick={this.toggleSearch}><FontAwesomeIcon icon={faSearch} /></NavLink>
-							</NavItem>
-						</Nav>
+						<div className="m-auto col-lg-6">
+							<Nav className="ml-auto" navbar id="menu">
+								<InputGroup className="search-box">
+									<input type="text" className="form-control" onChange={this.handleChange} onKeyDown={this.keyPress} placeholder="Search" value={this.state.value} />
+									<InputGroupAddon addonType="append">
+										<InputGroupText><FontAwesomeIcon icon={faSearch} /></InputGroupText>
+									</InputGroupAddon>
+								</InputGroup>
+								
+								{domain === "domain=newscout" || domain === undefined ?
+									<React.Fragment>
+										<NavItem className="d-block d-md-none">
+											<NavLink href="/news/trending/">
+											<img src="/static/icons/trending_news.png" alt="Trending" className="menu-icons"/>&nbsp;
+											Trending
+											</NavLink>
+										</NavItem>
+									</React.Fragment>
+								: ""
+								}
+								{menu}
+							</Nav>
+						</div>
 					</Collapse>
 				</Navbar>
 				<Search toggleSearch={this.toggleSearch}

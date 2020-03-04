@@ -95,10 +95,6 @@
     box-shadow: none !important;
 }
 
-nav .navbar-brand {
-    margin-left: -15px;
-}
-
 .sidebar-btn {
     color: #e02c26;
     cursor: pointer;
@@ -110,6 +106,9 @@ nav .navbar-brand {
     }
     nav .navbar-brand {
         margin-left: 0px;
+    }
+    .search-box {
+        margin: 10px 0px;
     }
 }
 
@@ -126,4 +125,14 @@ nav .navbar-brand {
     width: 18px;
     height: 18px;
     margin-top: -3px;
+}
+
+.search-box .form-control:focus {
+    outline: none;
+    border: 1px solid #ddd;
+    box-shadow: none;
+}
+
+.search-box .input-group-append {
+    cursor: pointer;
 }
