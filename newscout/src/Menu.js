@@ -50,8 +50,8 @@ export class Menu extends React.Component {
 		const menu = navitems.map((item, index) => {
 			var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase()
 			return (
-				<NavItem key={index}  className="d-none">
-					<NavLink href={`/news/${menuitem}`}>
+				<NavItem key={index}>
+					<NavLink href={`/news/${menuitem}`} className="d-block d-md-none">
 						<img src={`/${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
 						{item.itemtext}
 					</NavLink>
@@ -67,7 +67,7 @@ export class Menu extends React.Component {
 							<img src={logo} alt="newscout" />
 						</NavbarBrand>
 					</div>
-					<Nav className="ml-auto d-block d-sm-none" navbar>
+					<Nav className="ml-auto d-block d-md-none" navbar>
 						<NavItem>
 							<NavLink onClick={this.toggleSearch}><FontAwesomeIcon icon={faSearch} /></NavLink>
 						</NavItem>
@@ -76,14 +76,14 @@ export class Menu extends React.Component {
 					<Collapse isOpen={this.state.isOpen} navbar>
 						{isSlider ?
 							<React.Fragment>
-								<div className="sidebar-btn" onClick={this.sidebartoggle}><FontAwesomeIcon icon={faBars} size="lg" /></div>
+								<div className="sidebar-btn d-none d-xs-block" onClick={this.sidebartoggle}><FontAwesomeIcon icon={faBars} size="lg" /></div>
 							</React.Fragment>
 						: ""
 						}
 						<Nav className="ml-auto" navbar id="menu">
 							{domain === "domain=newscout" || domain === undefined ?
 								<React.Fragment>
-									<NavItem className="d-none">
+									<NavItem className="d-block d-md-none">
 										<NavLink href="/news/trending/">
 										<img src="/static/icons/trending_news.png" alt="Trending" className="menu-icons"/>&nbsp;
 										Trending
@@ -93,8 +93,8 @@ export class Menu extends React.Component {
 							: ""
 							}
 							{menu}
-							<NavItem>	
-								<NavLink onClick={this.toggleSearch}><FontAwesomeIcon icon={faSearch} /></NavLink>	
+							<NavItem className="d-none d-md-block">
+								<NavLink onClick={this.toggleSearch}><FontAwesomeIcon icon={faSearch} /></NavLink>
 							</NavItem>
 						</Nav>
 					</Collapse>
