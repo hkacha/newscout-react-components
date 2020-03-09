@@ -16,14 +16,14 @@ export class Footer extends React.Component {
 
 	render(){
 		return(
-			<footer className="footer-area pt-3 mt-5">
+			<footer className="footer-area py-4">
 				<div className="container">
 					<div className="clearfix">
 						<div className="float-left">
-							<p>&copy; Copyright {current_year}, All Rights Reserved by <a href="/">Newscout</a></p>
+							<p className="m-0">&copy; Copyright {current_year}, All Rights Reserved by <a href="/">Newscout</a></p>
 						</div>
 						<div className="float-right">
-							<ul className="list-inline">
+							<ul className="list-inline m-0">
 								<li className="list-inline-item">
 									<a href={this.props.privacyurl}>Privacy Policy</a>
 								</li>

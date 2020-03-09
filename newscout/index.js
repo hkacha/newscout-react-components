@@ -277,19 +277,21 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return _react.default.createElement("footer", {
-        className: "footer-area pt-3 mt-5"
+        className: "footer-area py-4"
       }, _react.default.createElement("div", {
         className: "container"
       }, _react.default.createElement("div", {
         className: "clearfix"
       }, _react.default.createElement("div", {
         className: "float-left"
-      }, _react.default.createElement("p", null, "\xA9 Copyright ", current_year, ", All Rights Reserved by ", _react.default.createElement("a", {
+      }, _react.default.createElement("p", {
+        className: "m-0"
+      }, "\xA9 Copyright ", current_year, ", All Rights Reserved by ", _react.default.createElement("a", {
         href: "/"
       }, "Newscout"))), _react.default.createElement("div", {
         className: "float-right"
       }, _react.default.createElement("ul", {
-        className: "list-inline"
+        className: "list-inline m-0"
       }, _react.default.createElement("li", {
         className: "list-inline-item"
       }, _react.default.createElement("a", {
@@ -663,11 +665,26 @@ function (_React$Component) {
       });
     };
 
+    _this.keyPress = function (e) {
+      var url = _this.props.url + "?q=" + _this.state.value;
+
+      if (e.keyCode == 13) {
+        window.location.href = url;
+      }
+    };
+
+    _this.handleChange = function (e) {
+      _this.setState({
+        value: e.target.value
+      });
+    };
+
     _this.state = {
       isOpen: false,
       isSearchOpen: false,
       isSlider: _this.props.isSlider,
-      isSideOpen: true
+      isSideOpen: true,
+      value: ''
     };
     return _this;
   }
@@ -695,7 +712,7 @@ function (_React$Component) {
         var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase();
         return _react.default.createElement(_reactstrap.NavItem, {
           key: index,
-          className: "d-none"
+          className: "d-block d-md-none"
         }, _react.default.createElement(_reactstrap.NavLink, {
           href: "/news/".concat(menuitem)
         }, _react.default.createElement("img", {
@@ -707,49 +724,52 @@ function (_React$Component) {
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.Navbar, {
         className: "fixed-top",
         expand: "md"
-      }, _react.default.createElement("div", {
-        className: "col-lg-2 col-6"
-      }, _react.default.createElement(_reactstrap.NavbarBrand, {
-        href: "/"
+      }, isSlider ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+        className: "sidebar-btn d-none d-sm-block pl-1",
+        onClick: this.sidebartoggle
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faBars,
+        size: "lg"
+      }))) : "", _react.default.createElement(_reactstrap.NavbarBrand, {
+        href: "/",
+        className: "ml-4"
       }, _react.default.createElement("img", {
         src: logo,
         alt: "newscout"
-      }))), _react.default.createElement(_reactstrap.Nav, {
-        className: "ml-auto d-block d-sm-none",
-        navbar: true
-      }, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-        onClick: this.toggleSearch
-      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-        icon: _freeSolidSvgIcons.faSearch
-      })))), _react.default.createElement(_reactstrap.NavbarToggler, {
+      })), _react.default.createElement(_reactstrap.NavbarToggler, {
         onClick: this.toggle,
         className: "custom-toggler"
       }), _react.default.createElement(_reactstrap.Collapse, {
         isOpen: this.state.isOpen,
         navbar: true
-      }, isSlider ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
-        className: "sidebar-btn",
-        onClick: this.sidebartoggle
-      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-        icon: _freeSolidSvgIcons.faBars,
-        size: "lg"
-      }))) : "", _react.default.createElement(_reactstrap.Nav, {
+      }, _react.default.createElement("div", {
+        className: "m-auto col-lg-6"
+      }, _react.default.createElement(_reactstrap.Nav, {
         className: "ml-auto",
         navbar: true,
         id: "menu"
-      }, domain === "domain=newscout" || domain === undefined ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, {
-        className: "d-none"
+      }, _react.default.createElement(_reactstrap.InputGroup, {
+        className: "search-box"
+      }, _react.default.createElement("input", {
+        type: "text",
+        className: "form-control",
+        onChange: this.handleChange,
+        onKeyDown: this.keyPress,
+        placeholder: "Search",
+        value: this.state.value
+      }), _react.default.createElement(_reactstrap.InputGroupAddon, {
+        addonType: "append"
+      }, _react.default.createElement(_reactstrap.InputGroupText, null, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faSearch
+      })))), domain === "domain=newscout" || domain === undefined ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, {
+        className: "d-block d-md-none"
       }, _react.default.createElement(_reactstrap.NavLink, {
         href: "/news/trending/"
       }, _react.default.createElement("img", {
         src: "/static/icons/trending_news.png",
         alt: "Trending",
         className: "menu-icons"
-      }), "\xA0 Trending"))) : "", menu, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
-        onClick: this.toggleSearch
-      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-        icon: _freeSolidSvgIcons.faSearch
-      })))))), _react.default.createElement(_newscout.Search, {
+      }), "\xA0 Trending"))) : "", menu)))), _react.default.createElement(_newscout.Search, {
         toggleSearch: this.toggleSearch,
         isSearchOpen: this.state.isSearchOpen,
         multiple: multiple,
@@ -981,7 +1001,7 @@ function (_React$Component) {
         }), "\xA0", item.itemtext);
       });
       return _react.default.createElement("div", {
-        className: "sidebar col-lg-2 d-none d-sm-block ".concat(this.props.class ? '' : 'sidebar-none')
+        className: "sidebar col-lg-2 d-none d-md-block d-xl-block ".concat(this.props.class ? '' : 'sidebar-none')
       }, _react.default.createElement(_reactstrap.ListGroup, null, this.props.domain === "domain=newscout" || this.props.domain === undefined ? _react.default.createElement(_reactstrap.ListGroupItem, {
         tag: "a",
         href: "/news/trending/"
