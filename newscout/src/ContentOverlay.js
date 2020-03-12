@@ -1,8 +1,14 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
 
 export class ContentOverlay extends React.Component {
 	render(){
+		
 		const {title, description, uploaded_by, source_url, category, slug_url} = this.props;
+		let final_url = "http://newscout.in"+slug_url
+		
 		return(
 			<article className="featurepost">
 				<div className="featurepost-content">
@@ -14,7 +20,32 @@ export class ContentOverlay extends React.Component {
 						<li className="list-item"><a href={`${source_url}`}>{uploaded_by}</a></li>
 					</ul>
 					<p>{description}</p>
-					<h6><a href={`${slug_url}`}>Read More...</a></h6>
+					<div className="clearfix">
+						<div className="float-left">
+							<h6><a href={`${slug_url}`}>Read More...</a></h6>
+						</div>
+						<div className="float-right">
+							<ul className="list-inline m-0 sharelink">
+								<li className="list-inline-item">
+									<div>
+										<FacebookShareButton url={final_url} quote={title}>
+											<FacebookIcon size={20} round />
+										</FacebookShareButton>&nbsp;
+										<TwitterShareButton url={final_url} quote={title}>
+											<TwitterIcon size={20} round />
+										</TwitterShareButton>&nbsp;
+										<WhatsappShareButton url={final_url} quote={title}>
+											<WhatsappIcon size={20} round />
+										</WhatsappShareButton>
+									</div>
+									<FontAwesomeIcon icon={faShareAlt} />
+								</li>
+								<li className="list-inline-item">
+									<FontAwesomeIcon icon={faBookmark} />
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</article>
 		)

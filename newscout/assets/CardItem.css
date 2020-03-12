@@ -19,7 +19,7 @@
 .card-post .card-body .card-title {
 	text-overflow: ellipsis;
 	display: -webkit-box;
-	-webkit-line-clamp: 2;
+	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
 	color: #262626;
     font-weight: 600;
@@ -40,10 +40,10 @@
 }
 
 .card-post .card-body p.card-desc a {
-	height: 90px;
+	height: 70px;
 	font-size: 15px;
 	display: -webkit-box;
-	-webkit-line-clamp: 5;
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;

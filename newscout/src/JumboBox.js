@@ -1,11 +1,15 @@
 import React from 'react';
-import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText, CardLink } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
 
 export class JumboBox extends React.Component {
 	render(){
-		const {source_url, image, title, uploaded_on, uploaded_by, description, hash_tags} = this.props;
-		let all_hash_tags = "";
 		
+		const { source_url, image, title, uploaded_on, uploaded_by, description, hash_tags, slug_url } = this.props;
+		let all_hash_tags = "";
+		let final_url = "http://newscout.in"+slug_url
 		if(hash_tags !== undefined){
 			all_hash_tags = hash_tags.map((item, index) => {
 				return(
@@ -27,6 +31,29 @@ export class JumboBox extends React.Component {
 						<a href={`${source_url}`} target="_blank">{uploaded_by}</a>
 					</CardText>
 					<CardText className="card-desc">{description}</CardText>
+					<div className="clearfix">
+						<div className="float-right">
+							<ul className="list-inline m-0 sharelink">
+								<li className="list-inline-item">
+									<div>
+										<FacebookShareButton url={final_url} quote={title}>
+											<FacebookIcon size={20} round />
+										</FacebookShareButton>&nbsp;
+										<TwitterShareButton url={final_url} quote={title}>
+											<TwitterIcon size={20} round />
+										</TwitterShareButton>&nbsp;
+										<WhatsappShareButton url={final_url} quote={title}>
+											<WhatsappIcon size={20} round />
+										</WhatsappShareButton>
+									</div>
+									<FontAwesomeIcon icon={faShareAlt} />
+								</li>
+								<li className="list-inline-item">
+									<FontAwesomeIcon icon={faBookmark} />
+								</li>
+							</ul>
+						</div>
+					</div>
 				</CardBody>
 			</Card>
 		)
