@@ -4,12 +4,17 @@ import { faBookmark, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
 
 export class ImageOverlay extends React.Component {
+
+	getArticleId = () => {
+		this.props.getArticleId(this.props.id)
+	}
+
 	render(){
 		
-		const {image, title, description, uploaded_by, source_url, category, slug_url} = this.props;
+		const {image, title, description, uploaded_by, source_url, category, slug_url, is_loggedin, is_bookmarked} = this.props;
 		let size = this.props.size !== undefined ? this.props.size : "lg";
 		let final_url = "http://newscout.in"+slug_url
-
+		
 		return(
 			<article className={`article ${size !== "lg" ? "sm" : ""}`}>
 				<section>
@@ -49,7 +54,7 @@ export class ImageOverlay extends React.Component {
 											<FontAwesomeIcon icon={faShareAlt} />
 										</li>
 										<li className="list-inline-item">
-											<FontAwesomeIcon icon={faBookmark} />
+											<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={` ${is_bookmarked ? 'bookmarked' : ''} `} />
 										</li>
 									</ul>
 								</div>

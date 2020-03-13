@@ -4,11 +4,16 @@ import { faBookmark, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
 
 export class ContentOverlay extends React.Component {
+
+	getArticleId = () => {
+		this.props.getArticleId(this.props.id)
+	}
+	
 	render(){
 		
-		const {title, description, uploaded_by, source_url, category, slug_url} = this.props;
+		const {title, description, uploaded_by, source_url, category, slug_url, is_bookmarked} = this.props;
 		let final_url = "http://newscout.in"+slug_url
-		
+
 		return(
 			<article className="featurepost">
 				<div className="featurepost-content">
@@ -41,7 +46,7 @@ export class ContentOverlay extends React.Component {
 									<FontAwesomeIcon icon={faShareAlt} />
 								</li>
 								<li className="list-inline-item">
-									<FontAwesomeIcon icon={faBookmark} />
+									<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={` ${is_bookmarked ? 'bookmarked' : ''} `} />
 								</li>
 							</ul>
 						</div>

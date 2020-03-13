@@ -5,9 +5,14 @@ import { faBookmark, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
 
 export class VerticleCardItem extends React.Component {
+
+	getArticleId = () => {
+		this.props.getArticleId(this.props.id)
+	}
+
 	render(){
 		
-		const {image, title, description, uploaded_on, uploaded_by, slug_url, source_url, category, hash_tags} = this.props;
+		const {image, title, description, uploaded_on, uploaded_by, slug_url, source_url, category, hash_tags, is_loggedin} = this.props;
 		let final_url = "http://newscout.in"+slug_url
 		
 		return(
@@ -43,7 +48,7 @@ export class VerticleCardItem extends React.Component {
 									<FontAwesomeIcon icon={faShareAlt} />
 								</li>
 								<li className="list-inline-item">
-									<FontAwesomeIcon icon={faBookmark} />
+									<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} />
 								</li>
 							</ul>
 						</div>
