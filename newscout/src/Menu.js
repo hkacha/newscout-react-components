@@ -65,7 +65,7 @@ export class Menu extends React.Component {
 			var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase()
 			return (
 				<NavItem key={index} className="d-block d-md-none">
-					<NavLink href={`/news/${menuitem}`}>
+					<NavLink href={`/${menuitem}/`}>
 						<img src={`/${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
 						{item.itemtext}
 					</NavLink>
@@ -82,14 +82,14 @@ export class Menu extends React.Component {
 						</React.Fragment>
 					: ""
 					}
-					<NavbarBrand href="/" className="ml-4">
+					<NavbarBrand href={` ${domain === "dashboard" ? "/dashboard/" : "/"} `} className="ml-4">
 						<img src={logo} alt="newscout" />
 					</NavbarBrand>
 					<NavbarToggler onClick={this.toggle} className="custom-toggler" />
 					<Collapse isOpen={this.state.isOpen} navbar>
 						<div className="m-auto col-lg-6">
 							<Nav className="ml-auto" navbar id="menu">
-								<InputGroup className="search-box">
+								<InputGroup className={`search-box ${domain === "dashboard" ? 'd-none' : ''} `}>
 									<input type="text" className="form-control" onChange={this.handleChange} onKeyDown={this.keyPress} placeholder="Search" value={this.state.value} />
 									<InputGroupAddon addonType="append">
 										<InputGroupText><FontAwesomeIcon icon={faSearch} /></InputGroupText>
