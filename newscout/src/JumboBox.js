@@ -5,11 +5,17 @@ import { faBookmark, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
 
 export class JumboBox extends React.Component {
+
+	getArticleId = () => {
+		this.props.getArticleId(this.props.id)
+	}
+
 	render(){
 		
-		const { source_url, image, title, uploaded_on, uploaded_by, description, hash_tags, slug_url } = this.props;
+		const { id, source_url, image, title, uploaded_on, uploaded_by, description, hash_tags, slug_url, is_loggedin, bookmark_ids, base_url } = this.props;
 		let all_hash_tags = "";
-		let final_url = "http://newscout.in"+slug_url
+		let final_url = base_url+slug_url
+		
 		if(hash_tags !== undefined){
 			all_hash_tags = hash_tags.map((item, index) => {
 				return(
@@ -49,7 +55,7 @@ export class JumboBox extends React.Component {
 									<FontAwesomeIcon icon={faShareAlt} />
 								</li>
 								<li className="list-inline-item">
-									<FontAwesomeIcon icon={faBookmark} />
+									<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={bookmark_ids.indexOf(id) > -1 ? 'bookmarked' : ''} />
 								</li>
 							</ul>
 						</div>

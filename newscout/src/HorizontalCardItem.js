@@ -7,8 +7,8 @@ import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, Wha
 export class HorizontalCardItem extends React.Component {
 	render(){
 		
-		const {image, title, description, uploaded_on, uploaded_by, slug_url, source_url, category, hash_tags} = this.props;
-		let final_url = "http://newscout.in"+slug_url
+		const { id, image, title, description, uploaded_on, uploaded_by, slug_url, source_url, category, hash_tags, bookmark_ids, base_url } = this.props;
+		let final_url = base_url+slug_url
 		
 		return(
 			<article className="article-post">
@@ -48,7 +48,7 @@ export class HorizontalCardItem extends React.Component {
 												<FontAwesomeIcon icon={faShareAlt} />
 											</li>
 											<li className="list-inline-item">
-												<FontAwesomeIcon icon={faBookmark} />
+												<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={bookmark_ids.indexOf(id) > -1 ? 'bookmarked' : ''} />
 											</li>
 										</ul>
 									</div>

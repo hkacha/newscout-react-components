@@ -12,8 +12,8 @@ export class VerticleCardItem extends React.Component {
 
 	render(){
 		
-		const {image, title, description, uploaded_on, uploaded_by, slug_url, source_url, category, hash_tags, is_loggedin} = this.props;
-		let final_url = "http://newscout.in"+slug_url
+		const { id, image, title, description, uploaded_by, source_url, category, slug_url, hash_tags, uploaded_on, is_loggedin, bookmark_ids, base_url } = this.props;
+		let final_url = base_url+slug_url
 		
 		return(
 			<Card className="card-post">
@@ -48,7 +48,7 @@ export class VerticleCardItem extends React.Component {
 									<FontAwesomeIcon icon={faShareAlt} />
 								</li>
 								<li className="list-inline-item">
-									<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} />
+									<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={bookmark_ids.indexOf(id) > -1 ? 'bookmarked' : ''} />
 								</li>
 							</ul>
 						</div>

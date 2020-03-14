@@ -11,9 +11,9 @@ export class ImageOverlay extends React.Component {
 
 	render(){
 		
-		const {image, title, description, uploaded_by, source_url, category, slug_url, is_loggedin, is_bookmarked} = this.props;
+		const {id, image, title, description, uploaded_by, source_url, category, slug_url, is_loggedin, bookmark_ids, base_url} = this.props;
 		let size = this.props.size !== undefined ? this.props.size : "lg";
-		let final_url = "http://newscout.in"+slug_url
+		let final_url = base_url+slug_url
 		
 		return(
 			<article className={`article ${size !== "lg" ? "sm" : ""}`}>
@@ -54,7 +54,7 @@ export class ImageOverlay extends React.Component {
 											<FontAwesomeIcon icon={faShareAlt} />
 										</li>
 										<li className="list-inline-item">
-											<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={` ${is_bookmarked ? 'bookmarked' : ''} `} />
+											<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={bookmark_ids.indexOf(id) > -1 ? 'bookmarked' : ''} />
 										</li>
 									</ul>
 								</div>
