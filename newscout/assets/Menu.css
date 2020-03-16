@@ -136,3 +136,10 @@
 .search-box .input-group-append {
     cursor: pointer;
 }
+
+.login {
+    color: #262626;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}

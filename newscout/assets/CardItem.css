@@ -159,3 +159,14 @@
 		margin: 0 auto 20px auto;
 	}
 }
+
+.adlink {
+	min-height: 248px;
+}
+
+.adlink ul li {
+	font-size: 13px;
+    font-weight: 600;
+    color: #de403c;
+    cursor: pointer;
+}

@@ -24,6 +24,10 @@ export class Menu extends React.Component {
 		})
 	}
 
+	toggleLogin = () => {
+		this.props.toggle(this.props.is_open)
+	}
+
 	sidebartoggle = () => {
 		this.setState({
 			isSideOpen: !this.state.isSideOpen
@@ -51,9 +55,13 @@ export class Menu extends React.Component {
 		});
 	}
 
+	handleLogout = () => {
+		this.props.handleLogout()
+	}
+
 	render(){
 		
-		const { multiple, placeholder, options, url, isSlider, domain, navitems, logo } = this.props;
+		const { multiple, placeholder, options, url, isSlider, domain, navitems, logo, username, is_loggedin } = this.props;
 
 		if(this.state.isSearchOpen === true){
 			document.getElementsByTagName("body")[0].style = "overflow:hidden";
@@ -95,7 +103,7 @@ export class Menu extends React.Component {
 										<InputGroupText><FontAwesomeIcon icon={faSearch} /></InputGroupText>
 									</InputGroupAddon>
 								</InputGroup>
-								
+
 								{domain === "domain=newscout" || domain === undefined ?
 									<React.Fragment>
 										<NavItem className="d-block d-md-none">
@@ -110,14 +118,41 @@ export class Menu extends React.Component {
 								{menu}
 							</Nav>
 						</div>
+						{domain === "domain=newscout" || domain === undefined ?
+							<Nav className="ml-auto" navbar>
+								{is_loggedin ?
+									<UncontrolledDropdown nav inNavbar>
+										<DropdownToggle nav caret className="login">
+											{username}
+										</DropdownToggle>
+										<DropdownMenu right>
+											<DropdownItem className="login">
+												My Bookmarks
+											</DropdownItem>
+											<DropdownItem divider />
+											<DropdownItem onClick={this.handleLogout} className="login">Logout</DropdownItem>
+										</DropdownMenu>
+									</UncontrolledDropdown>
+								:
+									<React.Fragment>
+										<NavItem>
+											<NavLink onClick={this.toggleLogin} className="login">Login</NavLink>
+										</NavItem>
+									</React.Fragment>
+								}
+							</Nav>
+						: ""
+						}
 					</Collapse>
 				</Navbar>
-				<Search toggleSearch={this.toggleSearch}
-						isSearchOpen={this.state.isSearchOpen}
-						multiple={multiple}
-						placeholder={placeholder}
-						options={options}
-						url={url} />
+				<Search
+					toggleSearch={this.toggleSearch}
+					isSearchOpen={this.state.isSearchOpen}
+					multiple={multiple}
+					placeholder={placeholder}
+					options={options}
+					url={url}
+				/>
 			</React.Fragment>
 		)
 	}
