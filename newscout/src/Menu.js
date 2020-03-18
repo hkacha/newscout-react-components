@@ -73,8 +73,8 @@ export class Menu extends React.Component {
 			var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase()
 			return (
 				<NavItem key={index} className="d-block d-md-none">
-					<NavLink href={`/${menuitem}/`}>
-						<img src={`${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
+					<NavLink href={`${domain !== 'dashboard' ? '/news/' : '/'}${menuitem}/`}>
+						<img src={`${domain === "dashboard" ? '/' : '' }${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
 						{item.itemtext}
 					</NavLink>
 				</NavItem>
