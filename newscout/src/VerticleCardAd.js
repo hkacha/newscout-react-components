@@ -9,7 +9,7 @@ export class VerticleCardAd extends React.Component {
 		const { id, image, description, source_url } = this.props;
 		return(
 			<Card className="card-post">
-				<a href={`${source_url}`}><img src={image} alt={description} className="img-fluid" /></a>
+				<a href={`${source_url}`}><img src={image} alt={id} className="img-fluid" /></a>
 				<CardBody className="adlink">
 					<CardText className="card-desc"><a href={`${source_url}`} target="_blank">{description}</a></CardText>
 					<div className="clearfix">
