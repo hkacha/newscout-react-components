@@ -74,7 +74,7 @@ export class Menu extends React.Component {
 			return (
 				<NavItem key={index} className="d-block d-md-none">
 					<NavLink href={`/${menuitem}/`}>
-						<img src={`/${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
+						<img src={`${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
 						{item.itemtext}
 					</NavLink>
 				</NavItem>
@@ -126,7 +126,7 @@ export class Menu extends React.Component {
 											{username}
 										</DropdownToggle>
 										<DropdownMenu right>
-											<DropdownItem className="login">
+											<DropdownItem className="login" href="/news/bookmark/">
 												My Bookmarks
 											</DropdownItem>
 											<DropdownItem divider />
