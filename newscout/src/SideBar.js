@@ -11,7 +11,7 @@ export class SideBar extends React.Component {
 		var listitem = this.props.menuitems.map((item, index) => {
 			return (
 				<ListGroupItem tag="a" href={"/"+item.itemurl+"/"} key={index}>
-					<img src={`/${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
+					<img src={`${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
 					{item.itemtext}
 				</ListGroupItem>
 			)
