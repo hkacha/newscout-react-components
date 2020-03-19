@@ -29,7 +29,7 @@ export class SideBar extends React.Component {
 					{listitem}
 					{this.props.domain === "domain=newscout" || this.props.domain === undefined ?
 						<ListGroupItem tag="a" href="/news/rss/?domain=newscout">
-							<img alt="rss" className="menu-icons"/>&nbsp;
+                                                        <img src="/static/icons/rss.png" alt="rss" className="menu-icons"/>&nbsp;
 							RSS
 						</ListGroupItem>
 					: ""
