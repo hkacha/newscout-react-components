@@ -74,7 +74,7 @@ export class Menu extends React.Component {
 			return (
 				<NavItem key={index} className="d-block d-md-none">
 					<NavLink href={`${domain !== 'dashboard' ? '/news/' : '/'}${menuitem}/`}>
-						<img src={`${domain === "dashboard" ? '/' : '' }${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
+						<img src={`${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
 						{item.itemtext}
 					</NavLink>
 				</NavItem>
