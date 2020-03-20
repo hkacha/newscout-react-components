@@ -21,8 +21,8 @@
 }
 
 .main-content.col-lg-10 {
-	flex: 0 0 88.333333%;
-    max-width: 88.333333%;
+	flex: 0 0 86.333333%;
+    max-width: 86.333333%;
 }
 
 @media (max-width: 380px) {
@@ -55,6 +55,6 @@
 }
 
 .sidebar.col-lg-2 {
-	flex: 0 0 11.666667%;
-    max-width: 11.666667%;
+	flex: 0 0 13.666667%;
+    max-width: 13.666667%;
 }

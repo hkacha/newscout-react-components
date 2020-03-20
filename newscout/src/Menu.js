@@ -136,6 +136,12 @@ export class Menu extends React.Component {
 								:
 									<React.Fragment>
 										<NavItem>
+											<label className="switch">
+												<input type="checkbox" checked />
+												<span className="slider round"></span>
+											</label>
+										</NavItem>
+										<NavItem>
 											<NavLink onClick={this.toggleLogin} className="login">Login</NavLink>
 										</NavItem>
 									</React.Fragment>
