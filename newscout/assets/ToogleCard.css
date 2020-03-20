@@ -40,9 +40,9 @@
   letter-spacing: 0.3px;
 }
 
-.toogle-card .card-body ul:not(.sharelink) {
+/*.toogle-card .card-body ul:not(.sharelink) {
   padding-right: 100px;
-}
+}*/
 
 .article-card ul.sharelink li,
 .toogle-card .card-body ul.sharelink li {
@@ -64,4 +64,8 @@ ul.featurepost-category li {
   color: #fc0a02c2;
   font-weight: 600;
   letter-spacing: .25px;
+}
+
+.inside-post > li {
+  width: 100%;
 }
