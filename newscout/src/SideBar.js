@@ -16,7 +16,6 @@ export class SideBar extends React.Component {
 				</ListGroupItem>
 			)
 		})
-		
 		return(
 			<div className={`sidebar col-lg-2 d-none d-md-block d-xl-block ${this.props.class ? '' : 'sidebar-none'}`}>
 				<ListGroup>
@@ -28,6 +27,13 @@ export class SideBar extends React.Component {
 					: ""
 					}
 					{listitem}
+					{this.props.domain === "domain=newscout" || this.props.domain === undefined ?
+						<ListGroupItem tag="a" href="/news/rss/?domain=newscout">
+                                                        <img src="/static/icons/rss.png" alt="rss" className="menu-icons"/>&nbsp;
+							RSS
+						</ListGroupItem>
+					: ""
+					}
 				</ListGroup>
 			</div>
 		)
