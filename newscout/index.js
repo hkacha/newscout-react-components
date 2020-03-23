@@ -7,6 +7,12 @@ exports.ContentOverlay = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
+
+var _reactShare = require("react-share");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -33,21 +39,36 @@ function (_React$Component) {
   _inherits(ContentOverlay, _React$Component);
 
   function ContentOverlay() {
+    var _getPrototypeOf2;
+
+    var _temp, _this;
+
     _classCallCheck(this, ContentOverlay);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ContentOverlay).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ContentOverlay)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.getArticleId = function () {
+      _this.props.getArticleId(_this.props.id);
+    }, _temp));
   }
 
   _createClass(ContentOverlay, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
+          id = _this$props.id,
           title = _this$props.title,
           description = _this$props.description,
           uploaded_by = _this$props.uploaded_by,
           source_url = _this$props.source_url,
           category = _this$props.category,
-          slug_url = _this$props.slug_url;
+          slug_url = _this$props.slug_url,
+          is_loggedin = _this$props.is_loggedin,
+          bookmark_ids = _this$props.bookmark_ids,
+          base_url = _this$props.base_url;
+      var final_url = base_url + slug_url;
       return _react.default.createElement("article", {
         className: "featurepost"
       }, _react.default.createElement("div", {
@@ -64,9 +85,45 @@ function (_React$Component) {
         className: "list-item"
       }, _react.default.createElement("a", {
         href: "".concat(source_url)
-      }, uploaded_by))), _react.default.createElement("p", null, description), _react.default.createElement("h6", null, _react.default.createElement("a", {
+      }, uploaded_by))), _react.default.createElement("p", null, description), _react.default.createElement("div", {
+        className: "clearfix"
+      }, _react.default.createElement("div", {
+        className: "float-left"
+      }, _react.default.createElement("h6", null, _react.default.createElement("a", {
         href: "".concat(slug_url)
-      }, "Read More..."))));
+      }, "Read More..."))), _react.default.createElement("div", {
+        className: "float-right"
+      }, _react.default.createElement("ul", {
+        className: "list-inline m-0 sharelink"
+      }, _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement("div", null, _react.default.createElement(_reactShare.FacebookShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.FacebookIcon, {
+        size: 20,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.TwitterShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.TwitterIcon, {
+        size: 20,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.WhatsappShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.WhatsappIcon, {
+        size: 20,
+        round: true
+      }))), _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faShareAlt
+      })), _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faBookmark,
+        onClick: this.getArticleId,
+        className: bookmark_ids.indexOf(id) > -1 ? 'bookmarked' : ''
+      })))))));
     }
   }]);
 
@@ -329,7 +386,13 @@ exports.HorizontalCardItem = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
+
 var _reactstrap = require("reactstrap");
+
+var _reactShare = require("react-share");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -366,6 +429,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
+          id = _this$props.id,
           image = _this$props.image,
           title = _this$props.title,
           description = _this$props.description,
@@ -374,7 +438,10 @@ function (_React$Component) {
           slug_url = _this$props.slug_url,
           source_url = _this$props.source_url,
           category = _this$props.category,
-          hash_tags = _this$props.hash_tags;
+          hash_tags = _this$props.hash_tags,
+          bookmark_ids = _this$props.bookmark_ids,
+          base_url = _this$props.base_url;
+      var final_url = base_url + slug_url;
       return _react.default.createElement("article", {
         className: "article-post"
       }, _react.default.createElement("div", {
@@ -404,7 +471,45 @@ function (_React$Component) {
       }, _react.default.createElement("a", {
         href: "".concat(slug_url),
         target: "_blank"
-      }, description)))))));
+      }, description)), _react.default.createElement("div", {
+        className: "clearfix"
+      }, _react.default.createElement("div", {
+        className: "float-left"
+      }, _react.default.createElement(_reactstrap.CardLink, {
+        href: "".concat(slug_url)
+      }, "Read More...")), _react.default.createElement("div", {
+        className: "float-right"
+      }, _react.default.createElement("ul", {
+        className: "list-inline m-0 sharelink"
+      }, _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement("div", null, _react.default.createElement(_reactShare.FacebookShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.FacebookIcon, {
+        size: 20,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.TwitterShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.TwitterIcon, {
+        size: 20,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.WhatsappShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.WhatsappIcon, {
+        size: 20,
+        round: true
+      }))), _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faShareAlt
+      })), _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faBookmark,
+        onClick: this.getArticleId,
+        className: bookmark_ids.indexOf(id) > -1 ? 'bookmarked' : ''
+      }))))))))));
     }
   }]);
 
@@ -420,6 +525,12 @@ Object.defineProperty(exports, "__esModule", {
 exports.ImageOverlay = void 0;
 
 var _react = _interopRequireDefault(require("react"));
+
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
+
+var _reactShare = require("react-share");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -447,23 +558,38 @@ function (_React$Component) {
   _inherits(ImageOverlay, _React$Component);
 
   function ImageOverlay() {
+    var _getPrototypeOf2;
+
+    var _temp, _this;
+
     _classCallCheck(this, ImageOverlay);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ImageOverlay).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ImageOverlay)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.getArticleId = function () {
+      _this.props.getArticleId(_this.props.id);
+    }, _temp));
   }
 
   _createClass(ImageOverlay, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
+          id = _this$props.id,
           image = _this$props.image,
           title = _this$props.title,
           description = _this$props.description,
           uploaded_by = _this$props.uploaded_by,
           source_url = _this$props.source_url,
           category = _this$props.category,
-          slug_url = _this$props.slug_url;
+          slug_url = _this$props.slug_url,
+          is_loggedin = _this$props.is_loggedin,
+          bookmark_ids = _this$props.bookmark_ids,
+          base_url = _this$props.base_url;
       var size = this.props.size !== undefined ? this.props.size : "lg";
+      var final_url = base_url + slug_url;
       return _react.default.createElement("article", {
         className: "article ".concat(size !== "lg" ? "sm" : "")
       }, _react.default.createElement("section", null, _react.default.createElement("div", {
@@ -482,13 +608,49 @@ function (_React$Component) {
         className: "section-title"
       }, _react.default.createElement("a", {
         href: "".concat(slug_url)
-      }, title)), _react.default.createElement("ul", {
+      }, title)), _react.default.createElement("div", {
+        className: "clearfix"
+      }, _react.default.createElement("div", {
+        className: "float-left"
+      }, _react.default.createElement("ul", {
         className: "list-unstyled m-0"
       }, _react.default.createElement("li", {
         className: "list-item"
       }, _react.default.createElement("a", {
         href: "".concat(source_url)
-      }, uploaded_by)))) : _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h5", {
+      }, uploaded_by)))), _react.default.createElement("div", {
+        className: "float-right"
+      }, _react.default.createElement("ul", {
+        className: "list-inline m-0 sharelink"
+      }, _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement("div", null, _react.default.createElement(_reactShare.FacebookShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.FacebookIcon, {
+        size: 20,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.TwitterShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.TwitterIcon, {
+        size: 20,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.WhatsappShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.WhatsappIcon, {
+        size: 20,
+        round: true
+      }))), _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faShareAlt
+      })), _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faBookmark,
+        onClick: this.getArticleId,
+        className: bookmark_ids.indexOf(id) > -1 ? 'bookmarked' : ''
+      })))))) : _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h5", {
         className: "section-title"
       }, _react.default.createElement("a", {
         href: "".concat(slug_url)
@@ -510,6 +672,12 @@ exports.JumboBox = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 var _reactstrap = require("reactstrap");
+
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
+
+var _reactShare = require("react-share");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -537,23 +705,39 @@ function (_React$Component) {
   _inherits(JumboBox, _React$Component);
 
   function JumboBox() {
+    var _getPrototypeOf2;
+
+    var _temp, _this;
+
     _classCallCheck(this, JumboBox);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(JumboBox).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(JumboBox)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.getArticleId = function () {
+      _this.props.getArticleId(_this.props.id);
+    }, _temp));
   }
 
   _createClass(JumboBox, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
+          id = _this$props.id,
           source_url = _this$props.source_url,
           image = _this$props.image,
           title = _this$props.title,
           uploaded_on = _this$props.uploaded_on,
           uploaded_by = _this$props.uploaded_by,
           description = _this$props.description,
-          hash_tags = _this$props.hash_tags;
+          hash_tags = _this$props.hash_tags,
+          slug_url = _this$props.slug_url,
+          is_loggedin = _this$props.is_loggedin,
+          bookmark_ids = _this$props.bookmark_ids,
+          base_url = _this$props.base_url;
       var all_hash_tags = "";
+      var final_url = base_url + slug_url;
 
       if (hash_tags !== undefined) {
         all_hash_tags = hash_tags.map(function (item, index) {
@@ -588,7 +772,41 @@ function (_React$Component) {
         target: "_blank"
       }, uploaded_by)), _react.default.createElement(_reactstrap.CardText, {
         className: "card-desc"
-      }, description)));
+      }, description), _react.default.createElement("div", {
+        className: "clearfix"
+      }, _react.default.createElement("div", {
+        className: "float-right"
+      }, _react.default.createElement("ul", {
+        className: "list-inline m-0 sharelink"
+      }, _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement("div", null, _react.default.createElement(_reactShare.FacebookShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.FacebookIcon, {
+        size: 20,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.TwitterShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.TwitterIcon, {
+        size: 20,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.WhatsappShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.WhatsappIcon, {
+        size: 20,
+        round: true
+      }))), _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faShareAlt
+      })), _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faBookmark,
+        onClick: this.getArticleId,
+        className: bookmark_ids.indexOf(id) > -1 ? 'bookmarked' : ''
+      })))))));
     }
   }]);
 
@@ -651,6 +869,10 @@ function (_React$Component) {
       });
     };
 
+    _this.toggleLogin = function () {
+      _this.props.toggle(_this.props.is_open);
+    };
+
     _this.sidebartoggle = function () {
       _this.setState({
         isSideOpen: !_this.state.isSideOpen
@@ -679,6 +901,10 @@ function (_React$Component) {
       });
     };
 
+    _this.handleLogout = function () {
+      _this.props.handleLogout();
+    };
+
     _this.state = {
       isOpen: false,
       isSearchOpen: false,
@@ -700,7 +926,9 @@ function (_React$Component) {
           isSlider = _this$props.isSlider,
           domain = _this$props.domain,
           navitems = _this$props.navitems,
-          logo = _this$props.logo;
+          logo = _this$props.logo,
+          username = _this$props.username,
+          is_loggedin = _this$props.is_loggedin;
 
       if (this.state.isSearchOpen === true) {
         document.getElementsByTagName("body")[0].style = "overflow:hidden";
@@ -714,9 +942,9 @@ function (_React$Component) {
           key: index,
           className: "d-block d-md-none"
         }, _react.default.createElement(_reactstrap.NavLink, {
-          href: "/news/".concat(menuitem)
+          href: "".concat(domain !== 'dashboard' ? '/news/' : '/').concat(menuitem, "/")
         }, _react.default.createElement("img", {
-          src: "/".concat(item.item_icon),
+          src: "".concat(item.item_icon),
           alt: item.itemtext,
           className: "menu-icons"
         }), "\xA0", item.itemtext));
@@ -731,7 +959,7 @@ function (_React$Component) {
         icon: _freeSolidSvgIcons.faBars,
         size: "lg"
       }))) : "", _react.default.createElement(_reactstrap.NavbarBrand, {
-        href: "/",
+        href: " ".concat(domain === "dashboard" ? "/dashboard/" : "/", " "),
         className: "ml-4"
       }, _react.default.createElement("img", {
         src: logo,
@@ -749,7 +977,7 @@ function (_React$Component) {
         navbar: true,
         id: "menu"
       }, _react.default.createElement(_reactstrap.InputGroup, {
-        className: "search-box"
+        className: "search-box ".concat(domain === "dashboard" ? 'd-none' : '', " ")
       }, _react.default.createElement("input", {
         type: "text",
         className: "form-control",
@@ -769,7 +997,37 @@ function (_React$Component) {
         src: "/static/icons/trending_news.png",
         alt: "Trending",
         className: "menu-icons"
-      }), "\xA0 Trending"))) : "", menu)))), _react.default.createElement(_newscout.Search, {
+      }), "\xA0 Trending"))) : "", menu)), domain === "domain=newscout" || domain === undefined ? _react.default.createElement(_reactstrap.Nav, {
+        className: "ml-auto",
+        navbar: true
+      }, is_loggedin ? _react.default.createElement(_reactstrap.UncontrolledDropdown, {
+        nav: true,
+        inNavbar: true
+      }, _react.default.createElement(_reactstrap.DropdownToggle, {
+        nav: true,
+        caret: true,
+        className: "login"
+      }, username), _react.default.createElement(_reactstrap.DropdownMenu, {
+        right: true
+      }, _react.default.createElement(_reactstrap.DropdownItem, {
+        className: "login",
+        href: "/news/bookmark/"
+      }, "My Bookmarks"), _react.default.createElement(_reactstrap.DropdownItem, {
+        divider: true
+      }), _react.default.createElement(_reactstrap.DropdownItem, {
+        onClick: this.handleLogout,
+        className: "login"
+      }, "Logout"))) : _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement("label", {
+        className: "switch"
+      }, _react.default.createElement("input", {
+        type: "checkbox",
+        checked: true
+      }), _react.default.createElement("span", {
+        className: "slider round"
+      }))), _react.default.createElement(_reactstrap.NavItem, null, _react.default.createElement(_reactstrap.NavLink, {
+        onClick: this.toggleLogin,
+        className: "login"
+      }, "Login")))) : "")), _react.default.createElement(_newscout.Search, {
         toggleSearch: this.toggleSearch,
         isSearchOpen: this.state.isSearchOpen,
         multiple: multiple,
@@ -992,10 +1250,10 @@ function (_React$Component) {
       var listitem = this.props.menuitems.map(function (item, index) {
         return _react.default.createElement(_reactstrap.ListGroupItem, {
           tag: "a",
-          href: "/news/" + item.itemurl + "/",
+          href: "/" + item.itemurl + "/",
           key: index
         }, _react.default.createElement("img", {
-          src: "/".concat(item.item_icon),
+          src: "".concat(item.item_icon),
           alt: item.itemtext,
           className: "menu-icons"
         }), "\xA0", item.itemtext);
@@ -1009,7 +1267,14 @@ function (_React$Component) {
         src: "/static/icons/trending_news.png",
         alt: "Trending",
         className: "menu-icons"
-      }), "\xA0 Trending") : "", listitem));
+      }), "\xA0 Trending") : "", listitem, this.props.domain === "domain=newscout" || this.props.domain === undefined ? _react.default.createElement(_reactstrap.ListGroupItem, {
+        tag: "a",
+        href: "/news/rss/?domain=newscout"
+      }, _react.default.createElement("img", {
+        src: "/static/icons/rss.png",
+        alt: "rss",
+        className: "menu-icons"
+      }), "\xA0 RSS") : ""));
     }
   }]);
 
@@ -1256,11 +1521,343 @@ exports.TabItem = TabItem;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.ToogleCard = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _moment = _interopRequireDefault(require("moment"));
+
+var _reactstrap = require("reactstrap");
+
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
+
+var _reactShare = require("react-share");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var ToogleCard =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ToogleCard, _React$Component);
+
+  function ToogleCard() {
+    var _getPrototypeOf2;
+
+    var _temp, _this;
+
+    _classCallCheck(this, ToogleCard);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ToogleCard)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.getArticleId = function () {
+      _this.props.getArticleId(_this.props.id);
+    }, _temp));
+  }
+
+  _createClass(ToogleCard, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          items = _this$props.items,
+          is_loggedin = _this$props.is_loggedin,
+          bookmark_ids = _this$props.bookmark_ids,
+          base_url = _this$props.base_url,
+          index = _this$props.index;
+      var results = items.map(function (item, index) {
+        if (index !== 0) {
+          return _react.default.createElement("div", {
+            className: "row"
+          }, _react.default.createElement("div", {
+            className: "col-lg-9 col-12"
+          }, _react.default.createElement("ul", {
+            className: "list-inline m-0 inside-post",
+            key: index
+          }, _react.default.createElement("li", {
+            className: "list-inline-item mb-4"
+          }, _react.default.createElement("h6", {
+            className: "mb-1"
+          }, (0, _moment.default)(item.published_on).format('D MMMM YYYY')), _react.default.createElement("h4", null, _react.default.createElement("a", {
+            href: "/news/article/".concat(item.slug)
+          }, item.title)), _react.default.createElement("div", {
+            className: "clearfix"
+          }, _react.default.createElement("div", {
+            className: "float-left"
+          }, _react.default.createElement("h6", {
+            className: "m-0"
+          }, _react.default.createElement("a", {
+            href: item.source_url
+          }, item.source))), _react.default.createElement("div", {
+            className: "float-right"
+          }, _react.default.createElement("ul", {
+            className: "list-inline m-0 sharelink"
+          }, _react.default.createElement("li", {
+            className: "list-inline-item"
+          }, _react.default.createElement("div", null, _react.default.createElement(_reactShare.FacebookShareButton, {
+            url: "".concat(base_url, "/news/article/").concat(item.slug),
+            quote: item.title
+          }, _react.default.createElement(_reactShare.FacebookIcon, {
+            size: 15,
+            round: true
+          })), "\xA0", _react.default.createElement(_reactShare.TwitterShareButton, {
+            url: "".concat(base_url, "/news/article/").concat(item.slug),
+            quote: item.title
+          }, _react.default.createElement(_reactShare.TwitterIcon, {
+            size: 15,
+            round: true
+          })), "\xA0", _react.default.createElement(_reactShare.WhatsappShareButton, {
+            url: "".concat(base_url, "/news/article/").concat(item.slug),
+            quote: item.title
+          }, _react.default.createElement(_reactShare.WhatsappIcon, {
+            size: 15,
+            round: true
+          }))), _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+            icon: _freeSolidSvgIcons.faShareAlt
+          })), _react.default.createElement("li", {
+            className: "list-inline-item"
+          }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+            icon: _freeSolidSvgIcons.faBookmark,
+            onClick: _this2.getArticleId,
+            className: bookmark_ids.indexOf(item.id) > -1 ? 'bookmarked' : ''
+          })))))))), _react.default.createElement("div", {
+            className: "col-lg-3 text-right col-12 d-none d-sm-block"
+          }, _react.default.createElement("a", {
+            href: "/news/article/".concat(item.slug)
+          }, _react.default.createElement("img", {
+            src: "http://images.newscout.in/unsafe/70x70/left/top/" + decodeURIComponent(item.cover_image),
+            className: "img-fluid"
+          }))));
+        }
+      });
+      return _react.default.createElement("div", {
+        className: "accordion",
+        id: "accordionExample".concat(index)
+      }, _react.default.createElement("div", {
+        className: "card toogle-card"
+      }, _react.default.createElement("div", {
+        className: "card-header",
+        id: "heading".concat(index)
+      }, _react.default.createElement("div", {
+        className: "article-card"
+      }, _react.default.createElement("div", {
+        className: "row"
+      }, _react.default.createElement("div", {
+        className: "col-lg-3 text-right col-12 d-block d-sm-none mb-1"
+      }, _react.default.createElement("a", {
+        href: "/news/article/".concat(items[0].slug)
+      }, _react.default.createElement("img", {
+        src: "http://images.newscout.in/unsafe/368x276/left/top/" + decodeURIComponent(items[0].cover_image),
+        className: "img-fluid"
+      }))), _react.default.createElement("div", {
+        className: "col-lg-9 col-12"
+      }, _react.default.createElement("ul", {
+        className: "list-inline featurepost-category mb-1"
+      }, _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, (0, _moment.default)(items[0].published_on).format('D MMMM YYYY'))), _react.default.createElement("h3", null, _react.default.createElement("a", {
+        href: "/news/article/".concat(items[0].slug)
+      }, items[0].title)), _react.default.createElement("div", {
+        className: "clearfix"
+      }, _react.default.createElement("div", {
+        className: "float-left"
+      }, _react.default.createElement("ul", {
+        className: "list-inline m-0"
+      }, _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement("a", {
+        href: items[0].source_url
+      }, items[0].source)))), _react.default.createElement("div", {
+        className: "float-right"
+      }, _react.default.createElement("ul", {
+        className: "list-inline m-0 sharelink"
+      }, _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement("div", null, _react.default.createElement(_reactShare.FacebookShareButton, {
+        url: "".concat(base_url, "/news/article/").concat(items[0].slug),
+        quote: items[0].title
+      }, _react.default.createElement(_reactShare.FacebookIcon, {
+        size: 15,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.TwitterShareButton, {
+        url: "".concat(base_url, "/news/article/").concat(items[0].slug),
+        quote: items[0].title
+      }, _react.default.createElement(_reactShare.TwitterIcon, {
+        size: 15,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.WhatsappShareButton, {
+        url: "".concat(base_url, "/news/article/").concat(items[0].slug),
+        quote: items[0].title
+      }, _react.default.createElement(_reactShare.WhatsappIcon, {
+        size: 15,
+        round: true
+      }))), _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faShareAlt
+      })), _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faBookmark,
+        onClick: this.getArticleId,
+        className: bookmark_ids.indexOf(items[0].id) > -1 ? 'bookmarked' : ''
+      })))))), _react.default.createElement("div", {
+        className: "col-lg-3 text-right col-12 d-none d-sm-block"
+      }, _react.default.createElement("a", {
+        href: "/news/article/".concat(items[0].slug)
+      }, _react.default.createElement("img", {
+        src: "http://images.newscout.in/unsafe/100x100/left/top/" + decodeURIComponent(items[0].cover_image),
+        className: "img-fluid"
+      })))))), _react.default.createElement("div", {
+        id: "collapse".concat(index),
+        className: "collapse",
+        "aria-labelledby": "heading".concat(index),
+        "data-parent": "#accordionExample".concat(index)
+      }, _react.default.createElement("div", {
+        className: "card-body"
+      }, results)), _react.default.createElement("h5", {
+        className: "text-center mb-0"
+      }, _react.default.createElement("div", {
+        className: "collapsed",
+        "data-toggle": "collapse",
+        "data-target": "#collapse".concat(index),
+        "aria-expanded": "false",
+        "aria-controls": "collapse".concat(index)
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faAngleDown
+      })))));
+    }
+  }]);
+
+  return ToogleCard;
+}(_react.default.Component);
+
+exports.ToogleCard = ToogleCard;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.VerticleCardAd = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactstrap = require("reactstrap");
+
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var VerticleCardAd =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(VerticleCardAd, _React$Component);
+
+  function VerticleCardAd() {
+    _classCallCheck(this, VerticleCardAd);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(VerticleCardAd).apply(this, arguments));
+  }
+
+  _createClass(VerticleCardAd, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          id = _this$props.id,
+          image = _this$props.image,
+          description = _this$props.description,
+          source_url = _this$props.source_url;
+      return _react.default.createElement(_reactstrap.Card, {
+        className: "card-post"
+      }, _react.default.createElement("a", {
+        href: "".concat(source_url)
+      }, _react.default.createElement("img", {
+        src: image,
+        alt: id,
+        className: "img-fluid"
+      })), _react.default.createElement(_reactstrap.CardBody, {
+        className: "adlink"
+      }, _react.default.createElement(_reactstrap.CardText, {
+        className: "card-desc"
+      }, _react.default.createElement("a", {
+        href: "".concat(source_url),
+        target: "_blank"
+      }, description)), _react.default.createElement("div", {
+        className: "clearfix"
+      }, _react.default.createElement("div", {
+        className: "float-left"
+      }), _react.default.createElement("div", {
+        className: "float-right"
+      }, _react.default.createElement("ul", {
+        className: "list-inline m-0"
+      }, _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faExternalLinkSquareAlt
+      }), " sponsored"))))));
+    }
+  }]);
+
+  return VerticleCardAd;
+}(_react.default.Component);
+
+exports.VerticleCardAd = VerticleCardAd;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.VerticleCardItem = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
 var _reactstrap = require("reactstrap");
+
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
+
+var _reactShare = require("react-share");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1288,24 +1885,39 @@ function (_React$Component) {
   _inherits(VerticleCardItem, _React$Component);
 
   function VerticleCardItem() {
+    var _getPrototypeOf2;
+
+    var _temp, _this;
+
     _classCallCheck(this, VerticleCardItem);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(VerticleCardItem).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(VerticleCardItem)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.getArticleId = function () {
+      _this.props.getArticleId(_this.props.id);
+    }, _temp));
   }
 
   _createClass(VerticleCardItem, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
+          id = _this$props.id,
           image = _this$props.image,
           title = _this$props.title,
           description = _this$props.description,
-          uploaded_on = _this$props.uploaded_on,
           uploaded_by = _this$props.uploaded_by,
-          slug_url = _this$props.slug_url,
           source_url = _this$props.source_url,
           category = _this$props.category,
-          hash_tags = _this$props.hash_tags;
+          slug_url = _this$props.slug_url,
+          hash_tags = _this$props.hash_tags,
+          uploaded_on = _this$props.uploaded_on,
+          is_loggedin = _this$props.is_loggedin,
+          bookmark_ids = _this$props.bookmark_ids,
+          base_url = _this$props.base_url;
+      var final_url = base_url + slug_url;
       return _react.default.createElement(_reactstrap.Card, {
         className: "card-post"
       }, _react.default.createElement("a", {
@@ -1319,15 +1931,59 @@ function (_React$Component) {
       }, uploaded_on), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, {
         className: "mb-2"
       }, _react.default.createElement("a", {
-        href: "".concat(slug_url)
-      }, title)), _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("a", {
+        href: "".concat(slug_url),
+        dangerouslySetInnerHTML: {
+          __html: title
+        }
+      })), _react.default.createElement(_reactstrap.CardText, null, _react.default.createElement("a", {
         href: "".concat(source_url)
       }, uploaded_by)), _react.default.createElement(_reactstrap.CardText, {
         className: "card-desc"
       }, _react.default.createElement("a", {
         href: "".concat(slug_url),
-        target: "_blank"
-      }, description))));
+        target: "_blank",
+        dangerouslySetInnerHTML: {
+          __html: description
+        }
+      })), _react.default.createElement("div", {
+        className: "clearfix"
+      }, _react.default.createElement("div", {
+        className: "float-left"
+      }, _react.default.createElement(_reactstrap.CardLink, {
+        href: "".concat(source_url)
+      }, "Read More...")), _react.default.createElement("div", {
+        className: "float-right"
+      }, _react.default.createElement("ul", {
+        className: "list-inline m-0 sharelink"
+      }, _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement("div", null, _react.default.createElement(_reactShare.FacebookShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.FacebookIcon, {
+        size: 20,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.TwitterShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.TwitterIcon, {
+        size: 20,
+        round: true
+      })), "\xA0", _react.default.createElement(_reactShare.WhatsappShareButton, {
+        url: final_url,
+        quote: title
+      }, _react.default.createElement(_reactShare.WhatsappIcon, {
+        size: 20,
+        round: true
+      }))), _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faShareAlt
+      })), _react.default.createElement("li", {
+        className: "list-inline-item"
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: _freeSolidSvgIcons.faBookmark,
+        onClick: this.getArticleId,
+        className: bookmark_ids.indexOf(id) > -1 ? 'bookmarked' : ''
+      })))))));
     }
   }]);
 
