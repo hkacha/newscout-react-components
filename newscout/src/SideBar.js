@@ -37,7 +37,7 @@ export class SideBar extends React.Component {
 				<ListGroup>
 					{this.props.domain === "domain=newscout" || this.props.domain === undefined ?
 						<ListGroupItem tag="a" href="/news/trending/">
-							<img src={` ${this.state.isChecked ? "/static/icons/trending_news-white.png" : "/static/icons/trending_news.png" }` } alt="Trending" className="menu-icons"/>&nbsp;
+							<img src={`${this.state.isChecked ? "/static/icons/trending_news-white.png" : "/static/icons/trending_news.png" }`} alt="Trending" className="menu-icons"/>&nbsp;
 							Trending
 						</ListGroupItem>
 					: ""
@@ -45,7 +45,7 @@ export class SideBar extends React.Component {
 					{listitem}
 					{this.props.domain === "domain=newscout" || this.props.domain === undefined ?
 						<ListGroupItem tag="a" href="/news/rss/?domain=newscout">
-							<img src={` ${this.state.isChecked ? "/static/icons/rss-white.png" : "/static/icons/rss.png" }` } alt="rss" className="menu-icons"/>&nbsp;
+							<img src={`${this.state.isChecked ? "/static/icons/rss-white.png" : "/static/icons/rss.png" }`} alt="rss" className="menu-icons"/>&nbsp;
 							RSS
 						</ListGroupItem>
 					: ""
