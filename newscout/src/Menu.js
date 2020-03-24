@@ -7,6 +7,7 @@ import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
 import { Search } from 'newscout';
 
 const cookies = new Cookies();
+const icon_name = '-white.'
 
 export class Menu extends React.Component {
 
@@ -96,10 +97,16 @@ export class Menu extends React.Component {
 
 		const menu = navitems.map((item, index) => {
 			var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase()
+			var icon_path = ""
+			if(this.state.isChecked === true){
+				icon_path = item.item_icon.split(".")[0]+icon_name+item.item_icon.split(".")[1]
+			} else {
+				icon_path = item.item_icon
+			}
 			return (
 				<NavItem key={index} className="d-block d-md-none">
 					<NavLink href={`${domain !== 'dashboard' ? '/news/' : '/'}${menuitem}/`}>
-						<img src={`${item.item_icon}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
+						<img src={`${icon_path}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
 						{item.itemtext}
 					</NavLink>
 				</NavItem>
@@ -116,7 +123,6 @@ export class Menu extends React.Component {
 					: ""
 					}
 					<NavbarBrand href={` ${domain === "dashboard" ? "/dashboard/" : "/"} `} className="ml-4">
-						<img src={logo} alt="newscout" />
 					</NavbarBrand>
 					<NavbarToggler onClick={this.toggle} className="custom-toggler" />
 					<Collapse isOpen={this.state.isOpen} navbar>
@@ -133,7 +139,7 @@ export class Menu extends React.Component {
 									<React.Fragment>
 										<NavItem className="d-block d-md-none">
 											<NavLink href="/news/trending/">
-											<img src="/static/icons/trending_news.png" alt="Trending" className="menu-icons"/>&nbsp;
+											<img src={` ${this.state.isChecked ? "/static/icons/trending_news-white.png" : "/static/icons/trending_news.png" }` } alt="Trending" className="menu-icons"/>&nbsp;
 											Trending
 											</NavLink>
 										</NavItem>
@@ -141,6 +147,15 @@ export class Menu extends React.Component {
 								: ""
 								}
 								{menu}
+								{domain === "domain=newscout" || domain === undefined ?
+									<NavItem className="d-block d-md-none">
+										<NavLink href="/news/rss/?domain=newscout">
+											<img src={` ${this.state.isChecked ? "/static/icons/rss-white.png" : "/static/icons/rss.png" }` } alt="rss" className="menu-icons"/>&nbsp;
+											RSS
+										</NavLink>
+									</NavItem>
+								: ""
+								}
 							</Nav>
 						</div>
 						{domain === "domain=newscout" || domain === undefined ?
