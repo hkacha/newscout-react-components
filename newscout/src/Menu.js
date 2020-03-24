@@ -1,9 +1,12 @@
 import React from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import Cookies from 'universal-cookie';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, InputGroupText, Tooltip } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
 
 import { Search } from 'newscout';
+
+const cookies = new Cookies();
 
 export class Menu extends React.Component {
 
@@ -15,8 +18,18 @@ export class Menu extends React.Component {
 			isSlider: this.props.isSlider,
 			isSideOpen: true,
 			value: '',
+			isChecked: this.props.isChecked,
+			tooltipOpen: false
 		};
 	}
+
+	toggleSwitch = () => {
+		this.setState({
+			isChecked: !this.state.isChecked
+		}, function() {
+			this.props.toggleSwitch(this.state.isChecked)
+		});
+	};
 
 	toggle = () => {
 		this.setState({
@@ -42,6 +55,12 @@ export class Menu extends React.Component {
 		})
 	}
 
+	tooltipToggle = () => {
+		this.setState({
+			tooltipOpen: !this.state.tooltipOpen
+		})
+	}
+
 	keyPress = (e) => {
 		var url = this.props.url+"?q="+this.state.value;
 		if(e.keyCode == 13){
@@ -59,8 +78,14 @@ export class Menu extends React.Component {
 		this.props.handleLogout()
 	}
 
+	componentWillReceiveProps(newProps){
+		this.setState({
+			isChecked: newProps.isChecked
+    	})
+    }
+
 	render(){
-		
+
 		const { multiple, placeholder, options, url, isSlider, domain, navitems, logo, username, is_loggedin } = this.props;
 
 		if(this.state.isSearchOpen === true){
@@ -120,6 +145,15 @@ export class Menu extends React.Component {
 						</div>
 						{domain === "domain=newscout" || domain === undefined ?
 							<Nav className="ml-auto" navbar>
+								<NavItem>
+									<label className="switch" id="TooltipExample">
+										<input type="checkbox" onClick={this.toggleSwitch} checked={this.state.isChecked} />
+										<span className="slider round"></span>
+									</label>
+									<Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
+										{this.state.isChecked ? 'Switch to day mode' : 'Switch to night mode'}
+									</Tooltip>
+								</NavItem>
 								{is_loggedin ?
 									<UncontrolledDropdown nav inNavbar>
 										<DropdownToggle nav caret className="login">
@@ -135,12 +169,6 @@ export class Menu extends React.Component {
 									</UncontrolledDropdown>
 								:
 									<React.Fragment>
-										<NavItem>
-											<label className="switch">
-												<input type="checkbox" checked />
-												<span className="slider round"></span>
-											</label>
-										</NavItem>
 										<NavItem>
 											<NavLink onClick={this.toggleLogin} className="login">Login</NavLink>
 										</NavItem>
