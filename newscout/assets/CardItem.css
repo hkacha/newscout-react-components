@@ -57,6 +57,7 @@
 
 .article-post {
 	height: 250px;
+	overflow: hidden;
     padding-left: 15px;
     padding-right: 15px;
     background-color: #fff;
