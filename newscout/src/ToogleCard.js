@@ -27,7 +27,7 @@ export class ToogleCard extends React.Component {
 						<div className="col-lg-9 col-12">
 							<ul className="list-inline m-0 inside-post" key={j}>
 								<li className="list-inline-item mb-4">
-									<h6 className="mb-1">{moment(item.published_on).format('D MMMM YYYY')}</h6>
+									<h6 className="mb-1">{moment(item.published_on).startOf('hour').fromNow()}</h6>
 									<h4><a href={`/news/article/${item.slug}`}>{item.title}</a></h4>
 									<div className="clearfix">
 										<div className="float-left">
@@ -82,7 +82,7 @@ export class ToogleCard extends React.Component {
 							</div>
 							<div className="col-lg-9 col-12">
 								<ul className="list-inline featurepost-category mb-1">
-									<li className="list-inline-item">{moment(items[0].published_on).format('D MMMM YYYY')}</li>
+									<li className="list-inline-item">{moment(items[0].published_on).startOf('hour').fromNow()}</li>
 								</ul>
 								<h3><a href={`/news/article/${items[0].slug}`}>{items[0].title}</a></h3>
 								<div className="clearfix">

@@ -8,12 +8,14 @@ export class SideBar extends React.Component {
 		super(props);
 		this.state = {
 			isChecked: this.props.isChecked,
+			isSideOpen: this.props.isSideOpen,
 		}
 	}
 
 	componentWillReceiveProps(newProps){
 		this.setState({
-			isChecked: newProps.isChecked
+			isChecked: newProps.isChecked,
+			isSideOpen: newProps.isSideOpen
     	})
     }
 
