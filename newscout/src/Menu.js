@@ -2,7 +2,7 @@ import React from 'react';
 import Cookies from 'universal-cookie';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, InputGroupText, Tooltip } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 
 import { Search } from 'newscout';
 
@@ -162,6 +162,11 @@ export class Menu extends React.Component {
 						{domain === "domain=newscout" || domain === undefined ?
 							<Nav className="ml-auto" navbar>
 								<NavItem>
+									{this.state.isChecked ?
+										<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
+									:
+										<FontAwesomeIcon icon={faSun} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
+									}
 									<label className="switch" id="TooltipExample">
 										<input type="checkbox" onClick={this.toggleSwitch} checked={this.state.isChecked} />
 										<span className="slider round"></span>
