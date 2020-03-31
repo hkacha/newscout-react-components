@@ -209,3 +209,10 @@ input:checked + .slider:before {
 .login.dropdown-item svg {
   vertical-align: middle;
 }
+
+.search-box .rbt-menu > li a {
+  color: #262626;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
