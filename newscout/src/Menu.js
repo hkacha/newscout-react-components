@@ -2,12 +2,15 @@ import React from 'react';
 import Cookies from 'universal-cookie';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, InputGroupText, Tooltip } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import {Typeahead} from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 import { Search } from 'newscout';
 
 const cookies = new Cookies();
 const icon_name = '-white.'
+var options = ['China', 'Corona', 'India', 'Italy', 'US', 'Lock Down', 'Money', 'Stock', 'Trump', 'Delhi', 'PM', 'Police', 'Spain', 'Tata', 'Reliance', 'Ambani', 'hospital', 'Virus', 'Finance', 'GDP'];
 
 export class Menu extends React.Component {
 
@@ -18,9 +21,10 @@ export class Menu extends React.Component {
 			isSearchOpen: false,
 			isSlider: this.props.isSlider,
 			isSideOpen: this.props.isSideOpen,
-			value: '',
+			text: '',
 			isChecked: this.props.isChecked,
-			tooltipOpen: false
+			tooltipOpen: false,
+			selected: []
 		};
 	}
 
@@ -50,29 +54,23 @@ export class Menu extends React.Component {
 		})
 	}
 
-	toggleSearch = () => {
-		this.setState({
-			isSearchOpen: !this.state.isSearchOpen
-		})
-	}
-
 	tooltipToggle = () => {
 		this.setState({
 			tooltipOpen: !this.state.tooltipOpen
 		})
 	}
 
-	keyPress = (e) => {
-		var url = this.props.url+"?q="+this.state.value;
+	handleKeyPress = (e) => {
+		var value = e.target.value;
+		var url = this.props.url+"?q="+value;
 		if(e.keyCode == 13){
 			window.location.href = url;
 		}
 	}
 
 	handleChange = (e) => {
-		this.setState({
-			value: e.target.value
-		});
+		const value = e.target.value;
+		this.setState({ text: value})
 	}
 
 	handleLogout = () => {
@@ -87,8 +85,7 @@ export class Menu extends React.Component {
     }
 
 	render(){
-
-		const { multiple, placeholder, options, url, isSlider, domain, navitems, logo, username, is_loggedin } = this.props;
+		const { multiple, placeholder, url, isSlider, domain, navitems, logo, username, is_loggedin } = this.props;
 
 		if(this.state.isSearchOpen === true){
 			document.getElementsByTagName("body")[0].style = "overflow:hidden";
@@ -130,12 +127,14 @@ export class Menu extends React.Component {
 						<div className="m-auto col-lg-6">
 							<Nav className="ml-auto" navbar id="menu">
 								<InputGroup className={`search-box ${domain === "dashboard" ? 'd-none' : ''} `}>
-									<input type="text" className="form-control" onChange={this.handleChange} onKeyDown={this.keyPress} placeholder="Search" value={this.state.value} />
-									<InputGroupAddon addonType="append">
-										<InputGroupText><FontAwesomeIcon icon={faSearch} /></InputGroupText>
-									</InputGroupAddon>
+									<Typeahead
+										options={options}
+										selected={this.state.selected}
+										onKeyDown={this.handleKeyPress}
+										onBlur={this.handleChange}
+										placeholder="Search.."
+									/>
 								</InputGroup>
-
 								{domain === "domain=newscout" || domain === undefined ?
 									<React.Fragment>
 										<NavItem className="d-block d-md-none">
@@ -200,14 +199,6 @@ export class Menu extends React.Component {
 						}
 					</Collapse>
 				</Navbar>
-				<Search
-					toggleSearch={this.toggleSearch}
-					isSearchOpen={this.state.isSearchOpen}
-					multiple={multiple}
-					placeholder={placeholder}
-					options={options}
-					url={url}
-				/>
 			</React.Fragment>
 		)
 	}
