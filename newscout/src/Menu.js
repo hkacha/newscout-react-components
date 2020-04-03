@@ -4,14 +4,13 @@ import KeyboardEventHandler from 'react-keyboard-event-handler';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, InputGroupText, Tooltip } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import {Typeahead} from 'react-bootstrap-typeahead';
+import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 import { Search } from 'newscout';
 
 const cookies = new Cookies();
 const icon_name = '-white.'
-var options = ['China', 'Corona', 'India', 'Italy', 'US', 'Lock Down', 'Money', 'Stock', 'Trump', 'Delhi', 'PM', 'Police', 'Spain', 'Tata', 'Reliance', 'Ambani', 'hospital', 'Virus', 'Finance', 'GDP'];
 
 export class Menu extends React.Component {
 
@@ -81,6 +80,10 @@ export class Menu extends React.Component {
 		// console.log(aa.value)
 	}
 
+	handleSearch = (query) => {
+		this.props.handleSearch(query)
+	}
+
 	handleChange = (e) => {
 		const value = e.target.value;
 		this.setState({ text: value})
@@ -98,7 +101,7 @@ export class Menu extends React.Component {
     }
 
 	render(){
-		const { multiple, placeholder, url, isSlider, domain, navitems, logo, username, is_loggedin } = this.props;
+		const { multiple, placeholder, url, isSlider, domain, navitems, logo, username, is_loggedin, options } = this.props;
 
 		if(this.state.isSearchOpen === true){
 			document.getElementsByTagName("body")[0].style = "overflow:hidden";
@@ -140,13 +143,14 @@ export class Menu extends React.Component {
 						<div className="m-auto col-lg-6">
 							<Nav className="ml-auto" navbar id="menu">
 								<InputGroup className={`search-box ${domain === "dashboard" ? 'd-none' : ''} `}>
-									<Typeahead
+									<AsyncTypeahead
 										options={options}
 										selected={this.state.selected}
 										onBlur={this.handleChange}
 										placeholder="Search.."
-										inputProps={{id:"search-text"}}
-										ref={(typeahead) => this.typeahead = typeahead}
+										id="search-text"
+										onSearch={this.handleSearch}
+										onKeyDown={this.handleKeyPress}
 									/>
 								</InputGroup>
 								{domain === "domain=newscout" || domain === undefined ?
@@ -213,7 +217,7 @@ export class Menu extends React.Component {
 						}
 					</Collapse>
 				</Navbar>
-				<KeyboardEventHandler handleKeys={['shift+/']} onKeyEvent={this.handleAutoFocus} handleFocusableElements={true} />
+				<KeyboardEventHandler handleKeys={['shift+/']} onKeyEvent={this.handleAutoFocus} />
 			</React.Fragment>
 		)
 	}
