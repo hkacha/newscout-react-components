@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
+import KeyboardEventHandler from 'react-keyboard-event-handler';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, InputGroupText, Tooltip } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
@@ -26,6 +27,8 @@ export class Menu extends React.Component {
 			tooltipOpen: false,
 			selected: []
 		};
+
+		this.myRef = React.createRef();
 	}
 
 	toggleSwitch = () => {
@@ -66,6 +69,16 @@ export class Menu extends React.Component {
 		if(e.keyCode == 13){
 			window.location.href = url;
 		}
+	}
+
+	handleAutoFocus = () => {
+		this.typeahead.getInstance().focus()
+		// const instance = this.myRef.current.getInstance()
+		// instance.clear();
+		// instance.focus();
+		// console.log(instance.state.text)
+		// var aa = document.getElementById("search-text")
+		// console.log(aa.value)
 	}
 
 	handleChange = (e) => {
@@ -130,9 +143,10 @@ export class Menu extends React.Component {
 									<Typeahead
 										options={options}
 										selected={this.state.selected}
-										onKeyDown={this.handleKeyPress}
 										onBlur={this.handleChange}
 										placeholder="Search.."
+										inputProps={{id:"search-text"}}
+										ref={(typeahead) => this.typeahead = typeahead}
 									/>
 								</InputGroup>
 								{domain === "domain=newscout" || domain === undefined ?
@@ -199,6 +213,7 @@ export class Menu extends React.Component {
 						}
 					</Collapse>
 				</Navbar>
+				<KeyboardEventHandler handleKeys={['shift+/']} onKeyEvent={this.handleAutoFocus} handleFocusableElements={true} />
 			</React.Fragment>
 		)
 	}
