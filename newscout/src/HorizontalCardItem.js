@@ -23,10 +23,10 @@ export class HorizontalCardItem extends React.Component {
 								<CardTitle className="mb-2">
 									<a href={`${slug_url}`}>{title}</a>
 								</CardTitle>
-								<CardText>
+								<CardText className="mb-2">
 									<a href={`${source_url}`}>{uploaded_by}</a>
 								</CardText>
-								<CardText className="card-desc"><a href={`${slug_url}`} target="_blank">{description}</a></CardText>
+								<CardText className="card-desc mb-2"><a href={`${slug_url}`} target="_blank">{description}</a></CardText>
 								<div className="clearfix">
 									<div className="float-left">
 										<CardLink href={`${slug_url}`}>Read More...</CardLink>

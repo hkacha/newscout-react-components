@@ -19,13 +19,20 @@
 .card-post .card-body .card-title {
 	text-overflow: ellipsis;
 	display: -webkit-box;
-	-webkit-line-clamp: 1;
+	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	color: #262626;
     font-weight: 600;
     font-size: 20px;
     line-height: 1.3;
     overflow: hidden;
+}
+
+.card-post .card-body .card-title a {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .card-post .card-body p.card-text:not(.card-desc) a {
@@ -40,8 +47,8 @@
 }
 
 .card-post .card-body p.card-desc a {
-	height: 70px;
-	font-size: 15px;
+	height: 65px;
+	font-size: 14px;
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
