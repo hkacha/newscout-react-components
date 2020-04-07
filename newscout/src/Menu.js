@@ -93,6 +93,26 @@ export class Menu extends React.Component {
 		this.props.handleLogout()
 	}
 
+	handleDocumentClick = (e) => {
+		const container = this._element;
+		console.log(e.target)
+		console.log(container)
+		console.log(container.contains)
+		if (e.target !== container && !container.contains(e.target)) {
+			if(this.state.isOpen === true){
+				this.toggle();
+			}
+		}
+	}
+
+	componentDidMount() {
+		document.addEventListener('click', this.handleDocumentClick, true);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleDocumentClick, false);
+	}
+
 	componentWillReceiveProps(newProps){
 		this.setState({
 			isChecked: newProps.isChecked,
@@ -129,95 +149,97 @@ export class Menu extends React.Component {
 
 		return(
 			<React.Fragment>
-				<Navbar className="fixed-top" expand="md">
-					{isSlider ?
-						<React.Fragment>
-							<div className="sidebar-btn d-none d-sm-block pl-1" onClick={this.isSideBarToogle}><FontAwesomeIcon icon={faBars} size="lg" /></div>
-						</React.Fragment>
-					: ""
-					}
-					<NavbarBrand href={` ${domain === "dashboard" ? "/dashboard/" : "/"} `} className="ml-4">
-					</NavbarBrand>
-					<NavbarToggler onClick={this.toggle} className="custom-toggler" />
-					<Collapse isOpen={this.state.isOpen} navbar>
-						<div className="m-auto col-lg-6">
-							<Nav className="ml-auto" navbar id="menu">
-								<InputGroup className={`search-box ${domain === "dashboard" ? 'd-none' : ''} `}>
-									<AsyncTypeahead
-										options={options}
-										selected={this.state.selected}
-										onBlur={this.handleChange}
-										placeholder="Search.."
-										id="search-text"
-										onSearch={this.handleSearch}
-										onKeyDown={this.handleKeyPress}
-									/>
-								</InputGroup>
-								{domain === "domain=newscout" || domain === undefined ?
-									<React.Fragment>
-										<NavItem className="d-block d-md-none">
-											<NavLink href="/news/trending/">
-											<img src={`${this.state.isChecked ? "/static/icons/trending_news-white.png" : "/static/icons/trending_news.png" }`} alt="Trending" className="menu-icons"/>&nbsp;
-											Trending
-											</NavLink>
-										</NavItem>
-									</React.Fragment>
-								: ""
-								}
-								{menu}
-								{domain === "domain=newscout" || domain === undefined ?
-									<NavItem className="d-block d-md-none">
-										<NavLink href="/news/rss/?domain=newscout">
-											<img src={`${this.state.isChecked ? "/static/icons/rss-white.png" : "/static/icons/rss.png" }`} alt="rss" className="menu-icons"/>&nbsp;
-											RSS
-										</NavLink>
-									</NavItem>
-								: ""
-								}
-							</Nav>
-						</div>
-						{domain === "domain=newscout" || domain === undefined ?
-							<Nav className="ml-auto" navbar>
-								<NavItem>
-									{this.state.isChecked ?
-										<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
-									:
-										<FontAwesomeIcon icon={faSun} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
-									}
-									<label className="switch" id="TooltipExample">
-										<input type="checkbox" onClick={this.toggleSwitch} checked={this.state.isChecked} />
-										<span className="slider round"></span>
-									</label>
-									<Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
-										{this.state.isChecked ? 'Switch to day mode' : 'Switch to night mode'}
-									</Tooltip>
-								</NavItem>
-								{is_loggedin ?
-									<UncontrolledDropdown nav inNavbar>
-										<DropdownToggle nav caret className="login">
-											{username}
-										</DropdownToggle>
-										<DropdownMenu right>
-											<DropdownItem className="login" href="/news/bookmark/">
-												<FontAwesomeIcon icon={faBookmark} /> My Bookmarks
-											</DropdownItem>
-											<DropdownItem divider />
-											<DropdownItem onClick={this.handleLogout} className="login"> <FontAwesomeIcon icon={faPowerOff} /> Logout</DropdownItem>
-										</DropdownMenu>
-									</UncontrolledDropdown>
-								:
-									<React.Fragment>
-										<NavItem>
-											<NavLink onClick={this.toggleLogin} className="login"><FontAwesomeIcon icon={faSignInAlt} /> Login</NavLink>
-										</NavItem>
-									</React.Fragment>
-								}
-							</Nav>
+				<div ref={(c)=> (this._element = c)}>
+					<Navbar className="fixed-top" expand="md">
+						{isSlider ?
+							<React.Fragment>
+								<div className="sidebar-btn d-none d-sm-block pl-1" onClick={this.isSideBarToogle}><FontAwesomeIcon icon={faBars} size="lg" /></div>
+							</React.Fragment>
 						: ""
 						}
-					</Collapse>
-				</Navbar>
-				<KeyboardEventHandler handleKeys={['shift+/']} onKeyEvent={this.handleAutoFocus} />
+						<NavbarBrand href={` ${domain === "dashboard" ? "/dashboard/" : "/"} `} className="ml-4">
+						</NavbarBrand>
+						<NavbarToggler onClick={this.toggle} className="custom-toggler" />
+						<Collapse isOpen={this.state.isOpen} navbar>
+							<div className="m-auto col-lg-6">
+								<Nav className="ml-auto" navbar id="menu">
+									<InputGroup className={`search-box ${domain === "dashboard" ? 'd-none' : ''} `}>
+										<AsyncTypeahead
+											options={options}
+											selected={this.state.selected}
+											onBlur={this.handleChange}
+											placeholder="Search.."
+											id="search-text"
+											onSearch={this.handleSearch}
+											onKeyDown={this.handleKeyPress}
+										/>
+									</InputGroup>
+									{domain === "domain=newscout" || domain === undefined ?
+										<React.Fragment>
+											<NavItem className="d-block d-md-none">
+												<NavLink href="/news/trending/">
+												<img src={`${this.state.isChecked ? "/static/icons/trending_news-white.png" : "/static/icons/trending_news.png" }`} alt="Trending" className="menu-icons"/>&nbsp;
+												Trending
+												</NavLink>
+											</NavItem>
+										</React.Fragment>
+									: ""
+									}
+									{menu}
+									{domain === "domain=newscout" || domain === undefined ?
+										<NavItem className="d-block d-md-none">
+											<NavLink href="/news/rss/?domain=newscout">
+												<img src={`${this.state.isChecked ? "/static/icons/rss-white.png" : "/static/icons/rss.png" }`} alt="rss" className="menu-icons"/>&nbsp;
+												RSS
+											</NavLink>
+										</NavItem>
+									: ""
+									}
+								</Nav>
+							</div>
+							{domain === "domain=newscout" || domain === undefined ?
+								<Nav className="ml-auto" navbar>
+									<NavItem>
+										{this.state.isChecked ?
+											<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
+										:
+											<FontAwesomeIcon icon={faSun} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
+										}
+										<label className="switch" id="TooltipExample">
+											<input type="checkbox" onClick={this.toggleSwitch} checked={this.state.isChecked} />
+											<span className="slider round"></span>
+										</label>
+										<Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
+											{this.state.isChecked ? 'Switch to day mode' : 'Switch to night mode'}
+										</Tooltip>
+									</NavItem>
+									{is_loggedin ?
+										<UncontrolledDropdown nav inNavbar>
+											<DropdownToggle nav caret className="login">
+												{username}
+											</DropdownToggle>
+											<DropdownMenu right>
+												<DropdownItem className="login" href="/news/bookmark/">
+													<FontAwesomeIcon icon={faBookmark} /> My Bookmarks
+												</DropdownItem>
+												<DropdownItem divider />
+												<DropdownItem onClick={this.handleLogout} className="login"> <FontAwesomeIcon icon={faPowerOff} /> Logout</DropdownItem>
+											</DropdownMenu>
+										</UncontrolledDropdown>
+									:
+										<React.Fragment>
+											<NavItem>
+												<NavLink onClick={this.toggleLogin} className="login"><FontAwesomeIcon icon={faSignInAlt} /> Login</NavLink>
+											</NavItem>
+										</React.Fragment>
+									}
+								</Nav>
+							: ""
+							}
+						</Collapse>
+					</Navbar>
+					<KeyboardEventHandler handleKeys={['shift+/']} onKeyEvent={this.handleAutoFocus} />
+				</div>
 			</React.Fragment>
 		)
 	}

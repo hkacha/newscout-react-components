@@ -11,15 +11,15 @@ export class ImageOverlay extends React.Component {
 
 	render(){
 		
-		const {id, image, title, description, uploaded_by, source_url, category, slug_url, is_loggedin, bookmark_ids, base_url} = this.props;
+		const {id, image, title, description, uploaded_by, source_url, category, slug_url, is_loggedin, bookmark_ids, base_url, image_xs} = this.props;
 		let size = this.props.size !== undefined ? this.props.size : "lg";
-		let final_url = base_url+slug_url
+		let final_url = base_url+slug_url;
 		
 		return(
 			<article className={`article ${size !== "lg" ? "sm" : ""}`}>
 				<section>
 					<div className={`section-img ${size !== "lg" ? "sm" : ""}`}>
-						<a href={`${slug_url}`}><img src={image} alt={title} className="img-fluid" /></a>
+						<a href={`${slug_url}`}><img src={image} alt={title} className="img-fluid d-none d-sm-block" /><img src={image_xs} alt={title} className="img-fluid d-block d-sm-none" /></a>
 					</div>
 					{size === "lg" ?
 						<React.Fragment><div className="section-category">{category}</div></React.Fragment>
