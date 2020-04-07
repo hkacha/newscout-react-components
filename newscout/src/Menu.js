@@ -95,9 +95,6 @@ export class Menu extends React.Component {
 
 	handleDocumentClick = (e) => {
 		const container = this._element;
-		console.log(e.target)
-		console.log(container)
-		console.log(container.contains)
 		if (e.target !== container && !container.contains(e.target)) {
 			if(this.state.isOpen === true){
 				this.toggle();

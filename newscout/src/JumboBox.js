@@ -42,13 +42,13 @@ export class JumboBox extends React.Component {
 							<ul className="list-inline m-0 sharelink">
 								<li className="list-inline-item">
 									<div>
-										<FacebookShareButton url={final_url} quote={title}>
+										<FacebookShareButton url={final_url} quote={title} image={image}>
 											<FacebookIcon size={20} round />
 										</FacebookShareButton>&nbsp;
-										<TwitterShareButton url={final_url} quote={title}>
+										<TwitterShareButton url={final_url} quote={title} image={image}>
 											<TwitterIcon size={20} round />
 										</TwitterShareButton>&nbsp;
-										<WhatsappShareButton url={final_url} quote={title}>
+										<WhatsappShareButton url={final_url} quote={title} image={image}>
 											<WhatsappIcon size={20} round />
 										</WhatsappShareButton>
 									</div>

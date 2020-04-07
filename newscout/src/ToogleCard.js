@@ -39,13 +39,13 @@ export class ToogleCard extends React.Component {
 											<ul className="list-inline m-0 sharelink">
 												<li className="list-inline-item">
 													<div>
-														<FacebookShareButton url={`${base_url}/news/article/${item.slug}`} quote={item.title}>
+														<FacebookShareButton url={`${base_url}/news/article/${item.slug}`} quote={item.title} image={item.image}>
 															<FacebookIcon size={15} round />
 														</FacebookShareButton>&nbsp;
-														<TwitterShareButton url={`${base_url}/news/article/${item.slug}`} quote={item.title}>
+														<TwitterShareButton url={`${base_url}/news/article/${item.slug}`} quote={item.title} image={item.image}>
 															<TwitterIcon size={15} round />
 														</TwitterShareButton>&nbsp;
-														<WhatsappShareButton url={`${base_url}/news/article/${item.slug}`} quote={item.title}>
+														<WhatsappShareButton url={`${base_url}/news/article/${item.slug}`} quote={item.title} image={item.image}>
 															<WhatsappIcon size={15} round />
 														</WhatsappShareButton>
 													</div>
