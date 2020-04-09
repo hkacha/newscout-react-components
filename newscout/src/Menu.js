@@ -169,6 +169,7 @@ export class Menu extends React.Component {
 											id="search-text"
 											onSearch={this.handleSearch}
 											onKeyDown={this.handleKeyPress}
+											emptyLabel=""
 										/>
 									</InputGroup>
 									{domain === "domain=newscout" || domain === undefined ?
