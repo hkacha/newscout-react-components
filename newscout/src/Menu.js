@@ -148,15 +148,30 @@ export class Menu extends React.Component {
 			<React.Fragment>
 				<div ref={(c)=> (this._element = c)}>
 					<Navbar className="fixed-top" expand="md">
+						<NavbarToggler onClick={this.toggle} className="custom-toggler" />
 						{isSlider ?
 							<React.Fragment>
-								<div className="sidebar-btn d-none d-sm-block pl-1" onClick={this.isSideBarToogle}><FontAwesomeIcon icon={faBars} size="lg" /></div>
+								<div className="sidebar-btn d-none d-sm-block" onClick={this.isSideBarToogle}><FontAwesomeIcon icon={faBars} size="lg" /></div>
 							</React.Fragment>
 						: ""
 						}
-						<NavbarBrand href={` ${domain === "dashboard" ? "/dashboard/" : "/"} `} className="ml-4">
-						</NavbarBrand>
-						<NavbarToggler onClick={this.toggle} className="custom-toggler" />
+						<NavbarBrand href={` ${domain === "dashboard" ? "/dashboard/" : "/"} `} className="ml-3"></NavbarBrand>
+						<Nav className="ml-auto toogler-switch">
+							<NavItem>
+								{this.state.isChecked ?
+									<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
+								:
+									<FontAwesomeIcon icon={faSun} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
+								}
+								<label className="switch" id="TooltipExample">
+									<input type="checkbox" onClick={this.toggleSwitch} checked={this.state.isChecked} />
+									<span className="slider round"></span>
+								</label>
+								<Tooltip classNam="d-none d-sm-block" placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
+									{this.state.isChecked ? 'Switch to day mode' : 'Switch to night mode'}
+								</Tooltip>
+							</NavItem>
+						</Nav>
 						<Collapse isOpen={this.state.isOpen} navbar>
 							<div className="m-auto col-lg-6">
 								<Nav className="ml-auto" navbar id="menu">
@@ -197,7 +212,7 @@ export class Menu extends React.Component {
 							</div>
 							{domain === "domain=newscout" || domain === undefined ?
 								<Nav className="ml-auto" navbar>
-									<NavItem>
+									<NavItem className="d-none d-sm-block">
 										{this.state.isChecked ?
 											<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
 										:
