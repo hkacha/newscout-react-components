@@ -13,13 +13,13 @@ export class ToogleCard extends React.Component {
 	}
 	
 	getArticleId = (e) => {
-		var itemid = e.currentTarget.id
+		var itemid = e.currentTarget.id;
 		this.props.getArticleId(itemid)
 	}
 
 	render(){
 		const { items, is_loggedin, bookmark_ids, base_url, index } = this.props;
-		
+
 		var results = items.map((item, j) => {
 			if(j !== 0){
 				return (
@@ -52,7 +52,7 @@ export class ToogleCard extends React.Component {
 													<FontAwesomeIcon icon={faShareAlt} />
 												</li>
 												<li className="list-inline-item">
-													<FontAwesomeIcon icon={faBookmark} id={item.id} onClick={this.getArticleId} className={bookmark_ids.indexOf(item.id) > -1 ? 'bookmarked' : ''} />
+													<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={bookmark_ids.findIndex(x => x.id === item.id) > -1 ? 'bookmarked' : ''} id={item.id} />
 												</li>
 											</ul>
 										</div>
@@ -108,7 +108,7 @@ export class ToogleCard extends React.Component {
 												<FontAwesomeIcon icon={faShareAlt} />
 											</li>
 											<li className="list-inline-item">
-												<FontAwesomeIcon icon={faBookmark} id={items[0].id} onClick={this.getArticleId} className={bookmark_ids.indexOf(items[0].id) > -1 ? 'bookmarked' : ''} />
+												<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={bookmark_ids.findIndex(x => x.id === items[0].id) > -1 ? 'bookmarked' : ''} id={items[0].id} />
 											</li>
 										</ul>
 									</div>

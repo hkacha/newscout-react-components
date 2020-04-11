@@ -14,6 +14,10 @@ export class ImageOverlay extends React.Component {
 		const {id, image, title, description, uploaded_by, source_url, category, slug_url, is_loggedin, bookmark_ids, base_url, image_xs} = this.props;
 		let size = this.props.size !== undefined ? this.props.size : "lg";
 		let final_url = base_url+slug_url;
+		let bookmark_index;
+		if(bookmark_ids !== undefined){
+			bookmark_index = bookmark_ids.findIndex(x => x.id === id);
+		}
 		
 		return(
 			<article className={`article ${size !== "lg" ? "sm" : ""}`}>
@@ -54,7 +58,7 @@ export class ImageOverlay extends React.Component {
 											<FontAwesomeIcon icon={faShareAlt} />
 										</li>
 										<li className="list-inline-item">
-											<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={bookmark_ids.indexOf(id) > -1 ? 'bookmarked' : ''} />
+											<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={bookmark_index > -1 ? 'bookmarked' : ''} />
 										</li>
 									</ul>
 								</div>
