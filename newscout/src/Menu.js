@@ -164,10 +164,10 @@ export class Menu extends React.Component {
 									<FontAwesomeIcon icon={faSun} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
 								}
 								<label className="switch" id="TooltipExample">
-									<input type="checkbox" onClick={this.toggleSwitch} checked={this.state.isChecked} />
+									<input type="checkbox" onChange={this.toggleSwitch} defaultChecked={this.state.isChecked} />
 									<span className="slider round"></span>
 								</label>
-								<Tooltip classNam="d-none d-sm-block" placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
+								<Tooltip className="d-none d-sm-block" placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
 									{this.state.isChecked ? 'Switch to day mode' : 'Switch to night mode'}
 								</Tooltip>
 							</NavItem>
@@ -178,12 +178,12 @@ export class Menu extends React.Component {
 									<InputGroup className={`search-box ${domain === "dashboard" ? 'd-none' : ''} `}>
 										<AsyncTypeahead
 											options={options}
-											selected={this.state.selected}
 											onBlur={this.handleChange}
 											placeholder="Search.."
 											id="search-text"
 											onSearch={this.handleSearch}
 											onKeyDown={this.handleKeyPress}
+											isLoading={false}
 											emptyLabel=""
 										/>
 									</InputGroup>
@@ -219,7 +219,7 @@ export class Menu extends React.Component {
 											<FontAwesomeIcon icon={faSun} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
 										}
 										<label className="switch" id="TooltipExample">
-											<input type="checkbox" onClick={this.toggleSwitch} checked={this.state.isChecked} />
+											<input type="checkbox" onClick={this.toggleSwitch} defaultChecked={this.state.isChecked} />
 											<span className="slider round"></span>
 										</label>
 										<Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>

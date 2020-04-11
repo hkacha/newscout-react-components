@@ -23,7 +23,7 @@ export class ToogleCard extends React.Component {
 		var results = items.map((item, j) => {
 			if(j !== 0){
 				return (
-					<div className="row">
+					<div className="row" key={j}>
 						<div className="col-lg-9 col-12">
 							<ul className="list-inline m-0 inside-post" key={j}>
 								<li className="list-inline-item mb-4">
