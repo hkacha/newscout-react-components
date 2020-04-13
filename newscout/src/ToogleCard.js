@@ -18,6 +18,7 @@ export class ToogleCard extends React.Component {
 	}
 
 	render() {
+		console.log("ToogleCard.js")
 		const { items, is_loggedin, bookmark_ids, base_url, index } = this.props;
 
 		var results = items.map((item, j) => {
