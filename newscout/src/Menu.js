@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, InputGroupText, Tooltip } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark, faMoon, faSun, faUser } from '@fortawesome/free-solid-svg-icons';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
@@ -156,12 +156,12 @@ export class Menu extends React.Component {
 						: ""
 						}
 						<NavbarBrand href={` ${domain === "dashboard" ? "/dashboard/" : "/"} `} className="ml-3"></NavbarBrand>
-						<Nav className="ml-auto toogler-switch">
-							<NavItem>
+						<Nav className="ml-auto toogler-switch list-inline">
+							<NavItem className="list-inline-item" style={{lineHeight: '15px'}}>
 								{this.state.isChecked ?
-									<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
+									<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px'}}/>
 								:
-									<FontAwesomeIcon icon={faSun} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
+									<FontAwesomeIcon icon={faSun} style={{fontSize:'16px'}}/>
 								}
 								<label className="switch" id="TooltipExample">
 									<input type="checkbox" onChange={this.toggleSwitch} defaultChecked={this.state.isChecked} />
@@ -171,6 +171,26 @@ export class Menu extends React.Component {
 									{this.state.isChecked ? 'Switch to day mode' : 'Switch to night mode'}
 								</Tooltip>
 							</NavItem>
+							{is_loggedin ?
+								<UncontrolledDropdown nav inNavbar className="list-inline-item">
+									<DropdownToggle nav caret className="login">
+										<FontAwesomeIcon icon={faUser} />
+									</DropdownToggle>
+									<DropdownMenu right>
+										<DropdownItem className="login" href="/news/bookmark/">
+											<FontAwesomeIcon icon={faBookmark} /> My Bookmarks
+										</DropdownItem>
+										<DropdownItem divider />
+										<DropdownItem onClick={this.handleLogout} className="login"> <FontAwesomeIcon icon={faPowerOff} /> Logout</DropdownItem>
+									</DropdownMenu>
+								</UncontrolledDropdown>
+							:
+								<React.Fragment>
+									<NavItem className="list-inline-item">
+										<NavLink onClick={this.toggleLogin} className="login"><FontAwesomeIcon icon={faSignInAlt} /></NavLink>
+									</NavItem>
+								</React.Fragment>
+							}
 						</Nav>
 						<Collapse isOpen={this.state.isOpen} navbar>
 							<div className="m-auto col-lg-6">
@@ -241,7 +261,7 @@ export class Menu extends React.Component {
 										</UncontrolledDropdown>
 									:
 										<React.Fragment>
-											<NavItem>
+											<NavItem className="d-none d-sm-block">
 												<NavLink onClick={this.toggleLogin} className="login"><FontAwesomeIcon icon={faSignInAlt} /> Login</NavLink>
 											</NavItem>
 										</React.Fragment>

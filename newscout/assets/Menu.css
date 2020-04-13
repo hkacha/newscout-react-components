@@ -81,7 +81,7 @@
   opacity: .6;
 }
 
-+.search-container input[type="text"] {
+.search-container input[type="text"] {
   color: #fff4e6;
   border-radius: 0px;
   border-color: #fff4e6;
@@ -133,6 +133,11 @@
 @media (max-width: 767px){
   .toogler-switch {
     display: block;
+  }
+  .login.dropdown-toggle.nav-link,
+  .login.nav-link {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
