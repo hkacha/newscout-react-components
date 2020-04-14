@@ -169,9 +169,6 @@ export class Menu extends React.Component {
 											<input type="checkbox" onChange={this.toggleSwitch} defaultChecked={this.state.isChecked} />
 											<span className="slider round"></span>
 										</label>
-										<Tooltip className="d-none d-sm-block" placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
-											{this.state.isChecked ? 'Switch to day mode' : 'Switch to night mode'}
-										</Tooltip>
 									</NavItem>
 									{is_loggedin ?
 										<UncontrolledDropdown nav inNavbar className="list-inline-item">
