@@ -157,39 +157,54 @@ export class Menu extends React.Component {
 						}
 						<NavbarBrand href={` ${domain === "dashboard" ? "/dashboard/" : "/"} `} className="ml-3"></NavbarBrand>
 						<Nav className="ml-auto toogler-switch list-inline">
-							<NavItem className="list-inline-item" style={{lineHeight: '15px'}}>
-								{this.state.isChecked ?
-									<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px'}}/>
-								:
-									<FontAwesomeIcon icon={faSun} style={{fontSize:'16px'}}/>
-								}
-								<label className="switch" id="TooltipExample">
-									<input type="checkbox" onChange={this.toggleSwitch} defaultChecked={this.state.isChecked} />
-									<span className="slider round"></span>
-								</label>
-								<Tooltip className="d-none d-sm-block" placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
-									{this.state.isChecked ? 'Switch to day mode' : 'Switch to night mode'}
-								</Tooltip>
-							</NavItem>
-							{is_loggedin ?
+							{domain === "domain=newscout" || domain === undefined ?
+								<React.Fragment>
+									<NavItem className="list-inline-item" style={{lineHeight: '15px'}}>
+										{this.state.isChecked ?
+											<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px'}}/>
+										:
+											<FontAwesomeIcon icon={faSun} style={{fontSize:'16px'}}/>
+										}
+										<label className="switch" id="TooltipExample">
+											<input type="checkbox" onChange={this.toggleSwitch} defaultChecked={this.state.isChecked} />
+											<span className="slider round"></span>
+										</label>
+										<Tooltip className="d-none d-sm-block" placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
+											{this.state.isChecked ? 'Switch to day mode' : 'Switch to night mode'}
+										</Tooltip>
+									</NavItem>
+									{is_loggedin ?
+										<UncontrolledDropdown nav inNavbar className="list-inline-item">
+											<DropdownToggle nav caret className="login">
+												<FontAwesomeIcon icon={faUser} />
+											</DropdownToggle>
+											<DropdownMenu right>
+												<DropdownItem className="login" href="/news/bookmark/">
+													<FontAwesomeIcon icon={faBookmark} /> My Bookmarks
+												</DropdownItem>
+												<DropdownItem divider />
+												<DropdownItem onClick={this.handleLogout} className="login"> <FontAwesomeIcon icon={faPowerOff} /> Logout</DropdownItem>
+											</DropdownMenu>
+										</UncontrolledDropdown>
+									:
+										<React.Fragment>
+											<NavItem className="list-inline-item">
+												<NavLink onClick={this.toggleLogin} className="login"><FontAwesomeIcon icon={faSignInAlt} /></NavLink>
+											</NavItem>
+										</React.Fragment>
+									}
+								</React.Fragment>
+							:
 								<UncontrolledDropdown nav inNavbar className="list-inline-item">
 									<DropdownToggle nav caret className="login">
 										<FontAwesomeIcon icon={faUser} />
 									</DropdownToggle>
-									<DropdownMenu right>
-										<DropdownItem className="login" href="/news/bookmark/">
-											<FontAwesomeIcon icon={faBookmark} /> My Bookmarks
-										</DropdownItem>
+									<DropdownMenu>
+										<DropdownItem className="login" href="/change-password/">Change Password</DropdownItem>
 										<DropdownItem divider />
-										<DropdownItem onClick={this.handleLogout} className="login"> <FontAwesomeIcon icon={faPowerOff} /> Logout</DropdownItem>
+										<DropdownItem href="/logout/" className="login">Logout</DropdownItem>
 									</DropdownMenu>
 								</UncontrolledDropdown>
-							:
-								<React.Fragment>
-									<NavItem className="list-inline-item">
-										<NavLink onClick={this.toggleLogin} className="login"><FontAwesomeIcon icon={faSignInAlt} /></NavLink>
-									</NavItem>
-								</React.Fragment>
 							}
 						</Nav>
 						<Collapse isOpen={this.state.isOpen} navbar>
@@ -267,7 +282,19 @@ export class Menu extends React.Component {
 										</React.Fragment>
 									}
 								</Nav>
-							: ""
+							:
+								<Nav className="ml-auto" navbar>
+									<UncontrolledDropdown nav inNavbar>
+										<DropdownToggle nav caret className="login">
+											{username}
+										</DropdownToggle>
+										<DropdownMenu right>
+											<DropdownItem className="login" href="/change-password/">Change Password</DropdownItem>
+											<DropdownItem divider />
+											<DropdownItem href="/logout/" className="login">Logout</DropdownItem>
+										</DropdownMenu>
+									</UncontrolledDropdown>
+								</Nav>
 							}
 						</Collapse>
 					</Navbar>
