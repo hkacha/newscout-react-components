@@ -43,6 +43,23 @@ export class Filter extends React.Component {
 		this.props.query(query, cat_checked)
 	}
 
+	handleFilterDocumentClick = (e) => {
+		const container = this._element;
+		if (e.target !== container && !container.contains(e.target)) {
+			if(this.props.isFilterOpen === true){
+				this.toggleFilter();
+			}
+		}
+	}
+
+	componentDidMount() {
+		document.addEventListener('click', this.handleFilterDocumentClick, true);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleFilterDocumentClick, false);
+	}
+
 	render(){
 		var { selectedtem } = this.state;
 		var collapse = this.props.filters.map((item, index) => {
@@ -69,24 +86,26 @@ export class Filter extends React.Component {
 		})
 
 		return(
-			<Fade right when={this.props.isFilterOpen} duration={500}>
-				<div className={`filter-container ${this.props.isFilterOpen === false ? 'd-none' : ''}`}>
-					<div className="filter-box">
-						<div className="clearfix">
-							<div className="float-left">
-								<h6>Filters</h6>
+			<div ref={(c)=> (this._element = c)}>
+				<Fade right when={this.props.isFilterOpen} duration={500}>
+					<div className={`filter-container ${this.props.isFilterOpen === false ? 'd-none' : ''}`}>
+						<div className="filter-box">
+							<div className="clearfix">
+								<div className="float-left">
+									<button className="btn btn-sm btn-danger" type="button">clear</button>
+								</div>
+								<div className="float-right">
+									<div className="closefilter" onClick={this.toggleFilter}>X</div>
+								</div>
 							</div>
-							<div className="float-right">
-								<div className="closefilter" onClick={this.toggleFilter}>X</div>
+							<hr/>
+							<div className="row">
+								<div className="col-lg-12">{collapse}</div>
 							</div>
-						</div>
-						<hr/>
-						<div className="row">
-							<div className="col-lg-12">{collapse}</div>
 						</div>
 					</div>
-				</div>
-			</Fade>
+				</Fade>
+			</div>
 		)
 	}
 }
