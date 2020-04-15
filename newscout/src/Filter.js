@@ -11,6 +11,7 @@ export class Filter extends React.Component {
 		this.state = {
 			isOpen: false,
 			selectedtem: [],
+			final_query: null
 		};
 	}
 
@@ -38,7 +39,8 @@ export class Filter extends React.Component {
 			query_array.splice(query_array.indexOf(cat_val), 1);
 		}
 		this.setState({
-			selectedtem: query_array
+			selectedtem: query_array,
+			final_query: query
 		})
 		this.props.query(query, cat_checked)
 	}
@@ -50,6 +52,13 @@ export class Filter extends React.Component {
 				this.toggleFilter();
 			}
 		}
+	}
+
+	handleClearAll = () => {
+		var state = this.state;
+		state.selectedtem = []
+		this.setState(state)
+		this.props.query(this.state.selectedtem, false)
 	}
 
 	componentDidMount() {
@@ -92,7 +101,7 @@ export class Filter extends React.Component {
 						<div className="filter-box">
 							<div className="clearfix">
 								<div className="float-left">
-									<button className="btn btn-sm btn-danger" type="button">clear</button>
+									<button className="btn btn-sm btn-danger" type="button" disabled={selectedtem.length > 0 ? false : true} onClick={this.handleClearAll}>clear all</button>
 								</div>
 								<div className="float-right">
 									<div className="closefilter" onClick={this.toggleFilter}>X</div>
