@@ -1,9 +1,9 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, InputGroupText, Tooltip } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, InputGroupText, Tooltip } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark, faMoon, faSun, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark, faMoon, faSun, faUser, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
@@ -24,10 +24,19 @@ export class Menu extends React.Component {
 			text: '',
 			isChecked: this.props.isChecked,
 			tooltipOpen: false,
-			selected: []
+			selected: [],
+			dropdownOpen: false,
+			isNavbarFilter: this.props.isNavbarFilter || false,
+			query: this.props.query || ""
 		};
 
 		this.myRef = React.createRef();
+	}
+
+	toggleDropdown = () => {
+		this.setState({
+			dropdownOpen: !this.state.dropdownOpen
+		})
 	}
 
 	toggleSwitch = () => {
@@ -36,7 +45,7 @@ export class Menu extends React.Component {
 		}, function() {
 			this.props.toggleSwitch(this.state.isChecked)
 		});
-	};
+	}
 
 	toggle = () => {
 		this.setState({
@@ -93,6 +102,10 @@ export class Menu extends React.Component {
 		this.props.handleLogout()
 	}
 
+	toggleFilter = () => {
+		this.props.toggleFilter()
+	}
+
 	handleDocumentClick = (e) => {
 		const container = this._element;
 		if (e.target !== container && !container.contains(e.target)) {
@@ -113,12 +126,15 @@ export class Menu extends React.Component {
 	componentWillReceiveProps(newProps){
 		this.setState({
 			isChecked: newProps.isChecked,
-			isSideOpen: newProps.isSideOpen
+			isSideOpen: newProps.isSideOpen,
+			isNavbarFilter: newProps.isNavbarFilter,
+			query: newProps.query
     	})
     }
 
 	render(){
 		const { multiple, placeholder, url, isSlider, domain, navitems, logo, username, is_loggedin, options } = this.props;
+		const { dropdownOpen } = this.state;
 
 		if(this.state.isSearchOpen === true){
 			document.getElementsByTagName("body")[0].style = "overflow:hidden";
@@ -127,12 +143,12 @@ export class Menu extends React.Component {
 		}
 
 		const menu = navitems.map((item, index) => {
-			var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase()
-			var icon_path = ""
+			var menuitem = item.itemtext.replace(/ /g, "-").toLowerCase();
+			var icon_path = "";
 			if(this.state.isChecked === true){
-				icon_path = item.item_icon.split(".")[0]+icon_name+item.item_icon.split(".")[1]
+				icon_path = item.item_icon.split(".")[0]+icon_name+item.item_icon.split(".")[1];
 			} else {
-				icon_path = item.item_icon
+				icon_path = item.item_icon;
 			}
 			return (
 				<NavItem key={index} className="d-block d-md-none">
@@ -217,6 +233,7 @@ export class Menu extends React.Component {
 											onKeyDown={this.handleKeyPress}
 											isLoading={false}
 											emptyLabel=""
+											defaultInputValue={this.state.query}
 										/>
 									</InputGroup>
 									{domain === "domain=newscout" || domain === undefined ?
@@ -295,6 +312,33 @@ export class Menu extends React.Component {
 							}
 						</Collapse>
 					</Navbar>
+					{this.state.isNavbarFilter && domain !== "dashboard" ?
+						<Navbar className="fixed-top navbar-filter d-block d-sm-none" expand="md">
+							<div className="inner">
+								<div className="filter-section">
+									<div className="row">
+										<div className="col-6">
+											<Dropdown isOpen={dropdownOpen} toggle={this.toggleDropdown} className="py-1">
+												<DropdownToggle caret className="btn-sm btn-block related-queries-btn">Related Queries</DropdownToggle>
+												<DropdownMenu>
+													<DropdownItem tag="a" href="http://newscout.in/news/search/?q=Ambani">Ambani</DropdownItem>
+													<DropdownItem tag="a" href="http://newscout.in/news/search/?q=Money">Money</DropdownItem>
+													<DropdownItem tag="a" href="http://newscout.in/news/search/?q=PM">PM</DropdownItem>
+													<DropdownItem tag="a" href="http://newscout.in/news/search/?q=Corona">Corona</DropdownItem>
+												</DropdownMenu>
+											</Dropdown>
+										</div>
+										<div className="col-6">
+											<div className="filter text-center py-1" style={{borderLeft: "1px solid #ddd"}} onClick={this.toggleFilter}>
+												<FontAwesomeIcon icon={faFilter} /> Filter
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</Navbar>
+					: ""
+					}
 					<KeyboardEventHandler handleKeys={['shift+/']} onKeyEvent={this.handleAutoFocus} />
 				</div>
 			</React.Fragment>
