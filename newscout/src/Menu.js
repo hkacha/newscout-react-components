@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, InputGroupText, Tooltip } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark, faMoon, faSun, faUser, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faSignInAlt, faPowerOff, faBookmark, faMoon, faSun, faUser, faFilter, faLock } from '@fortawesome/free-solid-svg-icons';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
@@ -196,6 +196,14 @@ export class Menu extends React.Component {
 													<FontAwesomeIcon icon={faBookmark} /> My Bookmarks
 												</DropdownItem>
 												<DropdownItem divider />
+												<DropdownItem className="login" href="/user/profile/">
+													<FontAwesomeIcon icon={faUser} /> My Profile
+												</DropdownItem>
+												<DropdownItem divider />
+												<DropdownItem className="login" href="/user/change-password/">
+													<FontAwesomeIcon icon={faLock} /> Change Password
+												</DropdownItem>
+												<DropdownItem divider />
 												<DropdownItem onClick={this.handleLogout} className="login"> <FontAwesomeIcon icon={faPowerOff} /> Logout</DropdownItem>
 											</DropdownMenu>
 										</UncontrolledDropdown>
@@ -283,6 +291,14 @@ export class Menu extends React.Component {
 											<DropdownMenu right>
 												<DropdownItem className="login" href="/news/bookmark/">
 													<FontAwesomeIcon icon={faBookmark} /> My Bookmarks
+												</DropdownItem>
+												<DropdownItem divider />
+												<DropdownItem className="login" href="/user/profile/">
+													<FontAwesomeIcon icon={faUser} /> My Profile
+												</DropdownItem>
+												<DropdownItem divider />
+												<DropdownItem className="login" href="/user/change-password/">
+													<FontAwesomeIcon icon={faLock} /> Change Password
 												</DropdownItem>
 												<DropdownItem divider />
 												<DropdownItem onClick={this.handleLogout} className="login"> <FontAwesomeIcon icon={faPowerOff} /> Logout</DropdownItem>
