@@ -79,6 +79,12 @@ export class Menu extends React.Component {
 		}
 	}
 
+	handleSearchClick = () => {
+		var value = this.state.text;
+		var url = this.props.url+"?q="+value;
+		window.location.href = url;
+	}
+
 	handleAutoFocus = () => {
 		this.typeahead.getInstance().focus()
 		// const instance = this.myRef.current.getInstance()
@@ -243,6 +249,11 @@ export class Menu extends React.Component {
 											emptyLabel=""
 											defaultInputValue={this.state.query}
 										/>
+										<InputGroupAddon addonType="append" onClick={this.handleSearchClick}>
+											<span className="input-group-text">
+												<FontAwesomeIcon icon={faSearch} />
+											</span>
+										</InputGroupAddon>
 									</InputGroup>
 									{domain === "domain=newscout" || domain === undefined ?
 										<React.Fragment>
