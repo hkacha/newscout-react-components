@@ -81,8 +81,10 @@ export class Menu extends React.Component {
 
 	handleSearchClick = () => {
 		var value = this.state.text;
-		var url = this.props.url+"?q="+value;
-		window.location.href = url;
+		if(value !== "" && value !== undefined){
+			var url = this.props.url+"?q="+value;
+			window.location.href = url;
+		}
 	}
 
 	handleAutoFocus = () => {
