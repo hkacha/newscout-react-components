@@ -52,7 +52,7 @@ export class ToogleCard extends React.Component {
 													<FontAwesomeIcon icon={faShareAlt} />
 												</li>
 												<li className="list-inline-item">
-													<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={bookmark_ids.findIndex(x => x.id === item.id) > -1 ? 'bookmarked' : ''} id={item.id} />
+													<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={`${bookmark_ids.findIndex(x => x.id === item.id) > -1 ? 'bookmarked' : ''} product-${item.id}`} />
 												</li>
 											</ul>
 										</div>
@@ -108,7 +108,7 @@ export class ToogleCard extends React.Component {
 												<FontAwesomeIcon icon={faShareAlt} />
 											</li>
 											<li className="list-inline-item">
-												<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={bookmark_ids.findIndex(x => x.id === items[0].id) > -1 ? 'bookmarked' : ''} id={items[0].id} />
+												<FontAwesomeIcon icon={faBookmark} onClick={this.getArticleId} className={`${bookmark_ids.findIndex(x => x.id === items[0].id) > -1 ? 'bookmarked' : ''} product-${items[0].id}`} />
 											</li>
 										</ul>
 									</div>
