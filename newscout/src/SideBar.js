@@ -29,7 +29,7 @@ export class SideBar extends React.Component {
 			}
 			return (
 				<ListGroupItem tag="a" href={"/"+item.itemurl+"/"} key={index}>
-					<img src={`${icon_path}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
+					<img src={`/${icon_path}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
 					{item.itemtext}
 				</ListGroupItem>
 			)
