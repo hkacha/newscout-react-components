@@ -190,7 +190,7 @@ export class Menu extends React.Component {
 											<FontAwesomeIcon icon={faSun} style={{fontSize:'16px'}}/>
 										}
 										<label className="switch" id="TooltipExample">
-											<input type="checkbox" onChange={this.toggleSwitch} defaultChecked={this.state.isChecked} />
+											<input type="checkbox" onChange={this.toggleSwitch} checked={this.state.isChecked} className={`${this.state.isChecked ? 'checked-switch' : ''}`} />
 											<span className="slider round"></span>
 										</label>
 									</NavItem>
@@ -200,6 +200,10 @@ export class Menu extends React.Component {
 												<FontAwesomeIcon icon={faUser} />
 											</DropdownToggle>
 											<DropdownMenu right>
+											<DropdownItem className="login">
+													<FontAwesomeIcon icon={faUser} /> {username}
+												</DropdownItem>
+												<DropdownItem divider />
 												<DropdownItem className="login" href="/news/bookmark/">
 													<FontAwesomeIcon icon={faBookmark} /> My Bookmarks
 												</DropdownItem>
@@ -289,7 +293,7 @@ export class Menu extends React.Component {
 											<FontAwesomeIcon icon={faSun} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
 										}
 										<label className="switch" id="TooltipExample">
-											<input type="checkbox" onClick={this.toggleSwitch} defaultChecked={this.state.isChecked} />
+											<input type="checkbox" onChange={this.toggleSwitch} checked={this.state.isChecked} className={`${this.state.isChecked ? 'checked-switch' : ''}`} />
 											<span className="slider round"></span>
 										</label>
 										<Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
