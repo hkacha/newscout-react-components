@@ -181,26 +181,26 @@ export class Menu extends React.Component {
 						}
 						<NavbarBrand href={` ${domain === "dashboard" ? "/dashboard/" : "/"} `} className="ml-3"></NavbarBrand>
 						<Nav className="ml-auto toogler-switch list-inline">
+							<NavItem className="list-inline-item" style={{lineHeight: '15px'}}>
+								{this.state.isChecked ?
+									<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px'}}/>
+								:
+									<FontAwesomeIcon icon={faSun} style={{fontSize:'16px'}}/>
+								}
+								<label className="switch" id="TooltipExample">
+									<input type="checkbox" onChange={this.toggleSwitch} checked={this.state.isChecked} className={`${this.state.isChecked ? 'checked-switch' : ''}`} />
+									<span className="slider round"></span>
+								</label>
+							</NavItem>
 							{domain === "domain=newscout" || domain === undefined ?
 								<React.Fragment>
-									<NavItem className="list-inline-item" style={{lineHeight: '15px'}}>
-										{this.state.isChecked ?
-											<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px'}}/>
-										:
-											<FontAwesomeIcon icon={faSun} style={{fontSize:'16px'}}/>
-										}
-										<label className="switch" id="TooltipExample">
-											<input type="checkbox" onChange={this.toggleSwitch} checked={this.state.isChecked} className={`${this.state.isChecked ? 'checked-switch' : ''}`} />
-											<span className="slider round"></span>
-										</label>
-									</NavItem>
 									{is_loggedin ?
 										<UncontrolledDropdown nav inNavbar className="list-inline-item">
 											<DropdownToggle nav caret className="login">
 												<FontAwesomeIcon icon={faUser} />
 											</DropdownToggle>
 											<DropdownMenu right>
-											<DropdownItem className="login">
+												<DropdownItem className="login">
 													<FontAwesomeIcon icon={faUser} /> {username}
 												</DropdownItem>
 												<DropdownItem divider />
@@ -216,7 +216,9 @@ export class Menu extends React.Component {
 													<FontAwesomeIcon icon={faLock} /> Change Password
 												</DropdownItem>
 												<DropdownItem divider />
-												<DropdownItem onClick={this.handleLogout} className="login"> <FontAwesomeIcon icon={faPowerOff} /> Logout</DropdownItem>
+												<DropdownItem onClick={this.handleLogout} className="login">
+													<FontAwesomeIcon icon={faPowerOff} /> Logout
+												</DropdownItem>
 											</DropdownMenu>
 										</UncontrolledDropdown>
 									:
@@ -232,7 +234,9 @@ export class Menu extends React.Component {
 									<DropdownToggle nav caret className="login">
 										<FontAwesomeIcon icon={faUser} />
 									</DropdownToggle>
-									<DropdownMenu>
+									<DropdownMenu right style={{'left':'unset', 'right':'0'}}>
+										<DropdownItem className="login">{username}</DropdownItem>
+										<DropdownItem divider />
 										<DropdownItem className="login" href="/change-password/">Change Password</DropdownItem>
 										<DropdownItem divider />
 										<DropdownItem href="/logout/" className="login">Logout</DropdownItem>
@@ -284,54 +288,55 @@ export class Menu extends React.Component {
 									}
 								</Nav>
 							</div>
-							{domain === "domain=newscout" || domain === undefined ?
-								<Nav className="ml-auto" navbar>
-									<NavItem className="d-none d-sm-block">
-										{this.state.isChecked ?
-											<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
-										:
-											<FontAwesomeIcon icon={faSun} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
-										}
-										<label className="switch" id="TooltipExample">
-											<input type="checkbox" onChange={this.toggleSwitch} checked={this.state.isChecked} className={`${this.state.isChecked ? 'checked-switch' : ''}`} />
-											<span className="slider round"></span>
-										</label>
-										<Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
-											{this.state.isChecked ? 'Switch to day mode' : 'Switch to night mode'}
-										</Tooltip>
-									</NavItem>
-									{is_loggedin ?
-										<UncontrolledDropdown nav inNavbar>
-											<DropdownToggle nav caret className="login">
-												{username}
-											</DropdownToggle>
-											<DropdownMenu right>
-												<DropdownItem className="login" href="/news/bookmark/">
-													<FontAwesomeIcon icon={faBookmark} /> My Bookmarks
-												</DropdownItem>
-												<DropdownItem divider />
-												<DropdownItem className="login" href="/user/profile/">
-													<FontAwesomeIcon icon={faUser} /> My Profile
-												</DropdownItem>
-												<DropdownItem divider />
-												<DropdownItem className="login" href="/user/change-password/">
-													<FontAwesomeIcon icon={faLock} /> Change Password
-												</DropdownItem>
-												<DropdownItem divider />
-												<DropdownItem onClick={this.handleLogout} className="login"> <FontAwesomeIcon icon={faPowerOff} /> Logout</DropdownItem>
-											</DropdownMenu>
-										</UncontrolledDropdown>
+
+							<Nav className="ml-auto" navbar>
+								<NavItem className="d-none d-sm-block">
+									{this.state.isChecked ?
+										<FontAwesomeIcon icon={faMoon} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
 									:
-										<React.Fragment>
-											<NavItem className="d-none d-sm-block">
-												<NavLink onClick={this.toggleLogin} className="login"><FontAwesomeIcon icon={faSignInAlt} /> Login</NavLink>
-											</NavItem>
-										</React.Fragment>
+										<FontAwesomeIcon icon={faSun} style={{fontSize:'16px', verticalAlign:'text-top'}}/>
 									}
-								</Nav>
-							:
-								<Nav className="ml-auto" navbar>
-									<UncontrolledDropdown nav inNavbar>
+									<label className="switch" id="TooltipExample">
+										<input type="checkbox" onChange={this.toggleSwitch} checked={this.state.isChecked} className={`${this.state.isChecked ? 'checked-switch' : ''}`} />
+										<span className="slider round"></span>
+									</label>
+									<Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.tooltipToggle}>
+										{this.state.isChecked ? 'Switch to day mode' : 'Switch to night mode'}
+									</Tooltip>
+								</NavItem>
+								{domain === "domain=newscout" || domain === undefined ?
+									<React.Fragment>
+										{is_loggedin ?
+											<UncontrolledDropdown nav inNavbar className="d-none d-sm-block">
+												<DropdownToggle nav caret className="login">
+													{username}
+												</DropdownToggle>
+												<DropdownMenu right>
+													<DropdownItem className="login" href="/news/bookmark/">
+														<FontAwesomeIcon icon={faBookmark} /> My Bookmarks
+													</DropdownItem>
+													<DropdownItem divider />
+													<DropdownItem className="login" href="/user/profile/">
+														<FontAwesomeIcon icon={faUser} /> My Profile
+													</DropdownItem>
+													<DropdownItem divider />
+													<DropdownItem className="login" href="/user/change-password/">
+														<FontAwesomeIcon icon={faLock} /> Change Password
+													</DropdownItem>
+													<DropdownItem divider />
+													<DropdownItem onClick={this.handleLogout} className="login"> <FontAwesomeIcon icon={faPowerOff} /> Logout</DropdownItem>
+												</DropdownMenu>
+											</UncontrolledDropdown>
+										:
+											<React.Fragment>
+												<NavItem className="d-none d-sm-block">
+													<NavLink onClick={this.toggleLogin} className="login"><FontAwesomeIcon icon={faSignInAlt} /> Login</NavLink>
+												</NavItem>
+											</React.Fragment>
+										}
+									</React.Fragment>
+								:
+									<UncontrolledDropdown nav inNavbar className="d-none d-sm-block">
 										<DropdownToggle nav caret className="login">
 											{username}
 										</DropdownToggle>
@@ -341,8 +346,8 @@ export class Menu extends React.Component {
 											<DropdownItem href="/logout/" className="login">Logout</DropdownItem>
 										</DropdownMenu>
 									</UncontrolledDropdown>
-								</Nav>
-							}
+								}
+							</Nav>
 						</Collapse>
 					</Navbar>
 					{this.state.isNavbarFilter && domain !== "dashboard" ?
