@@ -88,13 +88,9 @@ export class Menu extends React.Component {
 	}
 
 	handleAutoFocus = () => {
-		this.typeahead.getInstance().focus()
-		// const instance = this.myRef.current.getInstance()
-		// instance.clear();
-		// instance.focus();
-		// console.log(instance.state.text)
-		// var aa = document.getElementById("search-text")
-		// console.log(aa.value)
+		const instance = this._typeahead.getInstance();
+		instance.clear();
+		instance.focus();
 	}
 
 	handleSearch = (query) => {
@@ -258,6 +254,8 @@ export class Menu extends React.Component {
 											isLoading={false}
 											emptyLabel=""
 											defaultInputValue={this.state.query}
+											inputProps={{'id':'search-text'}}
+											ref={(ref) => this._typeahead = ref}
 										/>
 										<InputGroupAddon addonType="append" onClick={this.handleSearchClick}>
 											<span className="input-group-text">
@@ -377,7 +375,7 @@ export class Menu extends React.Component {
 						</Navbar>
 					: ""
 					}
-					<KeyboardEventHandler handleKeys={['shift+/']} onKeyEvent={this.handleAutoFocus} />
+					<KeyboardEventHandler handleKeys={['shift']} onKeyEvent={this.handleAutoFocus} />
 				</div>
 			</React.Fragment>
 		)
