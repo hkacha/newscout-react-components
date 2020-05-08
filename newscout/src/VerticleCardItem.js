@@ -14,6 +14,7 @@ export class VerticleCardItem extends React.Component {
 		const { id, image, title, description, uploaded_by, source_url, category, slug_url, hash_tags, uploaded_on, is_loggedin, bookmark_ids, base_url } = this.props;
 		let final_url = base_url + slug_url;
 		let bookmark_index = bookmark_ids.findIndex(x => x.id === id);
+
 		return (
 			<Card className="card-post">
 				<a href={`${slug_url}`}><img src={image} alt={title} className="img-fluid" /></a>
@@ -53,7 +54,7 @@ export class VerticleCardItem extends React.Component {
 						</div>
 					</div>
 				</CardBody>
-			</Card>
+			</Card >
 		)
 	}
 }
