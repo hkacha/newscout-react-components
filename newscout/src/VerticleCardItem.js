@@ -38,7 +38,7 @@ export class VerticleCardItem extends React.Component {
 										<FacebookShareButton url={final_url} quote={title} image={image}>
 											<FacebookIcon size={20} round />
 										</FacebookShareButton>&nbsp;
-										<TwitterShareButton url={final_url} quote={title} image={image}>
+										<TwitterShareButton url={final_url} title={title} image={image}>
 											<TwitterIcon size={20} round />
 										</TwitterShareButton>&nbsp;
 										<WhatsappShareButton url={final_url} quote={title} image={image}>

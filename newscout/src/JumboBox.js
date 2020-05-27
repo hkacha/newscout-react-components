@@ -18,7 +18,7 @@ export class JumboBox extends React.Component {
 		if(hash_tags !== undefined){
 			all_hash_tags = hash_tags.map((item, index) => {
 				return(
-					<li className="list-inline-item">{`#${item}`}</li>
+					<li className="list-inline-item" key={index}>{`#${item}`}</li>
 				)
 			})
 		}
@@ -44,7 +44,7 @@ export class JumboBox extends React.Component {
 										<FacebookShareButton url={final_url} quote={title} image={image}>
 											<FacebookIcon size={20} round />
 										</FacebookShareButton>&nbsp;
-										<TwitterShareButton url={final_url} quote={title} image={image}>
+										<TwitterShareButton url={final_url} title={title} image={image}>
 											<TwitterIcon size={20} round />
 										</TwitterShareButton>&nbsp;
 										<WhatsappShareButton url={final_url} quote={title} image={image}>

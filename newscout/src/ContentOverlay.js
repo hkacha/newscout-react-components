@@ -36,7 +36,7 @@ export class ContentOverlay extends React.Component {
 										<FacebookShareButton url={final_url} quote={title}>
 											<FacebookIcon size={20} round />
 										</FacebookShareButton>&nbsp;
-										<TwitterShareButton url={final_url} quote={title}>
+										<TwitterShareButton url={final_url} title={title}>
 											<TwitterIcon size={20} round />
 										</TwitterShareButton>&nbsp;
 										<WhatsappShareButton url={final_url} quote={title}>

@@ -43,7 +43,7 @@ export class ToogleCard extends React.Component {
 														<FacebookShareButton url={`${base_url}/news/article/${item.slug}`} quote={item.title} image={item.image}>
 															<FacebookIcon size={15} round />
 														</FacebookShareButton>&nbsp;
-														<TwitterShareButton url={`${base_url}/news/article/${item.slug}`} quote={item.title} image={item.image}>
+														<TwitterShareButton url={`${base_url}/news/article/${item.slug}`} title={item.title} image={item.image}>
 															<TwitterIcon size={15} round />
 														</TwitterShareButton>&nbsp;
 														<WhatsappShareButton url={`${base_url}/news/article/${item.slug}`} quote={item.title} image={item.image}>
@@ -99,7 +99,7 @@ export class ToogleCard extends React.Component {
 													<FacebookShareButton url={`${base_url}/news/article/${items[0].slug}`} quote={items[0].title}>
 														<FacebookIcon size={15} round />
 													</FacebookShareButton>&nbsp;
-													<TwitterShareButton url={`${base_url}/news/article/${items[0].slug}`} quote={items[0].title}>
+													<TwitterShareButton url={`${base_url}/news/article/${items[0].slug}`} title={items[0].title}>
 														<TwitterIcon size={15} round />
 													</TwitterShareButton>&nbsp;
 													<WhatsappShareButton url={`${base_url}/news/article/${items[0].slug}`} quote={items[0].title}>
