@@ -25,6 +25,12 @@
     max-width: 86.333333%;
 }
 
+.main-content.col-lg-12 {
+	flex: 0 0 95.333333%;
+    max-width: 95.333333%;
+    margin-left: 4.666667%;
+}
+
 @media (max-width: 380px) {
 	.sidebar {
 		display: none !important;
@@ -52,10 +58,12 @@
 }
 
 .sidebar-none {
-	opacity: 0;
+	/*opacity: 0;
 	visibility: hidden;
 	-webkit-transition: opacity 600ms, visibility 600ms;
-	display: none !important;
+	display: none !important;*/
+	flex: 0 0 4.666667% !important;
+    max-width: 4.666667% !important;
 }
 
 .sidebar.col-lg-2 {

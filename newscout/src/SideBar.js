@@ -30,8 +30,8 @@ export class SideBar extends React.Component {
 			}
 			return (
 				<ListGroupItem className={this.props.active === item.itemurl.replace("news/", "").trim() ? 'active-menu' : ''} tag="a" href={"/"+item.itemurl+"/"} key={index}>
-					<img src={`/${icon_path}`} alt={item.itemtext} className="menu-icons"/>&nbsp;
-					{item.itemtext}
+					<img src={`/${icon_path}`} alt={item.itemtext} className="menu-icons" title={item.itemtext} />&nbsp;
+					<span className={`${this.props.class ? '' : 'd-none'}`}>{item.itemtext}</span>
 				</ListGroupItem>
 			)
 		})
@@ -40,16 +40,16 @@ export class SideBar extends React.Component {
 				<ListGroup>
 					{this.props.domain === "domain=newscout" || this.props.domain === undefined ?
 						<ListGroupItem className={this.props.active === "trending" ? 'active-menu' : ''} tag="a" href="/news/trending/">
-							<img src={`${this.state.isChecked || this.props.active === "trending" ? "/static/icons/trending_news-white.png" : "/static/icons/trending_news.png"}`} alt="Trending" className="menu-icons" />&nbsp;
-							Trending
+							<img src={`${this.state.isChecked || this.props.active === "trending" ? "/static/icons/trending_news-white.png" : "/static/icons/trending_news.png"}`} alt="Trending" className="menu-icons" title={item.itemtext} />&nbsp;
+							<span className={`${this.props.class ? '' : 'd-none'}`}>Trending</span>
 						</ListGroupItem>
 						: ""
 					}
 					{listitem}
 					{this.props.domain === "domain=newscout" || this.props.domain === undefined ?
 						<ListGroupItem className={this.props.active === "rss" ? 'active-menu' : ''} tag="a" href="/news/rss/?domain=newscout">
-							<img src={`${this.state.isChecked || this.props.active === "rss" ? "/static/icons/rss-white.png" : "/static/icons/rss.png"}`} alt="rss" className="menu-icons" />&nbsp;
-							RSS
+							<img src={`${this.state.isChecked || this.props.active === "rss" ? "/static/icons/rss-white.png" : "/static/icons/rss.png"}`} alt="rss" className="menu-icons" title={item.itemtext} />&nbsp;
+							<span className={`${this.props.class ? '' : 'd-none'}`}>RSS</span>
 						</ListGroupItem>
 						: ""
 					}
