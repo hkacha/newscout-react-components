@@ -11,13 +11,15 @@ export class VerticleCardAd extends React.Component {
 			<Card className="card-post">
 				<a href={`${source_url}`}><img src={image} alt={id} className="img-fluid" /></a>
 				<CardBody className="adlink">
-					<CardText className="card-desc"><a href={`${source_url}`} target="_blank">{description}</a></CardText>
+					<CardText className="card-desc">
+						<a href={`${source_url}`} target="_blank">{description}</a>
+					</CardText>
 					<div className="clearfix">
 						<div className="float-left"></div>
 						<ul className="list-inline m-0">
 							<li className="list-inline-item">
 								<FontAwesomeIcon icon={faExternalLinkSquareAlt} /> sponsored
-								</li>
+							</li>
 						</ul>
 					</div>
 				</CardBody>

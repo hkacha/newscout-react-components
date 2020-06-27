@@ -29,7 +29,7 @@ export class VerticleCardItem extends React.Component {
 					<CardText className="card-desc"><a href={`${slug_url}`} target="_blank" dangerouslySetInnerHTML={{ __html: description }}></a></CardText>
 					<div className="clearfix">
 						<div className="float-left">
-							<CardLink href={`${source_url}`}>Read More...</CardLink>
+							<CardLink href={`${slug_url}`}>Read More...</CardLink>
 						</div>
 						<div className="float-right">
 							<ul className="list-inline m-0 sharelink">
@@ -54,7 +54,7 @@ export class VerticleCardItem extends React.Component {
 						</div>
 					</div>
 				</CardBody>
-			</Card >
+			</Card>
 		)
 	}
 }
