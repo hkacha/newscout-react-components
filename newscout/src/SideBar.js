@@ -29,7 +29,7 @@ export class SideBar extends React.Component {
 				icon_path = item.item_icon
 			}
 			return (
-				<ListGroupItem className={this.props.active === item.itemurl.replace("news/", "").trim() ? 'active-menu' : ''} tag="a" href={"/"+item.itemurl+"/"} key={index}>
+				<ListGroupItem className={`${this.props.active === item.itemurl.replace("news/", "").trim() ? 'active-menu' : ''} ${this.props.class ? '' : 'text-center'}`} tag="a" href={"/"+item.itemurl+"/"} key={index}>
 					<img src={`/${icon_path}`} alt={item.itemtext} className="menu-icons" title={item.itemtext} />&nbsp;
 					<span className={`${this.props.class ? '' : 'd-none'}`}>{item.itemtext}</span>
 				</ListGroupItem>
@@ -39,7 +39,7 @@ export class SideBar extends React.Component {
 			<div className={`sidebar col-lg-2 d-none d-md-block d-xl-block ${this.props.class ? '' : 'sidebar-none'}`}>
 				<ListGroup>
 					{this.props.domain === "domain=newscout" || this.props.domain === undefined ?
-						<ListGroupItem className={this.props.active === "trending" ? 'active-menu' : ''} tag="a" href="/news/trending/">
+						<ListGroupItem className={`${this.props.active === "trending" ? 'active-menu' : ''} ${this.props.class ? '' : 'text-center'}`} tag="a" href="/news/trending/">
 							<img src={`${this.state.isChecked || this.props.active === "trending" ? "/static/icons/trending_news-white.png" : "/static/icons/trending_news.png"}`} alt="Trending" className="menu-icons" title="Trending" />&nbsp;
 							<span className={`${this.props.class ? '' : 'd-none'}`}>Trending</span>
 						</ListGroupItem>
@@ -47,7 +47,7 @@ export class SideBar extends React.Component {
 					}
 					{listitem}
 					{this.props.domain === "domain=newscout" || this.props.domain === undefined ?
-						<ListGroupItem className={this.props.active === "rss" ? 'active-menu' : ''} tag="a" href="/news/rss/?domain=newscout">
+						<ListGroupItem className={` ${this.props.active === "rss" ? 'active-menu' : ''} ${this.props.class ? '' : 'text-center'} `} tag="a" href="/news/rss/?domain=newscout">
 							<img src={`${this.state.isChecked || this.props.active === "rss" ? "/static/icons/rss-white.png" : "/static/icons/rss.png"}`} alt="rss" className="menu-icons" title="RSS" />&nbsp;
 							<span className={`${this.props.class ? '' : 'd-none'}`}>RSS</span>
 						</ListGroupItem>
