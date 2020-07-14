@@ -267,7 +267,7 @@ export class Menu extends React.Component {
 										<React.Fragment>
 											<NavItem className="d-block d-md-none">
 												<NavLink href="/news/trending/">
-												<img src={`${this.state.isChecked ? "/static/icons/trending_news-white.png" : "/static/icons/trending_news.png" }`} alt="Trending" className="menu-icons"/>&nbsp;
+												<img src={`${this.state.isChecked ? "/static/icons/trending-white.png" : "/static/icons/trending.png" }`} alt="Trending" className="menu-icons"/>&nbsp;
 												Trending
 												</NavLink>
 											</NavItem>

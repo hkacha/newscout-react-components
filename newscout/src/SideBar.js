@@ -40,7 +40,7 @@ export class SideBar extends React.Component {
 				<ListGroup>
 					{this.props.domain === "domain=newscout" || this.props.domain === undefined ?
 						<ListGroupItem className={`${this.props.active === "trending" ? 'active-menu' : ''} ${this.props.class ? '' : 'text-center'}`} tag="a" href="/news/trending/">
-							<img src={`${this.state.isChecked || this.props.active === "trending" ? "/static/icons/trending_news-white.png" : "/static/icons/trending_news.png"}`} alt="Trending" className="menu-icons" title="Trending" />&nbsp;
+							<img src={`${this.state.isChecked || this.props.active === "trending" ? "/static/icons/trending-white.png" : "/static/icons/trending.png"}`} alt="Trending" className="menu-icons clrwhite" title="Trending" />&nbsp;
 							<span className={`${this.props.class ? '' : 'd-none'}`}>Trending</span>
 						</ListGroupItem>
 						: ""
