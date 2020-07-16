@@ -21,6 +21,7 @@ export class SideBar extends React.Component {
 
 
 	render() {
+		var {active_page} = this.props;
 		var listitem = this.props.menuitems.map((item, index) => {
 			var icon_path = ""
 			if (this.state.isChecked === true || this.props.active === item.itemurl.replace("news/", "").trim()) {
@@ -28,12 +29,21 @@ export class SideBar extends React.Component {
 			} else {
 				icon_path = item.item_icon
 			}
-			return (
-				<ListGroupItem className={`${this.props.active === item.itemurl.replace("news/", "").trim() ? 'active-menu' : ''} ${this.props.class ? '' : 'text-center'}`} tag="a" href={"/"+item.itemurl+"/"} key={index}>
-					<img src={`/${icon_path}`} alt={item.itemtext} className="menu-icons" title={item.itemtext} />&nbsp;
-					<span className={`${this.props.class ? '' : 'd-none'}`}>{item.itemtext}</span>
-				</ListGroupItem>
-			)
+			if(active_page !== "" && active_page !== undefined){
+				return (
+					<ListGroupItem className={`${active_page === item.itemurl ? 'active-menu' : ''} ${this.props.class ? '' : 'text-center'}`} tag="a" href={"/"+item.itemurl+"/"} key={index}>
+						<img src={`/${icon_path}`} alt={item.itemtext} className="menu-icons" title={item.itemtext} />&nbsp;
+						<span className={`${this.props.class ? '' : 'd-none'}`}>{item.itemtext}</span>
+					</ListGroupItem>
+				)
+			} else {
+				return (
+					<ListGroupItem className={`${this.props.active === item.itemurl.replace("news/", "").trim() ? 'active-menu' : ''} ${this.props.class ? '' : 'text-center'}`} tag="a" href={"/"+item.itemurl+"/"} key={index}>
+						<img src={`/${icon_path}`} alt={item.itemtext} className="menu-icons" title={item.itemtext} />&nbsp;
+						<span className={`${this.props.class ? '' : 'd-none'}`}>{item.itemtext}</span>
+					</ListGroupItem>
+				)
+			}
 		})
 		return (
 			<div className={`sidebar col-lg-2 d-none d-md-block d-xl-block ${this.props.class ? '' : 'sidebar-none'}`}>
