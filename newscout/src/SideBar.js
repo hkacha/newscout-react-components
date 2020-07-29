@@ -26,13 +26,15 @@ export class SideBar extends React.Component {
 			var icon_path = ""
 			if (this.state.isChecked === true || this.props.active === item.itemurl.replace("news/", "").trim()) {
 				icon_path = item.item_icon.split(".")[0] + icon_name + item.item_icon.split(".")[1]
+			} else if (item.itemurl.startsWith("dashboard") && active_page === item.itemurl){
+				icon_path = item.item_icon.split(".")[0] + icon_name + item.item_icon.split(".")[1]
 			} else {
 				icon_path = item.item_icon
 			}
 			if(active_page !== "" && active_page !== undefined){
 				return (
 					<ListGroupItem className={`${active_page === item.itemurl ? 'active-menu' : ''} ${this.props.class ? '' : 'text-center'}`} tag="a" href={"/"+item.itemurl+"/"} key={index}>
-						<img src={`/${icon_path}`} alt={item.itemtext} className="menu-icons" title={item.itemtext} />&nbsp;
+						<img src={`/${icon_path}`} alt={item.itemtext} className="menu-icons clrwhite" title={item.itemtext} />&nbsp;
 						<span className={`${this.props.class ? '' : 'd-none'}`}>{item.itemtext}</span>
 					</ListGroupItem>
 				)
